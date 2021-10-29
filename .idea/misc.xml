@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/button_bg.xml" value="0.2703125" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/input_bg.xml" value="0.2703125" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/login_bg.xml" value="0.2703125" />
@@ -24,10 +23,14 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/history_layout.xml" value="0.4" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_history_layout.xml" value="0.25" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/menu_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/project/Food-Hero-App/app/src/main/res/drawable/testshape.xml" value="0.14635416666666667" />
+        <entry key="..\:/project/Food-Hero-App/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/Food-Hero-App/app/src/main/res/layout/fragment_request.xml" value="0.13020833333333334" />
+        <entry key="..\:/project/Food-Hero-App/app/src/main/res/layout/fragment_restuarant_login.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
