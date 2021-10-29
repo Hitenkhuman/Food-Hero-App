@@ -16,18 +16,21 @@ import com.example.foodhero.databinding.ActivityRestuarantMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class RestuarantMain extends AppCompatActivity {
-
+    FragmentTransaction transaction;
    ActivityRestuarantMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityRestuarantMainBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
-        binding.bottomNavbar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container,new HomeFragment());
+        transaction.commit();
+        binding.bottomNavbar.setSelectedItemId(0);
+        binding.bottomNavbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item) {
-                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                transaction=getSupportFragmentManager().beginTransaction();
                 switch (item.getItemId()){
                     case R.id.home:
                         transaction.replace(R.id.container,new HomeFragment());
@@ -37,12 +40,15 @@ public class RestuarantMain extends AppCompatActivity {
                         break;
                     case R.id.history:
                         transaction.replace(R.id.container,new HistoryFragment());
+
                         break;
                     case R.id.myprofile:
                         transaction.replace(R.id.container,new MyProfileFragment());
                         break;
                 }
                 transaction.commit();
+
+                return true;
             }
         });
 

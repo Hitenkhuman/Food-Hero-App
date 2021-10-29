@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodhero.Models.Food;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.Models.Restuarant;
 import com.example.foodhero.R;
@@ -20,12 +21,11 @@ import java.util.ArrayList;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
 
-    private ArrayList<Restuarant> restuarants;
+    private ArrayList<Food> list;
     private Context context;
 
-    public HistoryAdapter(ArrayList<Restuarant> restuarants, ArrayList<Ngo> ngos, Context context) {
-        this.restuarants = restuarants;
-        this.ngos = ngos;
+    public HistoryAdapter(ArrayList<Food> list,  Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -50,27 +50,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             viewbtn= view.findViewById(R.id.histrorybtn);
         }
 
-        public TextView getTextView() {
-            return textView;
-        }
+
     }
 
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public CustomAdapter(String[] dataSet) {
-        localDataSet = dataSet;
-    }
+
 
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_history_layout, parent, false);
+                .inflate(R.layout.item_history_layout, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -81,20 +71,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        Restuarant host=restuarants.get(position);
-        Ngo reciver=ngos.get(position);
+        Food data=list.get(position);
 
-        viewHolder.img1.setImageResource(host.getImgurl());
-        viewHolder.img2.setImageResource(reciver.getImgurl());
-        viewHolder.name1.setText(host.getName());
-        viewHolder.name2.setText(reciver.getName());
 
+//        viewHolder.img1.setImageResource(data.getResImgUrl());
+//        viewHolder.img2.setImageResource(data.getNgoIImgUrl());
+        viewHolder.name1.setText(data.getResName());
+        viewHolder.name2.setText(data.getNgoName());
+        viewHolder.status.setText(data.getStatus());
+        viewHolder.img1.setImageResource(data.getResImgUrl());
+        viewHolder.img2.setImageResource(data.getNgoIImgUrl());
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return list.length;
+        return list.size();
     }
 }
