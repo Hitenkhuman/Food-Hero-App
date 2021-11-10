@@ -13,15 +13,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-               
-                startActivity(new Intent(SplashScreen.this,RestuarantMain.class));
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+
+            startActivity(new Intent(SplashScreen.this,RestuarantMain.class));
+            finish();
         },2000);
     }
 }
