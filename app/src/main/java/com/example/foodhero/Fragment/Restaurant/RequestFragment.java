@@ -3,69 +3,43 @@ package com.example.foodhero.Fragment.Restaurant;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.foodhero.Adapters.HistoryAdapter;
+import com.example.foodhero.Adapters.RequestAdapter;
+import com.example.foodhero.Models.Food;
+import com.example.foodhero.Models.Request;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentHistoryBinding;
 import com.example.foodhero.databinding.FragmentRequestBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RequestFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class RequestFragment extends Fragment {
-
-    // private ItemHistoryLayoutBinding binding;
-    private FragmentRequestBinding binding;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RequestFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RequestFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RequestFragment newInstance(String param1, String param2) {
-        RequestFragment fragment = new RequestFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    FragmentRequestBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_request, container, false);
+        binding=FragmentRequestBinding.inflate(LayoutInflater.from(getContext()),container,false);
+        ArrayList<Request> list=new ArrayList<>();
+        list.add(new Request(R.drawable.n1,"Aakriti","Chill Palace"));
+        list.add(new Request(R.drawable.n2,"Aakriti","Chill Palace"));
+        list.add(new Request(R.drawable.n1,"Aakriti","Chill Palace"));
+        list.add(new Request(R.drawable.n4,"Aakriti","Chill Palace"));
+        list.add(new Request(R.drawable.h1,"Aakriti","Chill Palace"));
+        RequestAdapter adapter=new RequestAdapter(list,getContext());
+        binding.recyclerequest.setAdapter(adapter);
+
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        binding.recyclerequest.setLayoutManager(linearLayoutManager);
+
+        return binding.getRoot();
     }
 }
