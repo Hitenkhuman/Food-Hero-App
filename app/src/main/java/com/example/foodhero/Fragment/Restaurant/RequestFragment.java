@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodhero.R;
+import com.example.foodhero.databinding.FragmentHistoryBinding;
+import com.example.foodhero.databinding.FragmentRequestBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +18,9 @@ import com.example.foodhero.R;
  * create an instance of this fragment.
  */
 public class RequestFragment extends Fragment {
+
+    // private ItemHistoryLayoutBinding binding;
+    private FragmentRequestBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
