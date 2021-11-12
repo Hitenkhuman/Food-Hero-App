@@ -23,22 +23,25 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     private ArrayList<Food> list;
     private Context context;
+    private OnHistoryListner onHistoryListner;
 
-    public HistoryAdapter(ArrayList<Food> list,  Context context) {
+    public HistoryAdapter(ArrayList<Food> list,  Context context,OnHistoryListner onHistoryListner) {
         this.list = list;
         this.context = context;
+        this.onHistoryListner=onHistoryListner;
     }
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name1,name2,status;
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private final TextView name1,name2,status,date;
         private final ImageView img1,img2;
-        private  final Button viewbtn;
+        OnHistoryListner onHistoryListner;
 
-        public ViewHolder(View view) {
+
+        public ViewHolder(View view,OnHistoryListner onHistoryListner) {
             super(view);
             // Define click listener for the ViewHolder's View
 
@@ -47,10 +50,16 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             img1= view.findViewById(R.id.image1);
             img2= view.findViewById(R.id.image2);
             status= view.findViewById(R.id.status);
-            viewbtn= view.findViewById(R.id.histrorybtn);
+            date=view.findViewById(R.id.date);
+            this.onHistoryListner=onHistoryListner;
+            view.setOnClickListener(this);
         }
 
 
+        @Override
+        public void onClick(View view) {
+            onHistoryListner.onHistoryClick(getAdapterPosition());
+        }
     }
 
 
@@ -62,7 +71,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_history_layout, viewGroup, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view,onHistoryListner);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -79,6 +88,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         viewHolder.name1.setText(data.getResName());
         viewHolder.name2.setText(data.getNgoName());
         viewHolder.status.setText(data.getStatus());
+        viewHolder.date.setText(data.getDate());
         viewHolder.img1.setImageResource(data.getResImgUrl());
         viewHolder.img2.setImageResource(data.getNgoIImgUrl());
 
@@ -88,5 +98,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public int getItemCount() {
         return list.size();
+    }
+    public interface OnHistoryListner{
+        void onHistoryClick(int position);
     }
 }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
+import com.example.foodhero.BottomShitFragment;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentHomeBinding;
 
@@ -57,6 +58,14 @@ public class HomeFragment extends Fragment {
                 new DatePickerDialog(getContext(), date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        binding.addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomShitFragment fragment=new BottomShitFragment();
+                fragment.show(getActivity().getSupportFragmentManager(), fragment.getTag());
             }
         });
         return binding.getRoot();

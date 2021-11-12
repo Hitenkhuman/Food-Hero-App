@@ -6,7 +6,6 @@
     android:orientation="vertical"
 
     tools:context=".RestuarantLoginFragment">
-
     <EditText
         android:id="@+id/userId"
         android:layout_width="match_parent"
@@ -14,23 +13,27 @@
         android:layout_margin="20dp"
         android:ems="10"
         android:gravity="center"
+        android:textColorHint="@color/green"
+        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:padding="10dp"
         android:background="@drawable/input_bg"
-        android:hint="Email id"/>
+        android:padding="10dp"
+        android:hint="Email id" />
 
     <EditText
         android:id="@+id/userpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:textColor="@color/black"
         android:ems="10"
         android:gravity="center"
+        android:textColorHint="@color/green"
+        android:background="@drawable/input_bg"
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:background="@drawable/input_bg"
         android:padding="10dp" />
 
     <TextView
@@ -40,14 +43,14 @@
         android:gravity="end"
         android:paddingRight="20dp"
         android:text="forgot password?"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/button_bg"
+        android:background="@drawable/input_bg"
         android:padding="10dp"
         android:text="Log in" />
 
@@ -57,5 +60,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Don't have an account?Sign in"
-        android:textColor="@color/white" />
+        android:textStyle="bold"
+        android:textColor="@color/primary" />
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@drawable/logo"></ImageView>
 </LinearLayout>

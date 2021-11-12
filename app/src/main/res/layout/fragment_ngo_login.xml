@@ -13,7 +13,9 @@ tools:context=".NgoLoginFragment">
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:ems="10"
+    android:textColor="@color/black"
     android:gravity="center"
+    android:textColorHint="@color/green"
     android:inputType="textPersonName"
     android:minHeight="48dp"
     android:background="@drawable/input_bg"
@@ -26,7 +28,9 @@ tools:context=".NgoLoginFragment">
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:ems="10"
+    android:textColor="@color/black"
     android:gravity="center"
+    android:textColorHint="@color/green"
     android:background="@drawable/input_bg"
     android:hint="Password"
     android:inputType="textPassword"
@@ -51,11 +55,18 @@ tools:context=".NgoLoginFragment">
     android:padding="10dp"
     android:text="Log in" />
 
-<TextView
-    android:id="@+id/signin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:text="Don't have an account?Sign in"
-    android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Don't have an account?Sign in"
+        android:textStyle="bold"
+        android:textColor="@color/primary" />
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@drawable/logo"></ImageView>
 </LinearLayout>

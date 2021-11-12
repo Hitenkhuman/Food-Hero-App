@@ -29,11 +29,11 @@ public class RequestFragment extends Fragment {
         // Inflate the layout for this fragment
         binding=FragmentRequestBinding.inflate(LayoutInflater.from(getContext()),container,false);
         ArrayList<Request> list=new ArrayList<>();
-        list.add(new Request(R.drawable.n1,"Aakriti","Chill Palace"));
-        list.add(new Request(R.drawable.n2,"Aakriti","Chill Palace"));
-        list.add(new Request(R.drawable.n1,"Aakriti","Chill Palace"));
-        list.add(new Request(R.drawable.n4,"Aakriti","Chill Palace"));
-        list.add(new Request(R.drawable.h1,"Aakriti","Chill Palace"));
+        list.add(new Request(R.drawable.n1,"Aakriti djdjfk","Chill Palace limited"));
+        list.add(new Request(R.drawable.n2,"Aakriti grgfgg","Chill Palace"));
+        list.add(new Request(R.drawable.n1,"Aakriti rtgagdfg","Chill Palace"));
+        list.add(new Request(R.drawable.n4,"Aakriti gfgfgfg","Chill Palace"));
+        list.add(new Request(R.drawable.h1,"Aakritib rtrtrtr","Chill Palace"));
         RequestAdapter adapter=new RequestAdapter(list,getContext());
         binding.recyclerequest.setAdapter(adapter);
 

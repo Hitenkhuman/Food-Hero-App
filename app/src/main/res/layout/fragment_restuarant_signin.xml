@@ -13,6 +13,8 @@ tools:context=".RestuarantSigninFragment">
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:ems="10"
+    android:textColor="@color/black"
+    android:textColorHint="@color/green"
     android:gravity="center"
     android:inputType="textPersonName"
     android:minHeight="48dp"
@@ -26,6 +28,8 @@ tools:context=".RestuarantSigninFragment">
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:ems="10"
+    android:textColorHint="@color/green"
+    android:textColor="@color/black"
     android:gravity="center"
     android:hint="Password"
     android:background="@drawable/input_bg"
@@ -40,9 +44,11 @@ tools:context=".RestuarantSigninFragment">
         android:layout_margin="20dp"
         android:ems="10"
         android:gravity="center"
+        android:textColorHint="@color/green"
         android:hint="Confirm Password"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/black"
         android:background="@drawable/input_bg"
         android:padding="10dp" />
 
@@ -57,10 +63,12 @@ tools:context=".RestuarantSigninFragment">
         android:text="Sign in" />
 
     <TextView
-        android:id="@+id/signin"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
         android:text="Already have an account?Log in"
-        android:textColor="@color/white" />
+        />
 </LinearLayout>

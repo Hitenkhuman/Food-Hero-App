@@ -1,6 +1,8 @@
 package com.example.foodhero.Models;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private String foodid=null;
     private String resid=null;
     private String ngoid=null;
