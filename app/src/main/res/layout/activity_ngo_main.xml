@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RestuarantMain"
-   >
+    tools:context=".NgoMain">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container"
-        android:name="com.example.foodhero.Fragment.Restaurant.HomeFragment"
+        android:id="@+id/ngocontainer"
+        android:name="com.example.foodhero.Fragment.Ngo.NgoHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavbar"
@@ -24,5 +23,6 @@
         app:itemIconTint="@color/ligth_green"
         app:itemTextColor="@color/ligth_green"
 
-        app:menu="@menu/menu_items" />
+        app:menu="@menu/ngo_menu_items" />
+
 </RelativeLayout>

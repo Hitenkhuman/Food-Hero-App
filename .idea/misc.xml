@@ -12,8 +12,12 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/recycler_bg.xml" value="0.14635416666666667" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/subtract.xml" value="0.1" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/drawable/tablayout_bg.xml" value="0.2703125" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_admin_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_ngo_main.xml" value="0.1" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_otp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_otp_verification.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_restuarant_main.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_signin.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_splace_screen.xml" value="0.25416666666666665" />
@@ -23,7 +27,11 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_history_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_my_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_history.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_my_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_request.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_ngo_signin.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_request.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_restuarant_login.xml" value="0.264" />
@@ -31,7 +39,11 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/history_layout.xml" value="0.4" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_history_layout.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_request_layout.xml" value="0.264" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_request_status_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_restaurant_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/admin_menu_items.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/menu_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/ngo_menu_items.xml" value="0.25416666666666665" />
         <entry key="..\:/project/Food-Hero-App/app/src/main/res/drawable/testshape.xml" value="0.14635416666666667" />
         <entry key="..\:/project/Food-Hero-App/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
         <entry key="..\:/project/Food-Hero-App/app/src/main/res/layout/fragment_request.xml" value="0.13020833333333334" />

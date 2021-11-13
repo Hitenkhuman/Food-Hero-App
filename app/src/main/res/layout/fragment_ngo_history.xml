@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
-    tools:context=".Fragment.Restaurant.RequestFragment">
+    android:background="@color/secondary"
+    tools:context=".Fragment.Ngo.NgoHistory">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerequest"
+        android:id="@+id/recyclerngohistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </FrameLayout>

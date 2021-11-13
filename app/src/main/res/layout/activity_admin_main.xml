@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RestuarantMain"
-   >
-
+    tools:context=".AdminMain">
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/container"
-        android:name="com.example.foodhero.Fragment.Restaurant.HomeFragment"
+        android:id="@+id/admincontainer"
+        android:name="com.example.foodhero.Fragment.admin.AdminVerificationRequests"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavbar"
@@ -23,6 +21,6 @@
         android:background="@color/green"
         app:itemIconTint="@color/ligth_green"
         app:itemTextColor="@color/ligth_green"
+        app:menu="@menu/admin_menu_items" />
 
-        app:menu="@menu/menu_items" />
 </RelativeLayout>

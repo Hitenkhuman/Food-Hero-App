@@ -27,6 +27,12 @@ public class NgoSigninFragment extends Fragment {
                 startActivity(new Intent(getContext(),LoginActivity.class));
             }
         });
+        binding.signinngo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),OtpActivity.class));
+            }
+        });
         return binding.getRoot();
     }
 }

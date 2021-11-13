@@ -2,13 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/secondary"
     android:layout_height="match_parent"
-    android:background="@color/grey"
-    tools:context=".Fragment.Restaurant.RequestFragment">
+    tools:context=".Fragment.Ngo.NgoRequest">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerequest"
+        android:id="@+id/recyclerngorequest"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </FrameLayout>

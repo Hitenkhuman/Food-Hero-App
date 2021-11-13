@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodHero">
         <activity
-            android:name=".SigninActivity"
+            android:name=".AdminMain"
             android:exported="true" >
 
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".NgoMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +24,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".OtpVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SigninActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".RestuarantMain"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true">
-
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

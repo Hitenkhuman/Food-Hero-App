@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    android:layout_marginBottom="?actionBarSize"
     tools:context=".Fragment.Restaurant.HistoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
