@@ -41,6 +41,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         OnHistoryListner onHistoryListner;
 
 
+
         public ViewHolder(View view,OnHistoryListner onHistoryListner) {
             super(view);
             // Define click listener for the ViewHolder's View

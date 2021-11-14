@@ -5,10 +5,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodhero.Adapters.HistoryAdapter;
 import com.example.foodhero.Fragment.HistoryDetailsFragment;
@@ -41,7 +43,13 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.recyclerngohistory.setLayoutManager(linearLayoutManager);
-
+        binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                binding.swiper.setRefreshing(false);
+            }
+        });
         return binding.getRoot();
     }
 

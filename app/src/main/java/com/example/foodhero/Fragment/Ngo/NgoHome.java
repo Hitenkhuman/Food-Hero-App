@@ -3,15 +3,20 @@ package com.example.foodhero.Fragment.Ngo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodhero.Adapters.FoodListAdapter;
 import com.example.foodhero.Adapters.RequestStatusAdapter;
 import com.example.foodhero.Adapters.HistoryAdapter;
+import com.example.foodhero.Fragment.FoodDetails;
+import com.example.foodhero.Fragment.NgoDetails;
 import com.example.foodhero.Models.Food;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentNgoHomeBinding;
@@ -19,10 +24,11 @@ import com.example.foodhero.databinding.FragmentNgoHomeBinding;
 import java.util.ArrayList;
 
 
-public class NgoHome extends Fragment {
+public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListner{
 
     FragmentNgoHomeBinding binding;
     ArrayList<Food> list;
+    FoodListAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,12 +42,36 @@ public class NgoHome extends Fragment {
         list.add(new Food("5","15","25","Green Hotel","Janta",R.drawable.h5,R.drawable.n5,"06-05-2020","Mix subji","VEG",40,"Delivered"));
         list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
 
-        FoodListAdapter adapter=new FoodListAdapter(list,getContext());
+         adapter=new FoodListAdapter(list,getContext(),this);
         binding.recyclerngohome.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.recyclerngohome.setLayoutManager(linearLayoutManager);
-
+        binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                binding.swiper.setRefreshing(false);
+            }
+        });
         return binding.getRoot();
+    }
+
+    @Override
+    public void OnFoodClick(int position) {
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("data",list.get(position));
+        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+        FoodDetails fragment=new FoodDetails();
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.ngocontainer,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void OnRequestClick(int position) {
+    list.remove(position);
+    adapter.notifyItemRemoved(position);
     }
 }

@@ -3,11 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/secondary"
     tools:context=".Fragment.Restaurant.HistoryFragment">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swiper">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerhistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

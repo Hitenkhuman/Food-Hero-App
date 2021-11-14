@@ -18,10 +18,12 @@ import java.util.ArrayList;
 public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdapter.ViewHolder> {
     private ArrayList<Food> list;
     private Context context;
+    private OnRequestListner onRequestListner;
 
-    public RequestStatusAdapter(ArrayList<Food> list,Context context) {
+    public RequestStatusAdapter(ArrayList<Food> list,Context context,OnRequestListner onRequestListner) {
         this.list = list;
         this.context = context;
+        this.onRequestListner=onRequestListner;
     }
 
 
@@ -29,9 +31,10 @@ public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdap
         private final ImageView image;
         private final TextView name,status;
         private  final Button btn;
+        OnRequestListner onRequestListner;
 
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view,OnRequestListner onRequestListner) {
             super(view);
             // Define click listener for the ViewHolder's View
 
@@ -39,6 +42,19 @@ public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdap
             name = itemView.findViewById(R.id.name);
             status = itemView.findViewById(R.id.status);
             btn=itemView.findViewById(R.id.pickup);
+            this.onRequestListner=onRequestListner;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRequestListner.onRequestClick(getAdapterPosition());
+                }
+            });
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRequestListner.onPickupClick(getAdapterPosition());
+                }
+            });
         }
 
 
@@ -54,7 +70,7 @@ public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdap
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_request_status_layout, viewGroup, false);
 
-        return new RequestStatusAdapter.ViewHolder(view);
+        return new RequestStatusAdapter.ViewHolder(view,onRequestListner);
     }
 
 
@@ -73,5 +89,9 @@ public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdap
     @Override
     public int getItemCount() {
         return list.size();
+    }
+    public interface OnRequestListner{
+        void onRequestClick(int position);
+        void onPickupClick(int position);
     }
 }

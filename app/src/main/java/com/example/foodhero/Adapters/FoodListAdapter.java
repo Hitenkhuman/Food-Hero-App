@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHolder> {
     private ArrayList<Food> list;
     private Context context;
+    private OnFoodListListner onFoodListListner;
 
-    public FoodListAdapter(ArrayList<Food> list,Context context) {
+    public FoodListAdapter(ArrayList<Food> list,Context context,OnFoodListListner onFoodListListner) {
         this.list = list;
         this.context = context;
+        this.onFoodListListner=onFoodListListner;
     }
 
 
@@ -30,9 +32,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         private final ImageView image;
         private final TextView name,date;
         private  final Button btn;
+        private OnFoodListListner onFoodListListner;
 
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view,OnFoodListListner onFoodListListner) {
             super(view);
             // Define click listener for the ViewHolder's View
 
@@ -40,6 +43,20 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
             name = itemView.findViewById(R.id.name);
             date = itemView.findViewById(R.id.date);
             btn=itemView.findViewById(R.id.reqbtn);
+            this.onFoodListListner=onFoodListListner;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onFoodListListner.OnFoodClick(getAdapterPosition());
+                }
+            });
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onFoodListListner.OnRequestClick(getAdapterPosition());
+                }
+            });
+
         }
 
 
@@ -55,7 +72,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_restaurant_layout, viewGroup, false);
 
-        return new FoodListAdapter.ViewHolder(view);
+        return new FoodListAdapter.ViewHolder(view,onFoodListListner);
     }
 
 
@@ -74,5 +91,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public interface OnFoodListListner{
+        void OnFoodClick(int position);
+        void OnRequestClick(int position);
     }
 }

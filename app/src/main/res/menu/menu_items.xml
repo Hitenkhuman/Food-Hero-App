@@ -3,21 +3,25 @@
     <item
     android:id="@+id/home"
     android:title="Home"
+        android:menuCategory="secondary"
     android:icon="@drawable/home"
     />
     <item
         android:id="@+id/request"
         android:title="Requests"
+        android:menuCategory="secondary"
         android:icon="@drawable/request"
         />
     <item
         android:id="@+id/history"
         android:title="History"
+        android:menuCategory="secondary"
         android:icon="@drawable/history"
         />
     <item
         android:id="@+id/myprofile"
         android:title="My Profile"
+        android:menuCategory="secondary"
         android:icon="@drawable/myprofile"
         />
 </menu>

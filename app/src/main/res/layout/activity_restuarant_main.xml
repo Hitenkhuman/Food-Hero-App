@@ -23,6 +23,5 @@
         android:background="@color/green"
         app:itemIconTint="@color/ligth_green"
         app:itemTextColor="@color/ligth_green"
-
         app:menu="@menu/menu_items" />
 </RelativeLayout>

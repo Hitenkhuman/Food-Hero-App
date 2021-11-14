@@ -3,64 +3,75 @@ package com.example.foodhero.Fragment.admin;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.foodhero.Adapters.NgoAdapter;
+import com.example.foodhero.Adapters.RestaurantAdapter;
+import com.example.foodhero.Fragment.HistoryDetailsFragment;
+import com.example.foodhero.Fragment.RestaurantDetails;
+import com.example.foodhero.Models.Ngo;
+import com.example.foodhero.Models.Restuarant;
 import com.example.foodhero.R;
+import com.example.foodhero.databinding.FragmentAdminRestaurantBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AdminRestaurant#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AdminRestaurant extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRestaurantListner{
 
-    public AdminRestaurant() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AdminRestaurant.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AdminRestaurant newInstance(String param1, String param2) {
-        AdminRestaurant fragment = new AdminRestaurant();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    FragmentAdminRestaurantBinding binding;
+    ArrayList<Restuarant> list;
+    RestaurantAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_restaurant, container, false);
+        binding=FragmentAdminRestaurantBinding.inflate(LayoutInflater.from(getContext()),container,false);
+        list=new ArrayList<>();
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+
+        adapter =new RestaurantAdapter(list,getContext(),this);
+        binding.recycleradminres.setAdapter(adapter);
+
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        binding.recycleradminres.setLayoutManager(linearLayoutManager);
+        binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                binding.swiper.setRefreshing(false);
+            }
+        });
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onRestaurantClick(int position) {
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("data",list.get(position));
+        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+        RestaurantDetails fragment=new RestaurantDetails();
+        fragment.setArguments(bundle);
+        transaction.replace(R.id.admincontainer,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        list.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 }

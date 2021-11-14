@@ -49,8 +49,8 @@ public class AdminMain extends AppCompatActivity {
                         transaction.replace(R.id.admincontainer,new AdminRestaurant());
                         break;
                 }
+                transaction.addToBackStack(null);
                 transaction.commit();
-
                 return true;
             }
         });

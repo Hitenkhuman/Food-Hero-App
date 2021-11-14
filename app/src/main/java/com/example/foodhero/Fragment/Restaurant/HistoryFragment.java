@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,13 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.recyclerhistory.setLayoutManager(linearLayoutManager);
-
+        binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                binding.swiper.setRefreshing(false);
+            }
+        });
 
         return binding.getRoot();
     }

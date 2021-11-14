@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/grey"
+android:fillViewport="true"
+android:fitsSystemWindows="true"
+tools:context=".Fragment.RestaurantDetails"
+tools:ignore="SpeakableTextPresentCheck">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleX="1.5"
+        android:src="@drawable/ngocover"
+        android:tintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/blackshade" />
+
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+
+        android:src="@drawable/backarrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/secondary" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="124dp"
+        android:src="@drawable/n1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/resName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImg" />
+
+
+
+    <LinearLayout
+        android:id="@+id/linearlayoutdata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/history_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resName">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="About"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Name"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Mobile"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/mobile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Email id"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/emailid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Opening time"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/openingtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Closing time"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/closingtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="State"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="District"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/district"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Address"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="Joining Date"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/joindate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/history_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayoutdata">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="Secret Data"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="Password"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="details"
+                android:textSize="20sp"
+                tools:ignore="InvalidId"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="Ngo Id"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="details"
+                android:textSize="20sp"
+                tools:ignore="InvalidId"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="AuthID"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/authid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="details"
+                android:textSize="20sp"
+                tools:ignore="InvalidId"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="Device Token"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/devicetoken"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="details"
+                android:textSize="20sp"
+                tools:ignore="InvalidId"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

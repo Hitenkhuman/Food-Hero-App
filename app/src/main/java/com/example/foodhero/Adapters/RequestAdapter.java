@@ -21,10 +21,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
     private ArrayList<Request> list;
     private Context context;
+    private OnRequestListner onRequestListner;
 
-    public RequestAdapter(ArrayList<Request> list,  Context context) {
+    public RequestAdapter(ArrayList<Request> list,  Context context,OnRequestListner onRequestListner) {
         this.list = list;
         this.context = context;
+        this.onRequestListner=onRequestListner;
     }
 
 
@@ -32,9 +34,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         private final ImageView NGOImage;
         private final TextView NGOName,time;
         private final Button btn;
+        private OnRequestListner onRequestListner;
 
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view,OnRequestListner onRequestListner) {
             super(view);
             // Define click listener for the ViewHolder's View
 
@@ -42,6 +45,19 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
             NGOName = itemView.findViewById(R.id.NGO_name);
             time = itemView.findViewById(R.id.request_time);
             btn=itemView.findViewById(R.id.acceptbtn);
+            this.onRequestListner=onRequestListner;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRequestListner.onRequestClick(getAdapterPosition());
+                }
+            });
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRequestListner.onAcceptClick(getAdapterPosition());
+                }
+            });
         }
 
 
@@ -57,7 +73,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_request_layout, viewGroup, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view,onRequestListner);
     }
 
 
@@ -76,5 +92,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public interface OnRequestListner{
+        void onRequestClick(int position);
+        void onAcceptClick(int position);
     }
 }

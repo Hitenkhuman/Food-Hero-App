@@ -1,12 +1,14 @@
 package com.example.foodhero.Models;
 
-public class Restuarant {
+import java.io.Serializable;
+
+public class Restuarant implements Serializable {
     private String id=null;
     private String name=null;
     private String mobile=null;
     private String emailid=null;
     private String password=null;
-    private String imgurl=null;
+    private int imgurl;
     private String openingtime=null;
     private String closingtime=null;
     private String state=null;
@@ -15,7 +17,7 @@ public class Restuarant {
     private String deviceToken=null;
     private String authid=null;
 
-    public Restuarant(String id, String name, String mobile, String emailid, String password, String imgurl, String openingtime, String closingtime, String state, String district, String address, String deviceToken, String authid, String joinDate) {
+    public Restuarant(String id, String name, String mobile, String emailid, String password, int imgurl, String openingtime, String closingtime, String state, String district, String address, String deviceToken, String authid, String joinDate) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
@@ -72,11 +74,11 @@ public class Restuarant {
         this.password = password;
     }
 
-    public String getImgurl() {
+    public int getImgurl() {
         return imgurl;
     }
 
-    public void setImgurl(String imgurl) {
+    public void setImgurl(int imgurl) {
         this.imgurl = imgurl;
     }
 

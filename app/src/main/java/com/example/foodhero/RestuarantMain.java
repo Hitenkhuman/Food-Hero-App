@@ -49,6 +49,7 @@ public class RestuarantMain extends AppCompatActivity {
                         transaction.replace(R.id.container,new MyProfileFragment());
                         break;
                 }
+                transaction.addToBackStack(null);
                 transaction.commit();
 
                 return true;

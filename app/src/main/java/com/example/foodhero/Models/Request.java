@@ -1,6 +1,8 @@
 package com.example.foodhero.Models;
 
-public class Request {
+import java.io.Serializable;
+
+public class Request implements Serializable {
     int NGOImage;
     String NGO_name;
     String request_time;

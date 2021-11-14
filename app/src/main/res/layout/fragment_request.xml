@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/secondary"
     tools:context=".Fragment.Restaurant.RequestFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerequest"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/swiper">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerequest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </FrameLayout>
