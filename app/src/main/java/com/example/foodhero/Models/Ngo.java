@@ -1,46 +1,55 @@
 package com.example.foodhero.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Ngo implements Serializable {
-    private String id;
+    private String _id;
     private String name;
     private String mobile;
-    private String emailid;
+    private String email;
     private String password;
-    private int imgurl;
-    private String openingtime;
-    private String closingtime;
+    private String imgurl;
+    private String opening_time;
+    private String closing_time;
     private String state;
+    private String city;
     private String district;
     private String address;
-    private String deviceToken;
+    private String devicetoken;
     private String authid;
-    private String verificationStatus;
+    private  String certificate_number;
+    private String verification_status;
+    private Date joindate;
+    private int reports;
 
-    public Ngo(String id, String name, String mobile, String emailid, String password, int imgurl, String openingtime, String closingtime, String state, String district, String address, String deviceToken, String authid, String verificationStatus) {
-        this.id = id;
+    public Ngo(String _id, String name, String mobile, String email, String password, String imgurl, String opening_time, String closing_time, String state, String city, String district, String address, String devicetoken, String authid, String certificate_number, String verification_status, Date joindate, int reports) {
+        this._id = _id;
         this.name = name;
         this.mobile = mobile;
-        this.emailid = emailid;
+        this.email = email;
         this.password = password;
         this.imgurl = imgurl;
-        this.openingtime = openingtime;
-        this.closingtime = closingtime;
+        this.opening_time = opening_time;
+        this.closing_time = closing_time;
         this.state = state;
+        this.city = city;
         this.district = district;
         this.address = address;
-        this.deviceToken = deviceToken;
+        this.devicetoken = devicetoken;
         this.authid = authid;
-        this.verificationStatus = verificationStatus;
+        this.certificate_number = certificate_number;
+        this.verification_status = verification_status;
+        this.joindate = joindate;
+        this.reports = reports;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -59,12 +68,12 @@ public class Ngo implements Serializable {
         this.mobile = mobile;
     }
 
-    public String getEmailid() {
-        return emailid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailid(String emailid) {
-        this.emailid = emailid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -75,28 +84,28 @@ public class Ngo implements Serializable {
         this.password = password;
     }
 
-    public int getImgurl() {
+    public String getImgurl() {
         return imgurl;
     }
 
-    public void setImgurl(int imgurl) {
+    public void setImgurl(String imgurl) {
         this.imgurl = imgurl;
     }
 
-    public String getOpeningtime() {
-        return openingtime;
+    public String getOpening_time() {
+        return opening_time;
     }
 
-    public void setOpeningtime(String openingtime) {
-        this.openingtime = openingtime;
+    public void setOpening_time(String opening_time) {
+        this.opening_time = opening_time;
     }
 
-    public String getClosingtime() {
-        return closingtime;
+    public String getClosing_time() {
+        return closing_time;
     }
 
-    public void setClosingtime(String closingtime) {
-        this.closingtime = closingtime;
+    public void setClosing_time(String closing_time) {
+        this.closing_time = closing_time;
     }
 
     public String getState() {
@@ -105,6 +114,14 @@ public class Ngo implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getDistrict() {
@@ -123,12 +140,12 @@ public class Ngo implements Serializable {
         this.address = address;
     }
 
-    public String getDeviceToken() {
-        return deviceToken;
+    public String getDevicetoken() {
+        return devicetoken;
     }
 
-    public void setDeviceToken(String deviceToken) {
-        this.deviceToken = deviceToken;
+    public void setDevicetoken(String devicetoken) {
+        this.devicetoken = devicetoken;
     }
 
     public String getAuthid() {
@@ -139,11 +156,35 @@ public class Ngo implements Serializable {
         this.authid = authid;
     }
 
-    public String getVerificationStatus() {
-        return verificationStatus;
+    public String getCertificate_number() {
+        return certificate_number;
     }
 
-    public void setVerificationStatus(String verificationStatus) {
-        this.verificationStatus = verificationStatus;
+    public void setCertificate_number(String certificate_number) {
+        this.certificate_number = certificate_number;
+    }
+
+    public String getVerification_status() {
+        return verification_status;
+    }
+
+    public void setVerification_status(String verification_status) {
+        this.verification_status = verification_status;
+    }
+
+    public Date getJoindate() {
+        return joindate;
+    }
+
+    public void setJoindate(Date joindate) {
+        this.joindate = joindate;
+    }
+
+    public int getReports() {
+        return reports;
+    }
+
+    public void setReports(int reports) {
+        this.reports = reports;
     }
 }

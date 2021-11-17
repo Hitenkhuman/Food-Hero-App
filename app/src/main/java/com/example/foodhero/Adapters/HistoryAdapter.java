@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Food;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.Models.Restuarant;
@@ -24,7 +26,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     private ArrayList<Food> list;
     private Context context;
     private OnHistoryListner onHistoryListner;
-
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public HistoryAdapter(ArrayList<Food> list,  Context context,OnHistoryListner onHistoryListner) {
         this.list = list;
         this.context = context;
@@ -84,14 +86,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         Food data=list.get(position);
 
 
-//        viewHolder.img1.setImageResource(data.getResImgUrl());
-//        viewHolder.img2.setImageResource(data.getNgoIImgUrl());
-        viewHolder.name1.setText(data.getResName());
-        viewHolder.name2.setText(data.getNgoName());
-        viewHolder.status.setText(data.getStatus());
-        viewHolder.date.setText(data.getDate());
-        viewHolder.img1.setImageResource(data.getResImgUrl());
-        viewHolder.img2.setImageResource(data.getNgoIImgUrl());
+        Glide.with(context).load(parentdir+data.getRes_id().getImgurl()).into(viewHolder.img1);
+        Glide.with(context).load(parentdir+data.getNgo_id().getImgurl()).into(viewHolder.img2);
+
+        viewHolder.name1.setText(data.getRes_id().getName());
+        viewHolder.name2.setText(data.getNgo_id().getName());
+        viewHolder.status.setText(data.getFood_status());
+        viewHolder.date.setText(data.getDate().toString());
+
 
     }
 

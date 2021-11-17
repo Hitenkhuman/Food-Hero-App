@@ -34,17 +34,17 @@ public class HistoryDetailsFragment extends Fragment {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         Food food=(Food)getArguments().getSerializable("data");
-        binding.date.setText(food.getDate());
-        binding.datedel.setText(food.getDate());
-        binding.deliverysts.setText(food.getStatus());
-        binding.foodid.setText(food.getFoodid());
-        binding.ngoimage.setImageResource(food.getNgoIImgUrl());
-        binding.imgrestuarant.setImageResource(food.getResImgUrl());
-        binding.type.setText(food.getType());
-        binding.description.setText(food.getDiscription());
-        binding.noofdishes.setText(Integer.toString(food.getNoOfDishes()));
-        binding.ngoname.setText(food.getNgoName());
-        binding.restaurantname.setText(food.getResName());
+//        binding.date.setText(food.getDate());
+//        binding.datedel.setText(food.getDate());
+//        binding.deliverysts.setText(food.getStatus());
+//        binding.foodid.setText(food.getFoodid());
+//        binding.ngoimage.setImageResource(food.getNgoIImgUrl());
+//        binding.imgrestuarant.setImageResource(food.getResImgUrl());
+//        binding.type.setText(food.getType());
+//        binding.description.setText(food.getDiscription());
+//        binding.noofdishes.setText(Integer.toString(food.getNoOfDishes()));
+//        binding.ngoname.setText(food.getNgoName());
+//        binding.restaurantname.setText(food.getResName());
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

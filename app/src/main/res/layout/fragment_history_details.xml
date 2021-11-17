@@ -273,7 +273,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="Date"
+                        android:text=" pick up Time"
                         android:textSize="20sp">
 
                     </TextView>

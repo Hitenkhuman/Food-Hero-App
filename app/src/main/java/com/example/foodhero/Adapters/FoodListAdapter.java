@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Food;
 
 import com.example.foodhero.R;
@@ -20,7 +22,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     private ArrayList<Food> list;
     private Context context;
     private OnFoodListListner onFoodListListner;
-
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public FoodListAdapter(ArrayList<Food> list,Context context,OnFoodListListner onFoodListListner) {
         this.list = list;
         this.context = context;
@@ -81,9 +83,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
 
 
         Food food = list.get(position);
-        viewHolder.image.setImageResource(food.getResImgUrl());
-        viewHolder.name.setText(food.getResName());
-        viewHolder.date.setText(food.getDate());
+       // viewHolder.image.setImageResource(food.getResImgUrl());
+        Glide.with(context).load(parentdir+food.getRes_id().getImgurl()).into(viewHolder.image);
+        viewHolder.name.setText(food.getRes_id().getName());
+        viewHolder.date.setText(food.getDate().toString());
 
     }
 

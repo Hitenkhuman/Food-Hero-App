@@ -1,45 +1,53 @@
 package com.example.foodhero.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Restuarant implements Serializable {
-    private String id=null;
-    private String name=null;
-    private String mobile=null;
-    private String emailid=null;
-    private String password=null;
-    private int imgurl;
-    private String openingtime=null;
-    private String closingtime=null;
-    private String state=null;
-    private String district=null;
-    private String address=null;
-    private String deviceToken=null;
-    private String authid=null;
+    private String _id;
+    private String name;
+    private String mobile;
+    private String email;
+    private String password;
+    private String imgurl;
+    private String opening_time;
+    private String closing_time;
+    private String state;
+    private String city;
+    private String district;
+    private String address;
+    private String devicetoken;
+    private String authid;
+    private Date joindate;
+    private int reports;
+    private boolean isVerifyed;
 
-    public Restuarant(String id, String name, String mobile, String emailid, String password, int imgurl, String openingtime, String closingtime, String state, String district, String address, String deviceToken, String authid, String joinDate) {
-        this.id = id;
+    public Restuarant(String _id, String name, String mobile, String email, String password, String imgurl, String opening_time, String closing_time, String state, String city, String district, String address, String devicetoken, String authid, Date joindate, int reports, boolean isVerifyed) {
+        this._id = _id;
         this.name = name;
         this.mobile = mobile;
-        this.emailid = emailid;
+        this.email = email;
         this.password = password;
         this.imgurl = imgurl;
-        this.openingtime = openingtime;
-        this.closingtime = closingtime;
+        this.opening_time = opening_time;
+        this.closing_time = closing_time;
         this.state = state;
+        this.city = city;
         this.district = district;
         this.address = address;
-        this.deviceToken = deviceToken;
+        this.devicetoken = devicetoken;
         this.authid = authid;
-        this.joinDate = joinDate;
+        this.joindate = joindate;
+        this.reports = reports;
+        this.isVerifyed = isVerifyed;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -58,12 +66,12 @@ public class Restuarant implements Serializable {
         this.mobile = mobile;
     }
 
-    public String getEmailid() {
-        return emailid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailid(String emailid) {
-        this.emailid = emailid;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -74,28 +82,28 @@ public class Restuarant implements Serializable {
         this.password = password;
     }
 
-    public int getImgurl() {
+    public String getImgurl() {
         return imgurl;
     }
 
-    public void setImgurl(int imgurl) {
+    public void setImgurl(String imgurl) {
         this.imgurl = imgurl;
     }
 
-    public String getOpeningtime() {
-        return openingtime;
+    public String getOpening_time() {
+        return opening_time;
     }
 
-    public void setOpeningtime(String openingtime) {
-        this.openingtime = openingtime;
+    public void setOpening_time(String opening_time) {
+        this.opening_time = opening_time;
     }
 
-    public String getClosingtime() {
-        return closingtime;
+    public String getClosing_time() {
+        return closing_time;
     }
 
-    public void setClosingtime(String closingtime) {
-        this.closingtime = closingtime;
+    public void setClosing_time(String closing_time) {
+        this.closing_time = closing_time;
     }
 
     public String getState() {
@@ -104,6 +112,14 @@ public class Restuarant implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getDistrict() {
@@ -122,12 +138,12 @@ public class Restuarant implements Serializable {
         this.address = address;
     }
 
-    public String getDeviceToken() {
-        return deviceToken;
+    public String getDevicetoken() {
+        return devicetoken;
     }
 
-    public void setDeviceToken(String deviceToken) {
-        this.deviceToken = deviceToken;
+    public void setDevicetoken(String devicetoken) {
+        this.devicetoken = devicetoken;
     }
 
     public String getAuthid() {
@@ -138,13 +154,27 @@ public class Restuarant implements Serializable {
         this.authid = authid;
     }
 
-    public String getJoinDate() {
-        return joinDate;
+    public Date getJoindate() {
+        return joindate;
     }
 
-    public void setJoinDate(String joinDate) {
-        this.joinDate = joinDate;
+    public void setJoindate(Date joindate) {
+        this.joindate = joindate;
     }
 
-    private String joinDate=null;
+    public int getReports() {
+        return reports;
+    }
+
+    public void setReports(int reports) {
+        this.reports = reports;
+    }
+
+    public boolean isVerifyed() {
+        return isVerifyed;
+    }
+
+    public void setVerifyed(boolean verifyed) {
+        isVerifyed = verifyed;
+    }
 }

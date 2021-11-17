@@ -34,17 +34,17 @@ public class RestaurantDetails extends Fragment {
         binding.resName.setText(res.getName());
         binding.address.setText(res.getAddress());
         binding.mobile.setText(res.getMobile());
-        binding.emailid.setText(res.getEmailid());
-        binding.openingtime.setText(res.getOpeningtime());
-        binding.closingtime.setText(res.getClosingtime());
+        binding.emailid.setText(res.getEmail());
+        binding.openingtime.setText(res.getOpening_time());
+        binding.closingtime.setText(res.getClosing_time());
         binding.state.setText(res.getState());
         binding.district.setText(res.getDistrict());
         binding.address.setText(res.getAddress());
-        binding.joindate.setText(res.getJoinDate());
+        binding.joindate.setText(res.getJoindate().toString());
         binding.password.setText(res.getPassword());
-        binding.id.setText(res.getId());
+        binding.id.setText(res.get_id());
         binding.authid.setText(res.getAuthid());
-        binding.devicetoken.setText(res.getDeviceToken());
+        binding.devicetoken.setText(res.getDevicetoken());
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

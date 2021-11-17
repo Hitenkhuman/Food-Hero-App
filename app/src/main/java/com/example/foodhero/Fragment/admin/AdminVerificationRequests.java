@@ -33,12 +33,12 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         // Inflate the layout for this fragment
         binding=FragmentAdminVerificationRequestsBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
+//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
 
         VerificationListAdapter adapter=new VerificationListAdapter(list,getContext(),this);
         binding.recycleadminverification.setAdapter(adapter);

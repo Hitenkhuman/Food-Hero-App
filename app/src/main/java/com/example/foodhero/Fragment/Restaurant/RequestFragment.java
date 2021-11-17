@@ -35,12 +35,13 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
         // Inflate the layout for this fragment
         binding=FragmentRequestBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
-        list.add(new Request(R.drawable.n1,"Aakriti djdjfk","Chill Palace limited"));
-        list.add(new Request(R.drawable.n2,"Aakriti grgfgg","Chill Palace"));
-        list.add(new Request(R.drawable.n1,"Aakriti rtgagdfg","Chill Palace"));
-        list.add(new Request(R.drawable.n4,"Aakriti gfgfgfg","Chill Palace"));
-        list.add(new Request(R.drawable.h1,"Aakritib rtrtrtr","Chill Palace"));
-         adapter=new RequestAdapter(list,getContext(),this);
+//        list.add(new Request(R.drawable.n1,"Aakriti djdjfk","Chill Palace limited"));
+//        list.add(new Request(R.drawable.n2,"Aakriti grgfgg","Chill Palace"));
+//        list.add(new Request(R.drawable.n1,"Aakriti rtgagdfg","Chill Palace"));
+//        list.add(new Request(R.drawable.n4,"Aakriti gfgfgfg","Chill Palace"));
+//        list.add(new Request(R.drawable.h1,"Aakritib rtrtrtr","Chill Palace"));
+//
+        adapter=new RequestAdapter(list,getContext(),this);
         binding.recyclerequest.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());

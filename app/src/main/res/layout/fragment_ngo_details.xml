@@ -368,14 +368,17 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="45dp"
             android:layout_marginLeft="3dp"
+            android:layout_marginTop="45dp"
             android:layout_marginRight="3dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/history_bg"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -384,11 +387,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Secret Data"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -418,6 +422,7 @@
                     android:textSize="20sp"
                     tools:ignore="InvalidId"></TextView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -447,6 +452,7 @@
                     android:textSize="20sp"
                     tools:ignore="InvalidId"></TextView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -476,6 +482,7 @@
                     android:textSize="20sp"
                     tools:ignore="InvalidId"></TextView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -495,6 +502,37 @@
 
                 <TextView
                     android:id="@+id/devicetoken"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="details"
+                    android:textSize="20sp"
+                    tools:ignore="InvalidId"></TextView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/alegreya_sans_bold"
+                    android:text="No of Complaints"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/noOfComplaints"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"

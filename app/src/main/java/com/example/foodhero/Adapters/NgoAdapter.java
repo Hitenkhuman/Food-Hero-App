@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.Models.Restuarant;
 import com.example.foodhero.R;
@@ -21,6 +23,7 @@ public class NgoAdapter extends RecyclerView.Adapter<NgoAdapter.ViewHolder>{
     private ArrayList<Ngo> list;
     private Context context;
     private OnNgoListner onNgoListner;
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public NgoAdapter(ArrayList<Ngo> list,Context context,OnNgoListner onNgoListner){
         this.context=context;
         this.list=list;
@@ -37,7 +40,8 @@ public class NgoAdapter extends RecyclerView.Adapter<NgoAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull NgoAdapter.ViewHolder holder, int position) {
         Ngo ngo=list.get(position);
-        holder.image.setImageResource(ngo.getImgurl());
+        //holder.image.setImageResource(ngo.getImgurl());
+        Glide.with(context).load(parentdir+ngo.getImgurl()).into(holder.image);
         holder.name.setText(ngo.getName());
         holder.date.setText(ngo.getState());
         holder.city.setText(ngo.getAddress());

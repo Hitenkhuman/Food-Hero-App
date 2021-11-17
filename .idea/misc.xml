@@ -15,9 +15,11 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_admin_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_ngo_get_info.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_ngo_main.xml" value="0.1" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_otp.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_otp_verification.xml" value="0.264" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_restaurant_get_info.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_restuarant_main.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_signin.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/activity_splace_screen.xml" value="0.25416666666666665" />
@@ -45,6 +47,8 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_restaurant_details.xml" value="0.24010416666666667" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_restuarant_login.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_restuarant_signin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_update_my_profile_ngo.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_update_my_profile_restaurant.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/history_layout.xml" value="0.4" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_history_layout.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_list_layout.xml" value="0.25416666666666665" />

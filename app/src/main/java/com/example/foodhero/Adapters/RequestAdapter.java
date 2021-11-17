@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Food;
 import com.example.foodhero.Models.Request;
 import com.example.foodhero.R;
@@ -22,7 +24,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     private ArrayList<Request> list;
     private Context context;
     private OnRequestListner onRequestListner;
-
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public RequestAdapter(ArrayList<Request> list,  Context context,OnRequestListner onRequestListner) {
         this.list = list;
         this.context = context;
@@ -82,9 +84,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
 
         Request req = list.get(position);
-        viewHolder.NGOImage.setImageResource(req.getPic());
-        viewHolder.NGOName.setText(req.getNGO_name());
-        viewHolder.time.setText(req.getRequest_time());
+        //viewHolder.NGOImage.setImageResource(req.getPic());
+        Glide.with(context).load(parentdir+req.getNgo_id().getImgurl()).into(viewHolder.NGOImage);
+        viewHolder.NGOName.setText(req.getNgo_id().getName());
+        viewHolder.time.setText(req.getDate().toString());
 
     }
 

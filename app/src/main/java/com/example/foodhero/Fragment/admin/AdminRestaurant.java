@@ -35,12 +35,12 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
         // Inflate the layout for this fragment
         binding=FragmentAdminRestaurantBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
 
         adapter =new RestaurantAdapter(list,getContext(),this);
         binding.recycleradminres.setAdapter(adapter);

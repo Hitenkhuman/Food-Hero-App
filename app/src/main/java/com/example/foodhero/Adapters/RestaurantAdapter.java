@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Restuarant;
 import com.example.foodhero.R;
 
@@ -21,6 +23,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     private ArrayList<Restuarant> list;
     private Context context;
     private OnRestaurantListner onRestaurantListner;
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public RestaurantAdapter(ArrayList<Restuarant> list,Context context,OnRestaurantListner onRestaurantListner){
         this.context=context;
         this.list=list;
@@ -37,9 +40,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, int position) {
     Restuarant restuarant=list.get(position);
-    holder.image.setImageResource(restuarant.getImgurl());
+
+    //holder.image.setImageResource(restuarant.getImgurl());
+    Glide.with(context).load(parentdir+restuarant.getImgurl()).into(holder.image);
+
     holder.name.setText(restuarant.getName());
-    holder.date.setText(restuarant.getJoinDate());
+    holder.date.setText(restuarant.getJoindate().toString());
     holder.city.setText(restuarant.getAddress());
     }
 

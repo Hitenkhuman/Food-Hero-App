@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.R;
 
@@ -20,7 +22,7 @@ public class VerificationListAdapter extends RecyclerView.Adapter<VerificationLi
     private ArrayList<Ngo> list;
     private Context context;
     private OnVerificationListListner onVerificationListListner;
-
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     public VerificationListAdapter(ArrayList<Ngo> list,Context context,OnVerificationListListner onVerificationListListner){
         this.context=context;
         this.list=list;
@@ -37,11 +39,13 @@ public class VerificationListAdapter extends RecyclerView.Adapter<VerificationLi
     @Override
     public void onBindViewHolder(@NonNull VerificationListAdapter.ViewHolder holder, int position) {
         Ngo ngo=list.get(position);
-        holder.image.setImageResource(ngo.getImgurl());
+       // holder.image.setImageResource(ngo.getImgurl());
+
+        Glide.with(context).load(parentdir+ngo.getImgurl()).into(holder.image);
         holder.name.setText(ngo.getName());
         holder.date.setText(ngo.getState());
         holder.city.setText(ngo.getAddress());
-        holder.status.setText(ngo.getVerificationStatus());
+        holder.status.setText(ngo.getVerification_status());
     }
 
     @Override
