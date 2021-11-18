@@ -55,8 +55,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
 //         adapter=new NgoAdapter(list,getContext(),this);
 //        binding.recycleradminngo.setAdapter(adapter);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        binding.recycleradminngo.setLayoutManager(linearLayoutManager);
+
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -82,8 +81,26 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
 
     @Override
     public void onDelClick(int position) {
-        list.remove(position);
-        adapter.notifyItemRemoved(position);
+        apiInterface.updateRejectNgo(list.get(position).get_id()).enqueue(new Callback<GetNgoResponse>() {
+            @Override
+            public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
+                if(response.body().getSuccess()){
+                Toast.makeText(getContext(), "Successfully Deleted", Toast.LENGTH_SHORT).show();
+                list.remove(position);
+                adapter.notifyItemRemoved(position);
+
+                }
+                else {
+                    Toast.makeText(getContext(), "try again later", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetNgoResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
     public void getData(){
         apiInterface.getNgo().enqueue(new Callback<GetNgoResponse>() {
@@ -93,8 +110,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
                     if(response!=null){
                         if(response.body().getSuccess()){
                             list=response.body().getData();
-                            adapter=new NgoAdapter(response.body().getData(),getContext(),AdminNgo.this);
-                            binding.recycleradminngo.setAdapter(adapter);
+                            setAdapter(list);
                             Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
 
                         }
@@ -104,7 +120,6 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "error 1", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -115,5 +130,11 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void setAdapter(ArrayList<Ngo> list){
+        adapter=new NgoAdapter(list,getContext(),AdminNgo.this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        binding.recycleradminngo.setLayoutManager(linearLayoutManager);
+        binding.recycleradminngo.setAdapter(adapter);
     }
 }

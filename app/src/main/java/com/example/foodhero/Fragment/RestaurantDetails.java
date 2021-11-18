@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Fragment.admin.AdminRestaurant;
 import com.example.foodhero.Models.Restuarant;
 import com.example.foodhero.R;
@@ -20,6 +23,7 @@ import com.example.foodhero.databinding.FragmentRestaurantDetailsBinding;
 public class RestaurantDetails extends Fragment {
 
     FragmentRestaurantDetailsBinding binding;
+    private String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class RestaurantDetails extends Fragment {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         Restuarant res= (Restuarant) getArguments().getSerializable("data");
+        Glide.with(getContext()).load(parentdir+res.getImgurl()).into(binding.profileImg);
         binding.name.setText(res.getName());
         binding.resName.setText(res.getName());
         binding.address.setText(res.getAddress());

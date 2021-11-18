@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Fragment.admin.AdminNgo;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.R;
@@ -20,6 +22,8 @@ import com.example.foodhero.databinding.FragmentNgoDetailsBinding;
 public class NgoDetails extends Fragment {
 
     FragmentNgoDetailsBinding binding;
+    private String parentdir= ApiClient.BASE_URL+"profile_pic/";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class NgoDetails extends Fragment {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         Ngo res= (Ngo) getArguments().getSerializable("data");
+        Glide.with(getContext()).load(parentdir+res.getImgurl()).into(binding.profileImg);
+
         binding.name.setText(res.getName());
         binding.ngoName.setText(res.getName());
         binding.address.setText(res.getAddress());

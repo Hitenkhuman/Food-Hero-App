@@ -15,6 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Fragment.Restaurant.HistoryFragment;
 import com.example.foodhero.Models.Food;
 import com.example.foodhero.R;
@@ -24,6 +26,7 @@ import com.example.foodhero.databinding.FragmentHistoryDetailsBinding;
 public class HistoryDetailsFragment extends Fragment {
 
    FragmentHistoryDetailsBinding binding;
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,17 +37,19 @@ public class HistoryDetailsFragment extends Fragment {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         Food food=(Food)getArguments().getSerializable("data");
-//        binding.date.setText(food.getDate());
-//        binding.datedel.setText(food.getDate());
-//        binding.deliverysts.setText(food.getStatus());
-//        binding.foodid.setText(food.getFoodid());
-//        binding.ngoimage.setImageResource(food.getNgoIImgUrl());
-//        binding.imgrestuarant.setImageResource(food.getResImgUrl());
-//        binding.type.setText(food.getType());
-//        binding.description.setText(food.getDiscription());
-//        binding.noofdishes.setText(Integer.toString(food.getNoOfDishes()));
-//        binding.ngoname.setText(food.getNgoName());
-//        binding.restaurantname.setText(food.getResName());
+        binding.date.setText(food.getDate().toString());
+        binding.datedel.setText(food.getPickup_time());
+        binding.deliverysts.setText(food.getFood_status());
+        binding.foodid.setText(food.get_id());
+
+        Glide.with(getContext()).load(parentdir+food.getNgo_id().getImgurl()).into(binding.ngoimage);
+        Glide.with(getContext()).load(parentdir+food.getRes_id().getImgurl()).into(binding.imgrestuarant);
+
+        binding.type.setText(food.getType());
+        binding.description.setText(food.getDescription());
+        binding.noofdishes.setText(Integer.toString(food.getNo_of_dishes()));
+        binding.ngoname.setText(food.getNgo_id().getName());
+        binding.restaurantname.setText(food.getRes_id().getName());
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

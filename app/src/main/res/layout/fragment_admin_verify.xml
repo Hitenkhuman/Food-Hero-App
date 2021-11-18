@@ -507,6 +507,36 @@ tools:ignore="SpeakableTextPresentCheck">
                 tools:ignore="InvalidId"></TextView>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="Registration No."
+                android:textSize="20sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/registernumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/alegreya_sans_bold"
+                android:text="details"
+                android:textSize="20sp"
+                tools:ignore="InvalidId"></TextView>
+        </LinearLayout>
+
 
     </LinearLayout>
 
