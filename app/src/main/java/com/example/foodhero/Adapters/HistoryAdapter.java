@@ -2,6 +2,7 @@ package com.example.foodhero.Adapters;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,20 +80,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        Food data=list.get(position);
+            // Get element from your dataset at this position and replace the
+            // contents of the view with that element
+        Log.d("Hitem", "onBindViewHolder: "+parentdir+list.get(position).getNgo_id().getImgurl());
+        Glide.with(context).load(parentdir+list.get(position).getRes_id().getImgurl()).into(viewHolder.img1);
+        Glide.with(context).load(parentdir+list.get(position).getNgo_id().getImgurl()).into(viewHolder.img2);
 
-
-        Glide.with(context).load(parentdir+data.getRes_id().getImgurl()).into(viewHolder.img1);
-        Glide.with(context).load(parentdir+data.getNgo_id().getImgurl()).into(viewHolder.img2);
-
-        viewHolder.name1.setText(data.getRes_id().getName());
-        viewHolder.name2.setText(data.getNgo_id().getName());
-        viewHolder.status.setText(data.getFood_status());
-        viewHolder.date.setText(data.getDate().toString());
+        viewHolder.name1.setText(list.get(position).getRes_id().getName());
+        viewHolder.name2.setText(list.get(position).getNgo_id().getName());
+        viewHolder.status.setText(list.get(position).getFood_status());
+        viewHolder.date.setText(list.get(position).getDate().toString());
 
 
     }

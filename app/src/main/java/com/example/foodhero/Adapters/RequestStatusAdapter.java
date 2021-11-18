@@ -13,16 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Models.Food;
+import com.example.foodhero.Models.Request;
 import com.example.foodhero.R;
 
 import java.util.ArrayList;
 
 public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdapter.ViewHolder> {
-    private ArrayList<Food> list;
+    private ArrayList<Request> list;
     private Context context;
     private OnRequestListner onRequestListner;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
-    public RequestStatusAdapter(ArrayList<Food> list,Context context,OnRequestListner onRequestListner) {
+    public RequestStatusAdapter(ArrayList<Request> list,Context context,OnRequestListner onRequestListner) {
         this.list = list;
         this.context = context;
         this.onRequestListner=onRequestListner;
@@ -80,11 +81,11 @@ public class RequestStatusAdapter extends RecyclerView.Adapter<RequestStatusAdap
     public void onBindViewHolder(RequestStatusAdapter.ViewHolder viewHolder, final int position) {
 
 
-        Food food = list.get(position);
+        Request food = list.get(position);
         //viewHolder.image.setImageResource(food.getResImgUrl());
         Glide.with(context).load(parentdir+food.getRes_id().getImgurl()).into(viewHolder.image);
         viewHolder.name.setText(food.getRes_id().getName());
-        viewHolder.status.setText(food.getFood_status());
+        viewHolder.status.setText(food.getRequest_status());
 
     }
 

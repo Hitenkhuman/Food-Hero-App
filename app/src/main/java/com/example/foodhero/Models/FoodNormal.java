@@ -1,13 +1,12 @@
 package com.example.foodhero.Models;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Food implements Serializable {
+public class FoodNormal {
     private String _id;
-    private Ngo ngo_id;
-    private Restuarant res_id;
+    private String ngo_id;
+    private String res_id;
     private Date date;
     private String description;
     private String type;
@@ -19,7 +18,7 @@ public class Food implements Serializable {
     private String pickup_address;
     private String city;
 
-    public Food(String _id, Ngo ngo_id, Restuarant res_id, Date date, String description, String type, int no_of_dishes, String food_status, String pickup_time, ArrayList<String> requests, String note, String pickup_address, String city) {
+    public FoodNormal(String _id, String ngo_id, String res_id, Date date, String description, String type, int no_of_dishes, String food_status, String pickup_time, ArrayList<String> requests, String note, String pickup_address, String city) {
         this._id = _id;
         this.ngo_id = ngo_id;
         this.res_id = res_id;
@@ -43,19 +42,19 @@ public class Food implements Serializable {
         this._id = _id;
     }
 
-    public Ngo getNgo_id() {
+    public String getNgo_id() {
         return ngo_id;
     }
 
-    public void setNgo_id(Ngo ngo_id) {
+    public void setNgo_id(String ngo_id) {
         this.ngo_id = ngo_id;
     }
 
-    public Restuarant getRes_id() {
+    public String getRes_id() {
         return res_id;
     }
 
-    public void setRes_id(Restuarant res_id) {
+    public void setRes_id(String res_id) {
         this.res_id = res_id;
     }
 

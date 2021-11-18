@@ -79,8 +79,9 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
                     if(response!=null){
                         if(response.body().isSuccess()){
                             list=response.body().getData();
-                            setAdapter(list);
-                            Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
+                            setAdapter(response.body().getData());
+                            Log.d("debug",""+response.body());
+                            Toast.makeText(getContext(), "get"+response.body().getData().size(), Toast.LENGTH_SHORT).show();
 
                         }
                         else {
@@ -102,8 +103,8 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
         });
     }
     private void setAdapter(ArrayList<Food> list){
-        HistoryAdapter adapter=new HistoryAdapter(list,getContext(),this);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        HistoryAdapter adapter=new HistoryAdapter(list,requireContext(),this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(requireContext());
         binding.recycleradminhistory.setLayoutManager(linearLayoutManager);
         binding.recycleradminhistory.setAdapter(adapter);
 

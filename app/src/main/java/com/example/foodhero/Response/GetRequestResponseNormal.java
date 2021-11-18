@@ -1,14 +1,14 @@
 package com.example.foodhero.Response;
 
-import com.example.foodhero.Models.Ngo;
-import com.example.foodhero.Models.Request;
+import com.example.foodhero.Models.RequestNormal;
+import com.example.foodhero.Models.Restuarant;
 
 import java.util.ArrayList;
 
-public class GetRequestResponse {
+public class GetRequestResponseNormal {
     boolean success;
     String massage;
-    ArrayList<Request> data;
+    ArrayList<RequestNormal> data;
 
     public boolean isSuccess() {
         return success;
@@ -26,15 +26,15 @@ public class GetRequestResponse {
         this.massage = massage;
     }
 
-    public ArrayList<Request> getData() {
+    public ArrayList<RequestNormal> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Request> data) {
+    public void setData(ArrayList<RequestNormal> data) {
         this.data = data;
     }
 
-    public GetRequestResponse(boolean success, String massage, ArrayList<Request> data) {
+    public GetRequestResponseNormal(boolean success, String massage, ArrayList<RequestNormal> data) {
         this.success = success;
         this.massage = massage;
         this.data = data;
