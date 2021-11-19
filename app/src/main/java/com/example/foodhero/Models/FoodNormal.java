@@ -18,6 +18,16 @@ public class FoodNormal {
     private String pickup_address;
     private String city;
 
+    public FoodNormal(String res_id, String description, String type, int no_of_dishes, String note, String pickup_address, String city) {
+        this.res_id = res_id;
+        this.description = description;
+        this.type = type;
+        this.no_of_dishes = no_of_dishes;
+        this.note = note;
+        this.pickup_address = pickup_address;
+        this.city = city;
+    }
+
     public FoodNormal(String _id, String ngo_id, String res_id, Date date, String description, String type, int no_of_dishes, String food_status, String pickup_time, ArrayList<String> requests, String note, String pickup_address, String city) {
         this._id = _id;
         this.ngo_id = ngo_id;

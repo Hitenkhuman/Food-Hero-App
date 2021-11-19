@@ -37,6 +37,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
     ArrayList<Food> list;
     HistoryAdapter adapter;
     ApiInterface apiInterface;
+    String NGOID="6194e15defb9d82888bd94f3";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
         transaction.commit();
     }
     private void getData(){
-        apiInterface.getHistory().enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getHistoryNgo(NGOID).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {

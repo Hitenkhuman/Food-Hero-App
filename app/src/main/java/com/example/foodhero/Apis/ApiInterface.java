@@ -1,9 +1,11 @@
 package com.example.foodhero.Apis;
 
+import com.example.foodhero.Models.FoodNormal;
 import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.Models.Request;
 import com.example.foodhero.Models.RequestNormal;
 import com.example.foodhero.Response.GetFoodResponse;
+import com.example.foodhero.Response.GetFoodResponseNormal;
 import com.example.foodhero.Response.GetNgoResponse;
 import com.example.foodhero.Response.GetRequestResponse;
 import com.example.foodhero.Response.GetRequestResponseNormal;
@@ -29,11 +31,21 @@ public interface ApiInterface {
     @PUT("restaurants/reject/{id}")
     Call<GetRestaurantResponse> updateRejectRestaurants(@Path("id") String id);
 
-    @GET("foods/all")
+    @GET("foods/history")
     Call<GetFoodResponse> getHistory();
 
-    @GET("foods/available/{city}")
-    Call<GetFoodResponse> getAvailableFood(@Path("city") String city);
+
+    @GET("foods/history/ngo/{id}")
+    Call<GetFoodResponse> getHistoryNgo(@Path("id") String id);
+
+    @GET("foods/history/restaurant/{id}")
+    Call<GetFoodResponse> getHistoryRestaurant(@Path("id") String id);
+
+    @POST("foods/")
+    Call<GetFoodResponseNormal> addFood(@Body FoodNormal foodNormal);
+
+    @GET("foods/ngo/{id}/{city}")
+    Call<GetFoodResponse> getAvailableFood(@Path("id") String id,@Path("city") String city);
 
     @GET("foods/restaurant/{id}")
     Call<GetFoodResponse> getAvailableFoodForRestaurant(@Path("id") String id);

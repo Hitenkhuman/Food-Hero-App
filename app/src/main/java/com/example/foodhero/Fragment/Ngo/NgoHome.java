@@ -44,8 +44,8 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     FoodListAdapter adapter;
     ApiInterface apiInterface;
     FragmentTransaction transaction;
-    String city="Vadodara";
-    String NGOID="6194e089efb9d82888bd94ef";
+    String city="vadodara";
+    String NGOID="6194e15defb9d82888bd94f3";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     }
 
     private void getData(){
-        apiInterface.getAvailableFood(city).enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getAvailableFood(NGOID,city).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 if(response.body().isSuccess()){

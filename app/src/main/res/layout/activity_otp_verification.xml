@@ -166,7 +166,6 @@
             android:layout_height="50dp"
             android:layout_margin="30dp"
             android:text="VERIFY"
-            android:background="@drawable/input_bg"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="16sp"/>

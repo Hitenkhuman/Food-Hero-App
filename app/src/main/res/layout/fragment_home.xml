@@ -28,7 +28,7 @@
         <EditText
             android:id="@+id/desc"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
@@ -37,62 +37,64 @@
             android:gravity="center"
             android:hint="Enter Description"
             android:inputType="textLongMessage"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
-            android:id="@+id/textView3"
+            android:id="@+id/noofdish"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/input_bg"
             android:gravity="center"
-            android:hint="No of Dishesh"
-            android:padding="10dp" />
+            android:hint="No of Dish"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/pickupadd"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/input_bg"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:gravity="center"
-            android:hint="Enter Date"
-            android:inputType="date"
+            android:hint="Enter Pickup Address"
+            android:inputType="textLongMessage"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
             android:id="@+id/note"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/input_bg"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:gravity="center"
             android:hint="Enter Note"
-            android:inputType="text"
+            android:inputType="textLongMessage"
             android:minHeight="48dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -103,25 +105,30 @@
             android:padding="10dp">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/veg"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:checked="true"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Veg"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade"
                 android:textSize="20sp" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/nonveg"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Nonveg"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade"
                 android:textSize="20sp" />
 
         </RadioGroup>

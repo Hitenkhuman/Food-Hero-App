@@ -40,6 +40,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
     private ArrayList<Food> list;
     ApiInterface apiInterface;
     HistoryAdapter adapter;
+    String RESID="6194dc3ac4587d44a06c1951";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
 
     }
     private void getData(){
-        apiInterface.getHistory().enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getHistoryRestaurant(RESID).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {

@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     public static Retrofit RETROFIT =null;
-    public static final String BASE_URL = "http://192.168.173.174:9000/";
+    public static final String BASE_URL = "http://192.168.61.174:9000/";
     public static Retrofit getClient(){
         if(RETROFIT==null){
             OkHttpClient okHttpClient=new OkHttpClient.Builder().build();
