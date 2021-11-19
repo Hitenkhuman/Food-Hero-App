@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "972871708005",
+    "project_id": "food-hero-app",
+    "storage_bucket": "food-hero-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972871708005:android:7a21dcc76f704e7a35058c",
+        "android_client_info": {
+          "package_name": "com.example.foodhero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972871708005-9n6m3fh0qc9kr4tlbtud7o6khnedlptl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodhero",
+            "certificate_hash": "9df8edecbde75684ab37ba2dda24e18a04f884fb"
+          }
+        },
+        {
+          "client_id": "972871708005-bp12i5snb2aqlld02kdptb2bvq30tkag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2H2lsNUqAmAYQwJ-1RTY0wGkYPN22QnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972871708005-bp12i5snb2aqlld02kdptb2bvq30tkag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -25,8 +25,9 @@ tools:context=".RestaurantGetInfoActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_img"
-        android:layout_width="match_parent"
+        android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_gravity="center"
         android:foregroundGravity="center_horizontal"
         android:src="@drawable/ic_baseline_person_24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,9 +37,11 @@ tools:context=".RestaurantGetInfoActivity">
     </de.hdodenhof.circleimageview.CircleImageView>
 
     <ImageButton
-        android:layout_width="match_parent"
+        android:id="@+id/uploadimg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="32dp"
+        android:layout_gravity="center"
         android:minHeight="48dp"
         android:src="@android:drawable/ic_menu_add"></ImageButton>
 
@@ -57,19 +60,6 @@ tools:context=".RestaurantGetInfoActivity">
         android:padding="10dp"
         tools:ignore="InvalidId" />
 
-    <EditText
-        android:id="@+id/Res_Mobile"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/input_bg"
-        android:gravity="center"
-        android:hint="Enter Mobile No."
-        android:inputType="phone"
-        android:padding="10dp" />
 
     <EditText
         android:id="@+id/Res_Open_Time"

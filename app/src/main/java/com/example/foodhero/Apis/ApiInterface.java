@@ -2,11 +2,13 @@ package com.example.foodhero.Apis;
 
 import com.example.foodhero.Models.FoodNormal;
 import com.example.foodhero.Models.Ngo;
+import com.example.foodhero.Models.NotificationSender;
 import com.example.foodhero.Models.Request;
 import com.example.foodhero.Models.RequestNormal;
 import com.example.foodhero.Response.GetFoodResponse;
 import com.example.foodhero.Response.GetFoodResponseNormal;
 import com.example.foodhero.Response.GetNgoResponse;
+import com.example.foodhero.Response.GetNotificationResponse;
 import com.example.foodhero.Response.GetRequestResponse;
 import com.example.foodhero.Response.GetRequestResponseNormal;
 import com.example.foodhero.Response.GetRestaurantResponse;
@@ -16,11 +18,22 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
+
+    @Headers(
+            {
+                    "Content-Type:application/json",
+                    "Authorization:key=AAAA4oOsLWU:APA91bFNfRCSEuNEKp2rt1UT-78MfdeR3rADzhDSonjA1Z4KNsMWbWHXiexH6PnvstFiBWCYnwKEESZMjV3tPvjS6q48gNjhEoVZMsr6wsslNvvWa3QWwCjE6fJHfuox48bCCpEECD3r" // Your server key refer to video for finding your server key
+            }
+    )
+
+    @POST("fcm/send")
+    Call<GetNotificationResponse> sendNotifcation(@Body NotificationSender body);
     @GET("ngos/")
     Call<GetNgoResponse> getNgo();
 
