@@ -1,5 +1,7 @@
 package com.example.foodhero.Fragment.Ngo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,22 +41,16 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
    FragmentNgoRequestBinding binding;
     RequestStatusAdapter adapter;
     ApiInterface apiInterface;
-    String NGOID="6194e15defb9d82888bd94f3";
+   SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentNgoRequestBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
-//        list.add(new Food("1","11","21","Hotel Surya","Arpan",R.drawable.h1,R.drawable.n1,"21-12-2020","Dal rice","VEG",10,"Delivered"));
-//        list.add(new Food("2","12","22","Chili garlic","Sahyog",R.drawable.h2,R.drawable.n2,"11-11-2020","Paneer","VEG",12,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-//        list.add(new Food("4","14","24","Chill Palace","Tyag",R.drawable.h4,R.drawable.n4,"15-10-2020","Pulav","VEG",15,"Delivered"));
-//        list.add(new Food("5","15","25","Green Hotel","Janta",R.drawable.h5,R.drawable.n5,"06-05-2020","Mix subji","VEG",40,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-
         getData();
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -84,6 +80,7 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
         apiInterface.updateFoodPickup(list.get(position).getFood_id().get_id()).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
+                try {
                 if(response.body().isSuccess()){
                     list.remove(position);
                     adapter.notifyItemRemoved(position);
@@ -91,6 +88,11 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
                 }
                 else {
                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -104,7 +106,7 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
     }
 
     private void getData(){
-        apiInterface.getRequest(NGOID).enqueue(new Callback<GetRequestResponse>() {
+        apiInterface.getRequest(preferences.getString("ngo_id","")).enqueue(new Callback<GetRequestResponse>() {
             @Override
             public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
                 if(response.body().isSuccess()){

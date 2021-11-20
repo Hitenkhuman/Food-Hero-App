@@ -25,6 +25,7 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/cherry_swash_bold"
             android:gravity="center"
+            android:textColor="@color/green"
             android:text="Food Details"
             android:textSize="35sp" />
 
@@ -39,6 +40,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Description"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <EditText
@@ -67,6 +69,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="No of Dishes"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -154,6 +157,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Note"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <EditText
@@ -179,6 +183,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Pickup Address"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <EditText
@@ -207,6 +212,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Type"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <RadioGroup

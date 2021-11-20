@@ -60,12 +60,12 @@
                 android:layout_width="40dp"
                 android:layout_height="45dp"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:id="@+id/code1"
                 android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:maxLength="1"
-                android:textColor="@color/primary"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -78,7 +78,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/primary"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -91,7 +92,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/primary"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -104,7 +106,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/primary"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -117,7 +120,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/primary"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -130,7 +134,8 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/primary"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
@@ -171,7 +176,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="30dp"
                 android:text="VERIFY"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/buttondefault_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"/>

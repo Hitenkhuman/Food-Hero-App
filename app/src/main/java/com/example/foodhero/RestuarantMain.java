@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Apis.ApiInterface;
+import com.example.foodhero.Apis.ApiNotificationClient;
+import com.example.foodhero.Apis.ApiNotificationInterface;
 import com.example.foodhero.Fragment.Restaurant.HistoryFragment;
 import com.example.foodhero.Fragment.Restaurant.HomeFragment;
 import com.example.foodhero.Fragment.Restaurant.MyProfileFragment;
@@ -34,7 +37,8 @@ import retrofit2.Response;
 public class RestuarantMain extends AppCompatActivity {
     FragmentTransaction transaction;
    ActivityRestuarantMainBinding binding;
-   ApiInterface apiInterface;
+   ApiNotificationInterface apiNotificationInterface;
+   SharedPreferences preferences;
     String token;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -42,9 +46,8 @@ public class RestuarantMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityRestuarantMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-       apiInterface= ApiClient.getClientNotification().create(ApiInterface.class);
-
+        preferences=getSharedPreferences("data",MODE_PRIVATE);
+      //  apiNotificationInterface= ApiNotificationClient.getClientNotification().create(ApiNotificationInterface.class);
 
         transaction=getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container,new HomeFragment());
@@ -97,27 +100,27 @@ public class RestuarantMain extends AppCompatActivity {
 
     }
 
-    public void sendNotifications(String usertoken, String title, String message) {
-        Data data = new Data(title, message);
-        NotificationSender sender = new NotificationSender(data, usertoken);
-        Toast.makeText(getApplicationContext(), "heyy", Toast.LENGTH_LONG).show();
-        apiInterface.sendNotifcation(sender).enqueue(new Callback<GetNotificationResponse>() {
-            @Override
-            public void onResponse(Call<GetNotificationResponse> call, Response<GetNotificationResponse> response) {
-                if (response.code() == 200) {
-                    if (response.body().success != 1) {
-                        Toast.makeText(RestuarantMain.this, "Failed ", Toast.LENGTH_LONG);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GetNotificationResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), ""+t.fillInStackTrace(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
+//    public void sendNotifications(String usertoken, String title, String message) {
+//        Data data = new Data(title, message);
+//        NotificationSender sender = new NotificationSender(data, usertoken);
+//        Toast.makeText(getApplicationContext(), "heyy", Toast.LENGTH_LONG).show();
+//        apiNotificationInterface.sendNotifcation(sender).enqueue(new Callback<GetNotificationResponse>() {
+//            @Override
+//            public void onResponse(Call<GetNotificationResponse> call, Response<GetNotificationResponse> response) {
+//                if (response.code() == 200) {
+//                    if (response.body().success != 1) {
+//                        Toast.makeText(RestuarantMain.this, "Failed ", Toast.LENGTH_LONG);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<GetNotificationResponse> call, Throwable t) {
+//                Toast.makeText(getApplicationContext(), ""+t.fillInStackTrace(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//    }
+//
 
 }

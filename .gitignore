@@ -13,5 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-app/src/main/java/com/example/foodhero/Apis/
-
+ApiNotificationInterface.java
+ApiNotificationClient.java
+ApiInterface.java
+ApiClient.java

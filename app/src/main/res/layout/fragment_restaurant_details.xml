@@ -111,6 +111,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Name"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -141,6 +142,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Mobile"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -171,6 +173,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Email id"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -201,6 +204,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Opening time"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -231,6 +235,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Closing time"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -261,6 +266,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="State"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -291,6 +297,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="District"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -321,6 +328,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Address"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -350,6 +358,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Joining Date"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -368,14 +377,17 @@ tools:ignore="SpeakableTextPresentCheck">
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="3dp"
+        android:layout_marginTop="45dp"
         android:layout_marginRight="3dp"
         android:background="@drawable/history_bg"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -384,11 +396,12 @@ tools:ignore="SpeakableTextPresentCheck">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:text="Secret Data"
             android:textColor="@color/black"
             android:textSize="25sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -402,6 +415,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Password"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -418,6 +432,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:textSize="20sp"
                 tools:ignore="InvalidId"></TextView>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -430,7 +445,8 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
-                android:text="Ngo Id"
+                android:text="Restaurant Id"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -447,6 +463,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:textSize="20sp"
                 tools:ignore="InvalidId"></TextView>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -460,6 +477,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="AuthID"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -476,6 +494,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:textSize="20sp"
                 tools:ignore="InvalidId"></TextView>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -489,6 +508,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Device Token"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>

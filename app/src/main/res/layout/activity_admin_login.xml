@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="wrap_content"
+android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context=".NgoLoginFragment">
+android:background="@color/white"
+tools:context=".AdminLoginActivity">
 
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Admin"
+    android:textSize="40dp"
+    android:gravity="center"
+    android:layout_marginTop="30dp"
+    android:textStyle="bold"
+    android:textColor="@color/green">
+</TextView>
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/profile_img"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginVertical="30dp"
+    android:layout_gravity="center"
+    android:src="@drawable/Admin"
+    android:foregroundGravity="center_horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+
+    app:layout_constraintTop_toTopOf="parent"
+    tools:ignore="MissingClass,MissingConstraints" />
 
 <EditText
     android:id="@+id/userId"
@@ -16,11 +43,11 @@ tools:context=".NgoLoginFragment">
     android:textColor="@color/black"
     android:gravity="center"
     android:textColorHint="@color/green"
-    android:inputType="phone"
+    android:inputType="textPersonName"
     android:minHeight="48dp"
     android:background="@drawable/input_bg"
     android:padding="10dp"
-    android:hint="Mobile Number" />
+    android:hint="Email id" />
 
 <EditText
     android:id="@+id/userpass"
@@ -37,14 +64,7 @@ tools:context=".NgoLoginFragment">
     android:minHeight="48dp"
     android:padding="10dp" />
 
-<TextView
-    android:id="@+id/forgotpassword"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="end"
-    android:paddingRight="20dp"
-    android:text="forgot password?"
-    android:textColor="@color/black" />
+
 
 <Button
     android:id="@+id/login"
@@ -55,18 +75,6 @@ tools:context=".NgoLoginFragment">
     android:padding="10dp"
     android:text="Log in" />
 
-    <TextView
-        android:id="@+id/signin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Don't have an account?Sign in"
-        android:textStyle="bold"
-        android:textColor="@color/primary" />
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:src="@drawable/logo"></ImageView>
+
+
 </LinearLayout>

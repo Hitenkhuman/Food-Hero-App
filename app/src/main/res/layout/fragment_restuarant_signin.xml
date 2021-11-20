@@ -57,7 +57,7 @@ tools:context=".RestuarantSigninFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/buttondefault_bg"
         android:padding="10dp"
 
         android:text="Sign in" />

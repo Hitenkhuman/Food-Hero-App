@@ -85,12 +85,12 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
 
                         }
                         else {
-                            Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "error 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
 
                 }
             }

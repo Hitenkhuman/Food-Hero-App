@@ -3,7 +3,9 @@ package com.example.foodhero;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -209,18 +211,31 @@ public class OtpVerificationActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             FirebaseUser user = task.getResult().getUser();
                             Log.d("TAG", "onComplete: "+user.getDisplayName());
-
+                            SharedPreferences preferences= getSharedPreferences("data", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor=preferences.edit();
                             switch (bundle.getString("user")){
                                 case "NGO":{
+                                    editor.putString("user","NGOSIGNIN");
+                                    editor.putBoolean("login",true);
+                                    editor.putString("mobile",bundle.getString("mobile"));
+                                    editor.putString("authid",bundle.getString("authid"));
+                                    editor.putString("email",bundle.getString("emailid"));
+                                    editor.putString("password",bundle.getString("password"));
+                                    editor.apply();
                                     Intent intent=new Intent(getApplicationContext(),NgoGetInfoActivity.class);
-                                    intent.putExtras(bundle);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     break;
                                 }
                                 case "RESTAURANT":{
+                                    editor.putString("user","RESTAURANTSIGNIN");
+                                    editor.putBoolean("login",true);
+                                    editor.putString("mobile",bundle.getString("mobile"));
+                                    editor.putString("authid",bundle.getString("authid"));
+                                    editor.putString("email",bundle.getString("emailid"));
+                                    editor.putString("password",bundle.getString("password"));
+                                    editor.apply();
                                     Intent intent=new Intent(getApplicationContext(),RestaurantGetInfoActivity.class);
-                                    intent.putExtras(bundle);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     break;

@@ -84,6 +84,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
         apiInterface.updateRejectNgo(list.get(position).get_id()).enqueue(new Callback<GetNgoResponse>() {
             @Override
             public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
+                try {
                 if(response.body().getSuccess()){
                 Toast.makeText(getContext(), "Successfully Deleted", Toast.LENGTH_SHORT).show();
                 list.remove(position);
@@ -91,13 +92,18 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
 
                 }
                 else {
-                    Toast.makeText(getContext(), "try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GetNgoResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -107,7 +113,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
             @Override
             public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
                 try {
-                    if(response!=null){
+
                         if(response.body().getSuccess()){
                             list=response.body().getData();
                             setAdapter(list);
@@ -115,12 +121,12 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
 
                         }
                         else {
-                            Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
+
                 }
                 catch (Exception e){
-
+                    Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

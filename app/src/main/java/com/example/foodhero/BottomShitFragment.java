@@ -71,12 +71,18 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
                 apiInterface.addFood(new FoodNormal(RESID,description,type,noofdish,note,pickupadd,city)).enqueue(new Callback<GetFoodResponseNormal>() {
                     @Override
                     public void onResponse(Call<GetFoodResponseNormal> call, Response<GetFoodResponseNormal> response) {
+                        try {
                         if(response.body().isSuccess()){
                             Toast.makeText(context, "Food Added Successfully", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(context, response.body().getMassage(), Toast.LENGTH_SHORT).show();
 
+                        }
+
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                         }
                     }
 

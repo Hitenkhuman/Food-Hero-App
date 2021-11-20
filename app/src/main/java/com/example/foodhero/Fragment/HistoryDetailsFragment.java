@@ -50,6 +50,8 @@ public class HistoryDetailsFragment extends Fragment {
         binding.noofdishes.setText(Integer.toString(food.getNo_of_dishes()));
         binding.ngoname.setText(food.getNgo_id().getName());
         binding.restaurantname.setText(food.getRes_id().getName());
+        binding.pickupadd.setText(food.getPickup_address());
+        binding.note.setText(food.getNote());
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

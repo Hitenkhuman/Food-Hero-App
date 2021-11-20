@@ -111,6 +111,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Name"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -141,6 +142,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Mobile"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -171,6 +173,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Email id"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -205,6 +208,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="State"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -235,6 +239,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="District"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -265,6 +270,7 @@ tools:ignore="SpeakableTextPresentCheck">
                     android:layout_weight="1"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:text="Address"
+                    android:textColor="@color/green"
                     android:textSize="20sp">
 
                 </TextView>
@@ -322,6 +328,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Description"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -352,6 +359,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Date"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -382,6 +390,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Type"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -412,6 +421,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="No Of Dish"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -441,6 +451,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Note"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>
@@ -470,6 +481,7 @@ tools:ignore="SpeakableTextPresentCheck">
                 android:layout_weight="1"
                 android:fontFamily="@font/alegreya_sans_bold"
                 android:text="Pickup Address"
+                android:textColor="@color/green"
                 android:textSize="20sp">
 
             </TextView>

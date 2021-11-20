@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondary"
+    android:orientation="vertical"
     tools:context=".Fragment.admin.AdminVerificationRequests">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Admin Home"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/changepassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/settings"
+            android:background="@color/secondary"
+            android:layout_weight="0.3"
+            android:text="change password"/>
+    </LinearLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swiper">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleadminverification"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</FrameLayout>
+</LinearLayout>

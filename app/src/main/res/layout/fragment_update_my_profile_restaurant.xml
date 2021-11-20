@@ -11,6 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,8 +29,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_img"
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_gravity="center"
             android:foregroundGravity="center_horizontal"
             android:src="@drawable/ic_baseline_person_24"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,159 +40,170 @@
             app:layout_constraintTop_toTopOf="parent">
         </de.hdodenhof.circleimageview.CircleImageView>
 
-        <ImageButton
+        <Button
             android:id="@+id/add_img"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:minWidth="32dp"
             android:minHeight="48dp"
-            android:src="@android:drawable/ic_menu_add"></ImageButton>
-
-        <EditText
-            android:id="@+id/Res_Name"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Restuarant Name"
-            android:inputType="textLongMessage"
-            android:padding="10dp"
-            tools:ignore="InvalidId" />
-
-        <EditText
-            android:id="@+id/Res_Mobile"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Mobile No."
-            android:inputType="phone"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/Res_email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Email"
-            android:padding="10dp" />
-
-
-
-        <EditText
-            android:id="@+id/Res_Open_Time"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Opening Time"
-            android:inputType="time"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/Res_Close_Time"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Closing Time"
-            android:inputType="time"
-            android:padding="10dp" />
-
-
-        <EditText
-            android:id="@+id/Res_State"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter State"
-            android:inputType="textLongMessage"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/Res_district"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter District"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/Res_city"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter City"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/Res_Address"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:hint="Enter Address"
-            android:inputType="textLongMessage"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/Update_Details"
+            android:text="Upload Immage"></Button>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/input_bg"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Update" />
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/Res_Name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Restuarant Name"
+                android:inputType="textLongMessage"
+                android:padding="10dp"
+                tools:ignore="InvalidId" />
+
+            <EditText
+                android:id="@+id/Res_Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Mobile No."
+                android:inputType="phone"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Res_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Email"
+                android:padding="10dp" />
+
+
+
+            <EditText
+                android:id="@+id/Res_Open_Time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Opening Time"
+                android:inputType="time"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Res_Close_Time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Closing Time"
+                android:inputType="time"
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/Res_State"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter State"
+                android:inputType="textLongMessage"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Res_district"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter District"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Res_city"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter City"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Res_Address"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:gravity="center"
+                android:hint="Enter Address"
+                android:inputType="textLongMessage"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/Update_Details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/buttondefault_bg"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Update" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/secondary"
+            android:background="@drawable/input_bg"
+            android:layout_marginBottom="20dp"
             >
 
             <EditText
@@ -239,7 +256,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/input_bg"
+                android:background="@drawable/buttondefault_bg"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Update Password" />

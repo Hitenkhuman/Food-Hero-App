@@ -1,5 +1,7 @@
 package com.example.foodhero.Fragment.Restaurant;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,24 +43,18 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
     ApiInterface apiInterface;
     HistoryAdapter adapter;
     String RESID="6194dc3ac4587d44a06c1951";
+    SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        // View view= inflater.inflate(R.layout.fragment_history, container, false);
         binding=FragmentHistoryBinding.inflate(LayoutInflater.from(getContext()),container,false);
-
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         list=new ArrayList<>();
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
         getData();
-//        list.add(new Food("1","11","21","Hotel Surya","Arpan",R.drawable.h1,R.drawable.n1,"21-12-2020","Dal rice","VEG",10,"Delivered"));
-//        list.add(new Food("2","12","22","Chili garlic","Sahyog",R.drawable.h2,R.drawable.n2,"11-11-2020","Paneer","VEG",12,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-//        list.add(new Food("4","14","24","Chill Palace","Tyag",R.drawable.h4,R.drawable.n4,"15-10-2020","Pulav","VEG",15,"Delivered"));
-//        list.add(new Food("5","15","25","Green Hotel","Janta",R.drawable.h5,R.drawable.n5,"06-05-2020","Mix subji","VEG",40,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -83,7 +79,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
 
     }
     private void getData(){
-        apiInterface.getHistoryRestaurant(RESID).enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getHistoryRestaurant(preferences.getString("res_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
@@ -95,12 +91,12 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
 
                         }
                         else {
-                            Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "error 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             }

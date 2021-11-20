@@ -1,5 +1,6 @@
 package com.example.foodhero.Fragment.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.foodhero.Adapters.NgoAdapter;
 import com.example.foodhero.Adapters.VerificationListAdapter;
+import com.example.foodhero.AdminChangePasswordActivity;
 import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Apis.ApiInterface;
 import com.example.foodhero.Fragment.AdminVerify;
@@ -82,16 +84,14 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
                     if(response.body().getSuccess()){
                         list=response.body().getData();
                         setAdapter(list);
-                        Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
-
                     }
                     else {
-                        Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
             catch (Exception e){
-
+                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -99,6 +99,13 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         public void onFailure(Call<GetNgoResponse> call, Throwable t) {
             Log.e("err",t.getLocalizedMessage());
             Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
+
+    binding.changepassword.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startActivity(new Intent(getContext(), AdminChangePasswordActivity.class));
         }
     });
     }

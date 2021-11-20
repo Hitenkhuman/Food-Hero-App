@@ -13,27 +13,23 @@ import com.example.foodhero.Response.GetRequestResponse;
 import com.example.foodhero.Response.GetRequestResponseNormal;
 import com.example.foodhero.Response.GetRestaurantResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
 
-    @Headers(
-            {
-                    "Content-Type:application/json",
-                    "Authorization:key=AAAA4oOsLWU:APA91bFNfRCSEuNEKp2rt1UT-78MfdeR3rADzhDSonjA1Z4KNsMWbWHXiexH6PnvstFiBWCYnwKEESZMjV3tPvjS6q48gNjhEoVZMsr6wsslNvvWa3QWwCjE6fJHfuox48bCCpEECD3r" // Your server key refer to video for finding your server key
-            }
-    )
 
-    @POST("fcm/send")
-    Call<GetNotificationResponse> sendNotifcation(@Body NotificationSender body);
     @GET("ngos/")
     Call<GetNgoResponse> getNgo();
 
@@ -43,6 +39,25 @@ public interface ApiInterface {
 
     @PUT("restaurants/reject/{id}")
     Call<GetRestaurantResponse> updateRejectRestaurants(@Path("id") String id);
+
+    @Multipart
+    @POST("restaurants/add")
+    Call<GetRestaurantResponse> addRestaurant(@Part("name") RequestBody name,
+                                              @Part("mobile") RequestBody mobile,
+                                              @Part("email") RequestBody email,
+                                              @Part("password") RequestBody password,
+                                              @Part("opening_time") RequestBody opening_time,
+                                              @Part("closing_time") RequestBody closing_time,
+                                              @Part("state") RequestBody state,
+                                              @Part("district") RequestBody district,
+                                              @Part("address") RequestBody address,
+                                              @Part("devicetoken") RequestBody devicetoken,
+                                              @Part("authid") RequestBody authid,
+                                              @Part("city") RequestBody city,
+                                              @Part MultipartBody.Part img);
+    @Multipart
+    @POST("restaurants/login")
+    Call<GetRestaurantResponse> checkLoginRestaurant(@Part("mobile") RequestBody mobile,@Part("password") RequestBody password);
 
     @GET("foods/history")
     Call<GetFoodResponse> getHistory();
@@ -76,6 +91,26 @@ public interface ApiInterface {
     @PUT("ngos/reject/{id}")
     Call<GetNgoResponse> updateRejectNgo(@Path("id") String id);
 
+    @Multipart
+    @POST("ngos/add")
+    Call<GetNgoResponse> addNgo(@Part("name") RequestBody name,
+                                              @Part("mobile") RequestBody mobile,
+                                              @Part("email") RequestBody email,
+                                              @Part("certificate_number") RequestBody certificate_number,
+                                              @Part("password") RequestBody password,
+                                              @Part("opening_time") RequestBody opening_time,
+                                              @Part("closing_time") RequestBody closing_time,
+                                              @Part("state") RequestBody state,
+                                              @Part("district") RequestBody district,
+                                              @Part("address") RequestBody address,
+                                              @Part("devicetoken") RequestBody devicetoken,
+                                              @Part("authid") RequestBody authid,
+                                              @Part("city") RequestBody city,
+                                              @Part MultipartBody.Part img);
+
+    @Multipart
+    @POST("ngos/login")
+    Call<GetNgoResponse> checkLoginNgo(@Part("mobile") RequestBody mobile,@Part("password") RequestBody password);
 
     @POST("requests/add")
     Call<GetRequestResponseNormal> addRequest(@Body RequestNormal request);

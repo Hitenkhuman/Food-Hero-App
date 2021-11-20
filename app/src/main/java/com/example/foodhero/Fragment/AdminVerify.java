@@ -78,6 +78,7 @@ public class AdminVerify extends Fragment {
                 apiInterface.updateVerifyNgo(res.get_id()).enqueue(new Callback<GetNgoResponse>() {
                     @Override
                     public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
+                        try {
                         if(response.body().getSuccess()){
                             Toast.makeText(getContext(), "Verified Successfully", Toast.LENGTH_SHORT).show();
                             FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
@@ -86,6 +87,11 @@ public class AdminVerify extends Fragment {
                         }
                         else {
                             Toast.makeText(getContext(), "Issue with server try again later!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -103,6 +109,7 @@ public class AdminVerify extends Fragment {
                 apiInterface.updateRejectNgo(res.get_id()).enqueue(new Callback<GetNgoResponse>() {
                     @Override
                     public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
+                        try {
                         if(response.body().getSuccess()){
                             Toast.makeText(getContext(), "Rejected Successfully", Toast.LENGTH_SHORT).show();
                             FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
@@ -111,6 +118,11 @@ public class AdminVerify extends Fragment {
                         }
                         else {
                             Toast.makeText(getContext(), "Issue with server try again later!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        }
+                        catch (Exception e){
+                            Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                         }
                     }
 

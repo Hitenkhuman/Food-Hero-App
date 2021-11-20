@@ -1,6 +1,8 @@
 package com.example.foodhero.Fragment.Restaurant;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -28,10 +30,12 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
     FragmentTransaction transaction;
     private FragmentHomeBinding binding;
+    SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         binding=FragmentHomeBinding.inflate(LayoutInflater.from(getContext()),container,false);
         binding.noofdish.setText("5");
         binding.addbtn.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,7 @@
 package com.example.foodhero.Fragment.Ngo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,23 +46,18 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     FoodListAdapter adapter;
     ApiInterface apiInterface;
     FragmentTransaction transaction;
-    String city="vadodara";
-    String NGOID="6194e15defb9d82888bd94f3";
+    SharedPreferences preferences;
+    private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentNgoHomeBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
-//        list.add(new Food("1","11","21","Hotel Surya","Arpan",R.drawable.h1,R.drawable.n1,"21-12-2020","Dal rice","VEG",10,"Delivered"));
-//        list.add(new Food("2","12","22","Chili garlic","Sahyog",R.drawable.h2,R.drawable.n2,"11-11-2020","Paneer","VEG",12,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-//        list.add(new Food("4","14","24","Chill Palace","Tyag",R.drawable.h4,R.drawable.n4,"15-10-2020","Pulav","VEG",15,"Delivered"));
-//        list.add(new Food("5","15","25","Green Hotel","Janta",R.drawable.h5,R.drawable.n5,"06-05-2020","Mix subji","VEG",40,"Delivered"));
-//        list.add(new Food("3","13","23","Hotel Seven","Soumya",R.drawable.h3,R.drawable.n3,"10-11-2020","Dal rice","VEG",8,"Delivered"));
-
+        context=getContext();
         getData();
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -87,44 +84,50 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
 
     @Override
     public void OnRequestClick(int position) {
-    apiInterface.addRequest(new RequestNormal(NGOID,list.get(position).getRes_id().get_id(),list.get(position).get_id())).enqueue(new Callback<GetRequestResponseNormal>() {
+    apiInterface.addRequest(new RequestNormal(preferences.getString("ngo_id",""),list.get(position).getRes_id().get_id(),list.get(position).get_id())).enqueue(new Callback<GetRequestResponseNormal>() {
         @Override
         public void onResponse(Call<GetRequestResponseNormal> call, Response<GetRequestResponseNormal> response) {
             if(response.body().isSuccess()){
-                Toast.makeText(getContext(), "Food Request Sent to Restaurant", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Food Request Sent to Restaurant", Toast.LENGTH_SHORT).show();
                 list.remove(position);
                 adapter.notifyItemRemoved(position);
             }
             else {
                 Log.d("abab",response.body().getMassage());
-                Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, response.body().getMassage(), Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onFailure(Call<GetRequestResponseNormal> call, Throwable t) {
             Log.d("abab",t.toString());
-            Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
     });
     }
 
     private void getData(){
-        apiInterface.getAvailableFood(NGOID,city).enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getAvailableFood(preferences.getString("ngo_id",""),preferences.getString("city","vadodara")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
+                try {
                 if(response.body().isSuccess()){
                     list=response.body().getData();
                     setAdapter(list);
                 }
                 else {
-                    Toast.makeText(getContext(), "try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "try again later", Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
             }
         });
     }

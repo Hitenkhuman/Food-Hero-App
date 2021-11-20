@@ -83,6 +83,7 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
         apiInterface.updateRejectRestaurants(list.get(position).get_id()).enqueue(new Callback<GetRestaurantResponse>() {
             @Override
             public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
+                try {
                 if(response.body().isSuccess()){
                     Toast.makeText(getContext(), "Successfully Deleted", Toast.LENGTH_SHORT).show();
                     list.remove(position);
@@ -90,7 +91,12 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
 
                 }
                 else {
-                    Toast.makeText(getContext(), "try again later"+response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 

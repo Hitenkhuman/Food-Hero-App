@@ -1,5 +1,7 @@
 package com.example.foodhero.Fragment.Restaurant;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -45,21 +47,16 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
     ArrayList<Request> list;
     ApiInterface apiInterface;
     String foodid[];
-    String RESID="6194dc3ac4587d44a06c1951";
+    SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentRequestBinding.inflate(LayoutInflater.from(getContext()),container,false);
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         list=new ArrayList<>();
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
-//        list.add(new Request(R.drawable.n1,"Aakriti djdjfk","Chill Palace limited"));
-//        list.add(new Request(R.drawable.n2,"Aakriti grgfgg","Chill Palace"));
-//        list.add(new Request(R.drawable.n1,"Aakriti rtgagdfg","Chill Palace"));
-//        list.add(new Request(R.drawable.n4,"Aakriti gfgfgfg","Chill Palace"));
-//        list.add(new Request(R.drawable.h1,"Aakritib rtrtrtr","Chill Palace"));
-//
         getData();
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -91,13 +88,19 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
         apiInterface.updateRequest(list.get(position).getFood_id().get_id()).enqueue(new Callback<GetRequestResponseNormal>() {
             @Override
             public void onResponse(Call<GetRequestResponseNormal> call, Response<GetRequestResponseNormal> response) {
+                try {
                 if(response.body().isSuccess()){
                     list.remove(position);
                     adapter.notifyItemRemoved(position);
                     Toast.makeText(getContext(), "Accepted Successfully", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getContext(), "try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -111,33 +114,54 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
 
     }
     private void getData(){
-        apiInterface.getAvailableFoodForRestaurant(RESID).enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getAvailableFoodForRestaurant(preferences.getString("res_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
-                for (Food f:response.body().getData()
-                     ) {
-                        apiInterface.getRequestForRestaurant(f.get_id()).enqueue(new Callback<GetRequestResponse>() {
-                            @Override
-                            public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
-                                if(response.body().isSuccess()){
-                                    Log.d("food11", "onResponse: "+response.body().getData());
-                                    list.addAll(response.body().getData());
-                                    Log.d("food11", "onResponse: "+list.size());
-                                    Log.d("food11", "onResponseexit: "+list.size());
-                                    setAdapter(list);
+                try{
+                    if(response.body().isSuccess()){
+                        for (Food f:response.body().getData()
+                        ) {
+                            apiInterface.getRequestForRestaurant(f.get_id()).enqueue(new Callback<GetRequestResponse>() {
+                                @Override
+                                public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
+                                    try {
+                                        if(response.body().isSuccess()){
+                                            Log.d("food11", "onResponse: "+response.body().getData());
+                                            list.addAll(response.body().getData());
+                                            Log.d("food11", "onResponse: "+list.size());
+                                            Log.d("food11", "onResponseexit: "+list.size());
+                                            setAdapter(list);
+                                        }
+                                        else {
+                                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    catch (Exception e){
+                                        Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                            @Override
-                            public void onFailure(Call<GetRequestResponse> call, Throwable t) {
-                                Log.d("food11", "onFailure: "+t.fillInStackTrace());
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<GetRequestResponse> call, Throwable t) {
+                                    Log.d("food11", "onFailure: "+t.fillInStackTrace());
+                                }
+                            });
+                        }
                     }
+                    else{
+                        Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Log.d("food11", "onFailureouter: "+t.fillInStackTrace());
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });

@@ -1,5 +1,7 @@
 package com.example.foodhero.Fragment.Ngo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,13 +39,14 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
     ArrayList<Food> list;
     HistoryAdapter adapter;
     ApiInterface apiInterface;
-    String NGOID="6194e15defb9d82888bd94f3";
+    SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentNgoHistoryBinding.inflate(LayoutInflater.from(getContext()),container,false);
         list=new ArrayList<>();
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
         getData();
@@ -76,7 +79,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
         transaction.commit();
     }
     private void getData(){
-        apiInterface.getHistoryNgo(NGOID).enqueue(new Callback<GetFoodResponse>() {
+        apiInterface.getHistoryNgo(preferences.getString("ngo_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
@@ -93,7 +96,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "error 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
 
                 }
             }

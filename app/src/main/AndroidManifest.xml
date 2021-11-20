@@ -4,40 +4,43 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodHero"
-        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".NgoGetInfoActivity"
+            android:name=".NgoWaitingActivity"
             android:exported="false" />
         <activity
+            android:name=".AdminChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NgoGetInfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".RestaurantGetInfoActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".AdminMain"
-            android:exported="true">
+            android:exported="true" >
 
         </activity>
         <activity
             android:name=".NgoMain"
-            android:exported="true" >
-
+            android:exported="true">
         </activity>
         <activity
             android:name=".OtpVerificationActivity"
@@ -50,7 +53,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
 
         </activity>
         <activity
@@ -58,9 +61,12 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true"
-            >
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
