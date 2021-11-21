@@ -40,11 +40,13 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
     HistoryAdapter adapter;
     ApiInterface apiInterface;
     SharedPreferences preferences;
+    private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentNgoHistoryBinding.inflate(LayoutInflater.from(getContext()),container,false);
+        context=getContext();
         list=new ArrayList<>();
         preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
@@ -87,16 +89,16 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
                         if(response.body().isSuccess()){
                             list=response.body().getData();
                             setAdapter(list);
-                            Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "get", Toast.LENGTH_SHORT).show();
 
                         }
                         else {
-                            Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "error 0", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -104,7 +106,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Log.e("err",t.getLocalizedMessage());
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

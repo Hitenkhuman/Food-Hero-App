@@ -25,7 +25,7 @@ tools:context=".AdminLoginActivity">
     android:layout_height="120dp"
     android:layout_marginVertical="30dp"
     android:layout_gravity="center"
-    android:src="@drawable/Admin"
+    android:src="@drawable/adminlogo"
     android:foregroundGravity="center_horizontal"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
@@ -43,11 +43,11 @@ tools:context=".AdminLoginActivity">
     android:textColor="@color/black"
     android:gravity="center"
     android:textColorHint="@color/green"
-    android:inputType="textPersonName"
+    android:inputType="text"
     android:minHeight="48dp"
     android:background="@drawable/input_bg"
     android:padding="10dp"
-    android:hint="Email id" />
+    android:hint="Admin id" />
 
 <EditText
     android:id="@+id/userpass"

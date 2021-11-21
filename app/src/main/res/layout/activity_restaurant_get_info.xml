@@ -60,6 +60,8 @@ tools:context=".RestaurantGetInfoActivity">
         android:hint="Enter Restuarant Name"
         android:inputType="textLongMessage"
         android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade"
         tools:ignore="InvalidId" />
 
 
@@ -75,7 +77,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Opening Time"
         android:inputType="time"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Res_Close_Time"
@@ -89,7 +93,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Closing Time"
         android:inputType="time"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Res_State"
@@ -103,7 +109,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:gravity="center"
         android:hint="Enter State"
         android:inputType="textLongMessage"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Res_district"
@@ -116,7 +124,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:background="@drawable/input_bg"
         android:gravity="center"
         android:hint="Enter District"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Res_city"
@@ -129,7 +139,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:background="@drawable/input_bg"
         android:gravity="center"
         android:hint="Enter City"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Res_Address"
@@ -143,7 +155,9 @@ tools:context=".RestaurantGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Address"
         android:inputType="textLongMessage"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <Button
         android:id="@+id/Add_Details"
@@ -153,10 +167,22 @@ tools:context=".RestaurantGetInfoActivity">
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/buttondefault_bg"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Add" />
+        android:text="Submit" />
+    <Button
+        android:id="@+id/cancle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/buttondefault_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Cancel" />
 </LinearLayout>
 
 </ScrollView>

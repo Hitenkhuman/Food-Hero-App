@@ -5,6 +5,7 @@ import com.example.foodhero.Models.Ngo;
 import com.example.foodhero.Models.NotificationSender;
 import com.example.foodhero.Models.Request;
 import com.example.foodhero.Models.RequestNormal;
+import com.example.foodhero.Response.GetAdminResponse;
 import com.example.foodhero.Response.GetFoodResponse;
 import com.example.foodhero.Response.GetFoodResponseNormal;
 import com.example.foodhero.Response.GetNgoResponse;
@@ -55,6 +56,26 @@ public interface ApiInterface {
                                               @Part("authid") RequestBody authid,
                                               @Part("city") RequestBody city,
                                               @Part MultipartBody.Part img);
+
+
+    @Multipart
+    @POST("restaurants/edit")
+    Call<GetRestaurantResponse> updateRestaurant(
+                                                @Part("id") RequestBody id,
+                                                @Part("name") RequestBody name,
+                                              @Part("email") RequestBody email,
+                                              @Part("opening_time") RequestBody opening_time,
+                                              @Part("closing_time") RequestBody closing_time,
+                                              @Part("state") RequestBody state,
+                                              @Part("district") RequestBody district,
+                                              @Part("address") RequestBody address,
+                                              @Part("city") RequestBody city,
+                                              @Part MultipartBody.Part img);
+
+    @Multipart
+    @POST("restaurants/changepassword")
+    Call<GetRestaurantResponse> changePasswordRestaurant(@Part("id") RequestBody id,@Part("password") RequestBody password);
+
     @Multipart
     @POST("restaurants/login")
     Call<GetRestaurantResponse> checkLoginRestaurant(@Part("mobile") RequestBody mobile,@Part("password") RequestBody password);
@@ -108,9 +129,29 @@ public interface ApiInterface {
                                               @Part("city") RequestBody city,
                                               @Part MultipartBody.Part img);
 
+
+
+    @Multipart
+    @POST("ngos/edit")
+    Call<GetNgoResponse> updateNgo(
+            @Part("id") RequestBody id,
+            @Part("name") RequestBody name,
+            @Part("email") RequestBody email,
+            @Part("opening_time") RequestBody opening_time,
+            @Part("closing_time") RequestBody closing_time,
+            @Part("state") RequestBody state,
+            @Part("district") RequestBody district,
+            @Part("address") RequestBody address,
+            @Part("city") RequestBody city,
+            @Part MultipartBody.Part img);
+
     @Multipart
     @POST("ngos/login")
     Call<GetNgoResponse> checkLoginNgo(@Part("mobile") RequestBody mobile,@Part("password") RequestBody password);
+
+    @Multipart
+    @POST("ngos/changepassword")
+    Call<GetNgoResponse> changePasswordNgo(@Part("id") RequestBody id,@Part("password") RequestBody password);
 
     @POST("requests/add")
     Call<GetRequestResponseNormal> addRequest(@Body RequestNormal request);
@@ -126,5 +167,7 @@ public interface ApiInterface {
     Call<GetRequestResponseNormal> updateRequest(@Path("id") String id);
 
 
-
+    @Multipart
+    @POST("admin/login")
+    Call<GetAdminResponse> checkLoginAdmin(@Part("email") RequestBody userid, @Part("password") RequestBody password);
 }

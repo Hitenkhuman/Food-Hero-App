@@ -41,21 +41,31 @@ public class NgoLoginFragment extends Fragment {
                 startActivity(new Intent(getContext(),SigninActivity.class));
             }
         });
+        binding.admingin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),AdminLoginActivity.class));
+            }
+        });
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mobile=binding.userId.getText().toString().trim();
                 String password=binding.userpass.getText().toString().trim();
                 if(mobile.length()>0 && password.length()>0) {
+                    binding.progressbar.setVisibility(View.VISIBLE);
+                    binding.login.setVisibility(View.INVISIBLE);
                     apiInterface.checkLoginNgo(createPartFromString(mobile),createPartFromString(password)).enqueue(new Callback<GetNgoResponse>() {
                         @Override
                         public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
                             try{
                                 if(response.body().getSuccess()){
+                                    binding.progressbar.setVisibility(View.GONE);
+                                    binding.login.setVisibility(View.VISIBLE);
                                     Toast.makeText(getContext(), "Login Successsfull", Toast.LENGTH_SHORT).show();
                                     SharedPreferences preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor=preferences.edit();
-                                    if(response.body().getData().get(0).getVerification_status().equals("Accepted")){
+                                    if(response.body().getData().get(0).getVerification_status().equals("Verified")){
                                         editor.putString("user","NGO");
                                         editor.putBoolean("login",true);
                                         editor.putString("ngo_id",response.body().getData().get(0).get_id());
@@ -84,19 +94,22 @@ public class NgoLoginFragment extends Fragment {
                                 }
                                 else{
                                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
-
+                                    binding.progressbar.setVisibility(View.GONE);
+                                    binding.login.setVisibility(View.VISIBLE);
                                 }
                             }
                             catch (Exception e){
                                 Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
+                                binding.progressbar.setVisibility(View.GONE);
+                                binding.login.setVisibility(View.VISIBLE);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<GetNgoResponse> call, Throwable t) {
                             Toast.makeText(getContext(),"here"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
+                            binding.progressbar.setVisibility(View.GONE);
+                            binding.login.setVisibility(View.VISIBLE);
                         }
                     });
                 }

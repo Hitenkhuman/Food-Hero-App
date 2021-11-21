@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.LoginActivity;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentMyProfileBinding;
@@ -22,6 +24,7 @@ public class MyProfileFragment extends Fragment {
     FragmentMyProfileBinding binding;
     FragmentTransaction transaction;
     SharedPreferences preferences;
+    private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,8 +32,12 @@ public class MyProfileFragment extends Fragment {
         binding=FragmentMyProfileBinding.inflate(LayoutInflater.from(getContext()),container,false);
         preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit=preferences.edit();
+        Glide.with(getContext()).load(parentdir+preferences.getString("imgurl","default.png")).into(binding.img);
         binding.address.setText(preferences.getString("address","NA"));
+        binding.openingtime.setText(preferences.getString("openingtime","NA"));
+        binding.closingtime.setText(preferences.getString("closingtime","NA"));
         binding.name.setText(preferences.getString("name","NA"));
+        binding.namebig.setText(preferences.getString("name","NA"));
         binding.mobile.setText(preferences.getString("mobile","NA"));
         binding.email.setText(preferences.getString("email","NA"));
         binding.profileEdit.setOnClickListener(new View.OnClickListener() {

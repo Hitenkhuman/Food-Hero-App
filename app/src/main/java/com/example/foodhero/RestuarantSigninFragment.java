@@ -40,7 +40,7 @@ public class RestuarantSigninFragment extends Fragment {
                     Intent intent=new Intent(getContext(),OtpActivity.class);
                     Bundle bundle=new Bundle();
                     bundle.putString("user","RESTAURANT");
-                    bundle.putString("emailid",email);
+                    bundle.putString("email",email);
                     bundle.putString("password",password);
                     intent.putExtras(bundle);
                     startActivity(intent);

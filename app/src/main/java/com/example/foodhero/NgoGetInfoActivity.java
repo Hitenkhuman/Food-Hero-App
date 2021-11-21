@@ -4,11 +4,17 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,6 +47,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
     String token;
     ApiInterface apiInterface;
     SharedPreferences preferences;
+    private int STORAGE_PERMISSION_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +89,14 @@ public class NgoGetInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Pass in the mime type you'd like to allow the user to select
                 // as the input
-                mGetContent.launch("image/*");
+                if(ContextCompat.checkSelfPermission(NgoGetInfoActivity.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    mGetContent.launch("image/*");
+                }
+                else {
+                    requestStoragePermission();
+                }
+
             }
         });
 
@@ -99,7 +113,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
                     String address = binding.NgoAddress.getText().toString().trim();
                     String certificate = binding.certificate.getText().toString().trim();
                     String mobile=preferences.getString("mobile","NA");
-                    String email=preferences.getString("emailid","NA");
+                    String email=preferences.getString("email","NA");
                     String authid=preferences.getString("authid","NA");
                     String password=preferences.getString("password","NA");
 
@@ -177,7 +191,16 @@ public class NgoGetInfoActivity extends AppCompatActivity {
                 }
             }
             });
-                
+        binding.cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor=preferences.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
+            }
+        });
              
     }
     private RequestBody createPartFromString(String data){
@@ -190,5 +213,39 @@ public class NgoGetInfoActivity extends AppCompatActivity {
         RequestBody requestFile=RequestBody.create(MediaType.parse(path),img);
         return  MultipartBody.Part.createFormData(partName,img.getName(),requestFile);
 
+    }
+    private void requestStoragePermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed for upload image")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(NgoGetInfoActivity.this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .create().show();
+        }
+        else {
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

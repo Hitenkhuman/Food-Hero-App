@@ -219,7 +219,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
                                     editor.putBoolean("login",true);
                                     editor.putString("mobile",bundle.getString("mobile"));
                                     editor.putString("authid",bundle.getString("authid"));
-                                    editor.putString("email",bundle.getString("emailid"));
+                                    editor.putString("email",bundle.getString("email"));
                                     editor.putString("password",bundle.getString("password"));
                                     editor.apply();
                                     Intent intent=new Intent(getApplicationContext(),NgoGetInfoActivity.class);
@@ -232,7 +232,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
                                     editor.putBoolean("login",true);
                                     editor.putString("mobile",bundle.getString("mobile"));
                                     editor.putString("authid",bundle.getString("authid"));
-                                    editor.putString("email",bundle.getString("emailid"));
+                                    editor.putString("email",bundle.getString("email"));
                                     editor.putString("password",bundle.getString("password"));
                                     editor.apply();
                                     Intent intent=new Intent(getApplicationContext(),RestaurantGetInfoActivity.class);

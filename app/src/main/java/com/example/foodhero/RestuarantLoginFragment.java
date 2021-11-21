@@ -37,17 +37,27 @@ public class RestuarantLoginFragment extends Fragment {
         binding=FragmentRestuarantLoginBinding.inflate(LayoutInflater.from(getContext()),container,false);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        binding.adminlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),AdminLoginActivity.class));
+            }
+        });
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mobile=binding.userId.getText().toString().trim();
                 String password=binding.userpass.getText().toString().trim();
                 if(mobile.length()>0 && password.length()>0){
+                    binding.progressbar.setVisibility(View.VISIBLE);
+                    binding.login.setVisibility(View.INVISIBLE);
                     apiInterface.checkLoginRestaurant(createPartFromString(mobile),createPartFromString(password)).enqueue(new Callback<GetRestaurantResponse>() {
                         @Override
                         public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
                             try{
                                 if(response.body().isSuccess()){
+                                    binding.progressbar.setVisibility(View.GONE);
+                                    binding.login.setVisibility(View.VISIBLE);
                                     Toast.makeText(getContext(), "Login Successsfull", Toast.LENGTH_SHORT).show();
                                     SharedPreferences preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor=preferences.edit();
@@ -76,18 +86,23 @@ public class RestuarantLoginFragment extends Fragment {
                                 }
                                 else{
                                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                                    binding.progressbar.setVisibility(View.GONE);
+                                    binding.login.setVisibility(View.VISIBLE);
 
                                 }
                             }
                             catch (Exception e){
                                 Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
+                                binding.progressbar.setVisibility(View.GONE);
+                                binding.login.setVisibility(View.VISIBLE);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<GetRestaurantResponse> call, Throwable t) {
                             Toast.makeText(getContext(),"here"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            binding.progressbar.setVisibility(View.GONE);
+                            binding.login.setVisibility(View.VISIBLE);
                         }
                     });
                 }

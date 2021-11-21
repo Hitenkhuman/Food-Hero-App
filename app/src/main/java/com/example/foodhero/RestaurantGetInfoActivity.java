@@ -5,11 +5,17 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -43,6 +49,7 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
     String token;
     ApiInterface apiInterface;
     SharedPreferences preferences;
+    private int STORAGE_PERMISSION_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,101 +89,120 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
         binding.uploadimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Pass in the mime type you'd like to allow the user to select
-                // as the input
-                mGetContent.launch("image/*");
+                if(ContextCompat.checkSelfPermission(RestaurantGetInfoActivity.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    mGetContent.launch("image/*");
+                }
+                else {
+                    requestStoragePermission();
+                }
             }
         });
 
         binding.AddDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=binding.ResName.getText().toString().trim();
-                String openingtime=binding.ResOpenTime.getText().toString().trim();
-                String closingtime=binding.ResCloseTime.getText().toString().trim();
-                String state=binding.ResState.getText().toString().trim();
-                String district=binding.ResDistrict.getText().toString().trim();
-                String city=binding.ResCity.getText().toString().toLowerCase().trim();
-                String address=binding.ResAddress.getText().toString().trim();
-                String mobile=preferences.getString("mobile","NA");
-                String email=preferences.getString("emailid","NA");
-                String authid=preferences.getString("authid","NA");
-                String password=preferences.getString("password","NA");
-                String devicetoken=token;
-                File img=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),path);
-                Toast.makeText(getApplicationContext(), "FILE NAME"+img.getName(), Toast.LENGTH_SHORT).show();
-                apiInterface.addRestaurant(createPartFromString(name),
-                        createPartFromString(mobile),
-                        createPartFromString(email),
-                        createPartFromString(password),
-                        createPartFromString(openingtime),
-                        createPartFromString(closingtime),
-                        createPartFromString(state),
-                        createPartFromString(district),
-                        createPartFromString(address),
-                        createPartFromString(devicetoken),
-                        createPartFromString(authid),
-                        createPartFromString(city),
-                        createFilePart("img",img))
-                        .enqueue(new Callback<GetRestaurantResponse>() {
-                            @Override
-                            public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
-                                try {
-                                    if(response.body().isSuccess()){
-                                        Toast.makeText(getApplicationContext(), "Sigin Completed", Toast.LENGTH_SHORT).show();
-                                        SharedPreferences preferences= getSharedPreferences("data", Context.MODE_PRIVATE);
-                                        SharedPreferences.Editor editor=preferences.edit();
+                if(path.length()>0){
+                    String name=binding.ResName.getText().toString().trim();
+                    String openingtime=binding.ResOpenTime.getText().toString().trim();
+                    String closingtime=binding.ResCloseTime.getText().toString().trim();
+                    String state=binding.ResState.getText().toString().trim();
+                    String district=binding.ResDistrict.getText().toString().trim();
+                    String city=binding.ResCity.getText().toString().toLowerCase().trim();
+                    String address=binding.ResAddress.getText().toString().trim();
+                    String mobile=preferences.getString("mobile","NA");
+                    String email=preferences.getString("email","NA");
+                    String authid=preferences.getString("authid","NA");
+                    String password=preferences.getString("password","NA");
+                    String devicetoken=token;
+                    File img=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),path);
+                    Toast.makeText(getApplicationContext(), "FILE NAME"+img.getName(), Toast.LENGTH_SHORT).show();
+                    apiInterface.addRestaurant(createPartFromString(name),
+                            createPartFromString(mobile),
+                            createPartFromString(email),
+                            createPartFromString(password),
+                            createPartFromString(openingtime),
+                            createPartFromString(closingtime),
+                            createPartFromString(state),
+                            createPartFromString(district),
+                            createPartFromString(address),
+                            createPartFromString(devicetoken),
+                            createPartFromString(authid),
+                            createPartFromString(city),
+                            createFilePart("img",img))
+                            .enqueue(new Callback<GetRestaurantResponse>() {
+                                @Override
+                                public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
+                                    try {
+                                        if(response.body().isSuccess()){
+                                            Toast.makeText(getApplicationContext(), "Sigin Completed", Toast.LENGTH_SHORT).show();
+                                            SharedPreferences preferences= getSharedPreferences("data", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor=preferences.edit();
 
-                                        editor.putString("user","RESTAURANT");
-                                        editor.putBoolean("login",true);
-                                        editor.putString("res_id",response.body().getData().get(0).get_id());
-                                        editor.putString("name",response.body().getData().get(0).getName());
-                                        editor.putString("email",response.body().getData().get(0).getEmail());
-                                        editor.putString("password",response.body().getData().get(0).getPassword());
-                                        editor.putString("openingtime",response.body().getData().get(0).getOpening_time());
-                                        editor.putString("closingtime",response.body().getData().get(0).getClosing_time());
-                                        editor.putString("imgurl",response.body().getData().get(0).getImgurl());
-                                        editor.putString("state",response.body().getData().get(0).getState());
-                                        editor.putString("district",response.body().getData().get(0).getDistrict());
-                                        editor.putString("city",response.body().getData().get(0).getCity());
-                                        editor.putString("address",response.body().getData().get(0).getAddress());
-                                        editor.putString("authid",response.body().getData().get(0).getAuthid());
-                                        editor.putString("devicetoken",response.body().getData().get(0).getDevicetoken());
-                                        editor.putString("joindate",response.body().getData().get(0).getJoindate().toString());
-                                        editor.putString("mobile",response.body().getData().get(0).getMobile());
+                                            editor.putString("user","RESTAURANT");
+                                            editor.putBoolean("login",true);
+                                            editor.putString("res_id",response.body().getData().get(0).get_id());
+                                            editor.putString("name",response.body().getData().get(0).getName());
+                                            editor.putString("email",response.body().getData().get(0).getEmail());
+                                            editor.putString("password",response.body().getData().get(0).getPassword());
+                                            editor.putString("openingtime",response.body().getData().get(0).getOpening_time());
+                                            editor.putString("closingtime",response.body().getData().get(0).getClosing_time());
+                                            editor.putString("imgurl",response.body().getData().get(0).getImgurl());
+                                            editor.putString("state",response.body().getData().get(0).getState());
+                                            editor.putString("district",response.body().getData().get(0).getDistrict());
+                                            editor.putString("city",response.body().getData().get(0).getCity());
+                                            editor.putString("address",response.body().getData().get(0).getAddress());
+                                            editor.putString("authid",response.body().getData().get(0).getAuthid());
+                                            editor.putString("devicetoken",response.body().getData().get(0).getDevicetoken());
+                                            editor.putString("joindate",response.body().getData().get(0).getJoindate().toString());
+                                            editor.putString("mobile",response.body().getData().get(0).getMobile());
 
 
-                                        editor.apply();
-                                        Intent intent=new Intent(getApplicationContext(),RestuarantMain.class);
-                                        startActivity(intent);
-                                    }else{
-                                        Toast.makeText(getApplicationContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
-                                        Log.d("imgissue", "createFilePart: "+ response.body().getMassage());
+                                            editor.apply();
+                                            Intent intent=new Intent(getApplicationContext(),RestuarantMain.class);
+                                            startActivity(intent);
+                                        }else{
+                                            Toast.makeText(getApplicationContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                                            Log.d("imgissue", "createFilePart: "+ response.body().getMassage());
+
+                                        }
+                                    }
+                                    catch (Exception e){
+                                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.d("imgissue", "createFilePart: "+ e.getLocalizedMessage());
 
                                     }
                                 }
-                                catch (Exception e){
-                                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                    Log.d("imgissue", "createFilePart: "+ e.getLocalizedMessage());
+
+                                @Override
+                                public void onFailure(Call<GetRestaurantResponse> call, Throwable t) {
+                                    Toast.makeText(getApplicationContext(),"here"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d("imgissue", "createFilePart: "+t.fillInStackTrace());
 
                                 }
-                            }
-
-                            @Override
-                            public void onFailure(Call<GetRestaurantResponse> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(),"here"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                Log.d("imgissue", "createFilePart: "+t.fillInStackTrace());
-
-                            }
-                        });
+                            });
 
 
 
 
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please add image", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
-
+    binding.cancle.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.clear();
+            editor.apply();
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            finish();
+        }
+    });
 
 
     }
@@ -190,5 +216,39 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
         RequestBody requestFile=RequestBody.create(MediaType.parse(path),img);
         return  MultipartBody.Part.createFormData(partName,img.getName(),requestFile);
 
+    }
+    private void requestStoragePermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed for upload image")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(RestaurantGetInfoActivity.this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .create().show();
+        }
+        else {
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

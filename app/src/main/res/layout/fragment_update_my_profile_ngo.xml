@@ -26,7 +26,7 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:textSize="50sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_img_ngo"
+            android:id="@+id/profileimg"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
         </de.hdodenhof.circleimageview.CircleImageView>
 
         <Button
-            android:id="@+id/Add_ngo_image"
+            android:id="@+id/imgupload"
             android:layout_width="wrap_content"
             android:text="Upload Image"
             android:layout_gravity="center"
@@ -58,7 +58,7 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/Ngo_Name"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -70,12 +70,13 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:hint="Enter NGO Name"
             android:inputType="textLongMessage"
             android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade"
             tools:ignore="InvalidId" />
 
 
-
         <EditText
-            android:id="@+id/Ngo_email"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -85,13 +86,43 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:background="@drawable/input_bg"
             android:gravity="center"
             android:hint="Enter Email"
-            android:padding="10dp" />
-
-
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
+        <EditText
+            android:id="@+id/openingtime"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_bg"
+            android:gravity="center"
+            android:hint="Enter Opening Time"
+            android:inputType="time"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
+        <EditText
+            android:id="@+id/closingtime"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input_bg"
+            android:inputType="time"
+            android:gravity="center"
+            android:hint="Enter Closing Time"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
 
         <EditText
-            android:id="@+id/Ngo_State"
+            android:id="@+id/state"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -102,10 +133,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:gravity="center"
             android:hint="Enter State"
             android:inputType="textLongMessage"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
-            android:id="@+id/Ngo_district"
+            android:id="@+id/district"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -115,10 +148,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:background="@drawable/input_bg"
             android:gravity="center"
             android:hint="Enter District"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
-            android:id="@+id/Ngo_city"
+            android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -128,10 +163,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:background="@drawable/input_bg"
             android:gravity="center"
             android:hint="Enter City"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
-            android:id="@+id/Ngo_Address"
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -142,10 +179,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:gravity="center"
             android:hint="Enter Address"
             android:inputType="textLongMessage"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <Button
-            android:id="@+id/Update_Details"
+            android:id="@+id/updatebtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -169,7 +208,7 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
         >
 
         <EditText
-            android:id="@+id/Ngo_Password"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -180,10 +219,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:gravity="center"
             android:hint="Enter Old Password"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
-            android:id="@+id/Ngo_New_Password"
+            android:id="@+id/newpass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -194,10 +235,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:gravity="center"
             android:hint="Enter New Password"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <EditText
-            android:id="@+id/Ngo_ConformPassword"
+            android:id="@+id/confirmpass"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -208,10 +251,12 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:gravity="center"
             android:hint="Enter Conform Password"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/blackshade" />
 
         <Button
-            android:id="@+id/Conform_btn"
+            android:id="@+id/updatepass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"

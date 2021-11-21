@@ -59,6 +59,8 @@ tools:context=".NgoGetInfoActivity">
         android:hint="Enter NGO Name"
         android:inputType="textLongMessage"
         android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade"
         tools:ignore="InvalidId" />
 
     <EditText
@@ -73,7 +75,10 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Mobile No."
         android:inputType="phone"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
+
     <EditText
         android:id="@+id/certificate"
         android:layout_width="match_parent"
@@ -86,7 +91,9 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Registration number"
         android:inputType="text"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_Open_Time"
@@ -100,7 +107,9 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Opening Time"
         android:inputType="time"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_Close_Time"
@@ -114,7 +123,9 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Closing Time"
         android:inputType="time"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_State"
@@ -128,7 +139,9 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter State"
         android:inputType="textLongMessage"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_district"
@@ -141,7 +154,9 @@ tools:context=".NgoGetInfoActivity">
         android:background="@drawable/input_bg"
         android:gravity="center"
         android:hint="Enter District"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_city"
@@ -154,7 +169,9 @@ tools:context=".NgoGetInfoActivity">
         android:background="@drawable/input_bg"
         android:gravity="center"
         android:hint="Enter City"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <EditText
         android:id="@+id/Ngo_Address"
@@ -168,7 +185,9 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:hint="Enter Address"
         android:inputType="textLongMessage"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blackshade" />
 
     <Button
         android:id="@+id/Add_Details"
@@ -182,6 +201,18 @@ tools:context=".NgoGetInfoActivity">
         android:gravity="center"
         android:padding="10dp"
         android:text="Add" />
+    <Button
+        android:id="@+id/cancle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/buttondefault_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Cancle" />
 </LinearLayout>
 
 </ScrollView>

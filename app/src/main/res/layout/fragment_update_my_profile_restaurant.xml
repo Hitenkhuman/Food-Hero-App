@@ -41,7 +41,7 @@
         </de.hdodenhof.circleimageview.CircleImageView>
 
         <Button
-            android:id="@+id/add_img"
+            android:id="@+id/imgupload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -55,8 +55,9 @@
             android:background="@drawable/input_bg"
             android:layout_marginBottom="20dp"
             android:orientation="vertical">
+
             <EditText
-                android:id="@+id/Res_Name"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -68,24 +69,13 @@
                 android:hint="Enter Restuarant Name"
                 android:inputType="textLongMessage"
                 android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade"
                 tools:ignore="InvalidId" />
 
-            <EditText
-                android:id="@+id/Res_Mobile"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/input_bg"
-                android:gravity="center"
-                android:hint="Enter Mobile No."
-                android:inputType="phone"
-                android:padding="10dp" />
 
             <EditText
-                android:id="@+id/Res_email"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -95,12 +85,13 @@
                 android:background="@drawable/input_bg"
                 android:gravity="center"
                 android:hint="Enter Email"
-                android:padding="10dp" />
-
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
 
             <EditText
-                android:id="@+id/Res_Open_Time"
+                android:id="@+id/openingtime"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -111,10 +102,12 @@
                 android:gravity="center"
                 android:hint="Enter Opening Time"
                 android:inputType="time"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_Close_Time"
+                android:id="@+id/closingtime"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -125,11 +118,13 @@
                 android:gravity="center"
                 android:hint="Enter Closing Time"
                 android:inputType="time"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
 
             <EditText
-                android:id="@+id/Res_State"
+                android:id="@+id/state"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -140,10 +135,12 @@
                 android:gravity="center"
                 android:hint="Enter State"
                 android:inputType="textLongMessage"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_district"
+                android:id="@+id/district"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -153,10 +150,12 @@
                 android:background="@drawable/input_bg"
                 android:gravity="center"
                 android:hint="Enter District"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_city"
+                android:id="@+id/city"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -166,10 +165,12 @@
                 android:background="@drawable/input_bg"
                 android:gravity="center"
                 android:hint="Enter City"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_Address"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -180,10 +181,12 @@
                 android:gravity="center"
                 android:hint="Enter Address"
                 android:inputType="textLongMessage"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <Button
-                android:id="@+id/Update_Details"
+                android:id="@+id/updatebtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -207,7 +210,7 @@
             >
 
             <EditText
-                android:id="@+id/Res_Password"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -218,10 +221,12 @@
                 android:gravity="center"
                 android:hint="Enter Old Password"
                 android:inputType="textPassword"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_New_Password"
+                android:id="@+id/newpass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -232,10 +237,12 @@
                 android:gravity="center"
                 android:hint="Enter New Password"
                 android:inputType="textPassword"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <EditText
-                android:id="@+id/Res_ConformPassword"
+                android:id="@+id/conpass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -246,10 +253,12 @@
                 android:gravity="center"
                 android:hint="Enter Conform Password"
                 android:inputType="textPassword"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/blackshade" />
 
             <Button
-                android:id="@+id/Conform_btn"
+                android:id="@+id/updatepass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
