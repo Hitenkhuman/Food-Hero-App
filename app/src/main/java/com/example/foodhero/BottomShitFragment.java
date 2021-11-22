@@ -1,6 +1,7 @@
 package com.example.foodhero;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,10 +31,9 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
 
     FragmentBottomShitBinding binding;
     ApiInterface apiInterface;
+    SharedPreferences preferences;
     Context context;
     String description,note,pickupadd,type;
-    String RESID="6194dc3ac4587d44a06c1951";
-    String city="vadodara";
     boolean isVeg;
     int noofdish;
     @Override
@@ -42,6 +42,7 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         binding=FragmentBottomShitBinding.inflate(LayoutInflater.from(getContext()),container,false);
         context=getContext();
+        preferences=getActivity().getSharedPreferences("data",Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
         Bundle bundle=this.getArguments();
@@ -68,7 +69,7 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
         binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                apiInterface.addFood(new FoodNormal(RESID,description,type,noofdish,note,pickupadd,city)).enqueue(new Callback<GetFoodResponseNormal>() {
+                apiInterface.addFood(new FoodNormal(preferences.getString("res_id",""),description,type,noofdish,note,pickupadd,preferences.getString("city",""))).enqueue(new Callback<GetFoodResponseNormal>() {
                     @Override
                     public void onResponse(Call<GetFoodResponseNormal> call, Response<GetFoodResponseNormal> response) {
                         try {

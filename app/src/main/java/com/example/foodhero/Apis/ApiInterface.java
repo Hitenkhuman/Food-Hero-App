@@ -170,4 +170,9 @@ public interface ApiInterface {
     @Multipart
     @POST("admin/login")
     Call<GetAdminResponse> checkLoginAdmin(@Part("email") RequestBody userid, @Part("password") RequestBody password);
+
+    @Multipart
+    @POST("admin/changepassword")
+    Call<GetAdminResponse> changePasswordAdmin(@Part("id") RequestBody id,@Part("password") RequestBody password);
+
 }
