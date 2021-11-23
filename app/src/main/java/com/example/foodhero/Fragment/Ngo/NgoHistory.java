@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.HistoryAdapter;
@@ -40,6 +43,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
     HistoryAdapter adapter;
     ApiInterface apiInterface;
     SharedPreferences preferences;
+    NavController navController;
     private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +55,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
         preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
         getData();
 //        list.add(new Food("1","11","21","Hotel Surya","Arpan",R.drawable.h1,R.drawable.n1,"21-12-2020","Dal rice","VEG",10,"Delivered"));
 //        list.add(new Food("2","12","22","Chili garlic","Sahyog",R.drawable.h2,R.drawable.n2,"11-11-2020","Paneer","VEG",12,"Delivered"));
@@ -63,7 +68,7 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -74,22 +79,29 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
     public void onHistoryClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        HistoryDetailsFragment fragment=new HistoryDetailsFragment();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.ngocontainer,fragment);
-        transaction.commit();
+        navController.navigate(R.id.action_ngoHistory_to_historyDetailsFragment2,bundle);
+
     }
     private void getData(){
+        binding.recyclerngohistory.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getHistoryNgo(preferences.getString("ngo_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
                     if(response!=null){
                         if(response.body().isSuccess()){
-                            list=response.body().getData();
-                            setAdapter(list);
-                            Toast.makeText(context, "get", Toast.LENGTH_SHORT).show();
+                            if(list.size()>0){
+                                list=response.body().getData();
+                                adapter.notifyDataSetChanged();
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
+                            else {
+                                list=response.body().getData();
+                                setAdapter(list);
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
 
                         }
                         else {
@@ -109,7 +121,9 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        binding.shimmer.stopShimmer();
+        binding.recyclerngohistory.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Food> list){
         adapter=new HistoryAdapter(list,getContext(),this);
@@ -117,5 +131,10 @@ public class NgoHistory extends Fragment implements HistoryAdapter.OnHistoryList
         binding.recyclerngohistory.setLayoutManager(linearLayoutManager);
         binding.recyclerngohistory.setAdapter(adapter);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

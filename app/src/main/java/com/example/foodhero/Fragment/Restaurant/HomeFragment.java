@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -60,6 +61,10 @@ public class HomeFragment extends Fragment {
 
         return binding.getRoot();
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
 
 }

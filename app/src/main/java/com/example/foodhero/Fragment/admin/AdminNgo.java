@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.NgoAdapter;
@@ -36,6 +39,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
     ArrayList<Ngo> list;
     NgoAdapter adapter;
     ApiInterface apiInterface;
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,25 +47,18 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
         binding=FragmentAdminNgoBinding.inflate(LayoutInflater.from(getContext()),container,false);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
         list=new ArrayList<>();
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
-//        list.add(new Ngo("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.n1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","Verified"));
 
         getData();
-//         adapter=new NgoAdapter(list,getContext(),this);
-//        binding.recycleradminngo.setAdapter(adapter);
+
 
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                getData();
                 binding.swiper.setRefreshing(false);
-
             }
         });
         return binding.getRoot();
@@ -71,12 +68,7 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
     public void onNgoClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        NgoDetails fragment=new NgoDetails();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.admincontainer,fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        navController.navigate(R.id.action_adminNgo_to_ngoDetails,bundle);
     }
 
     @Override
@@ -109,15 +101,25 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
 
     }
     public void getData(){
+        binding.recycleradminngo.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getNgo().enqueue(new Callback<GetNgoResponse>() {
             @Override
             public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
                 try {
 
                         if(response.body().getSuccess()){
-                            list=response.body().getData();
-                            setAdapter(list);
-                            Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
+                            if(list.size()>0){
+                                list=response.body().getData();
+                                adapter.notifyDataSetChanged();
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
+                            else {
+                                list=response.body().getData();
+                                setAdapter(list);
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
 
                         }
                         else {
@@ -136,11 +138,19 @@ public class AdminNgo extends Fragment implements NgoAdapter.OnNgoListner{
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        binding.shimmer.stopShimmer();
+        binding.recycleradminngo.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Ngo> list){
         adapter=new NgoAdapter(list,getContext(),AdminNgo.this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.recycleradminngo.setLayoutManager(linearLayoutManager);
         binding.recycleradminngo.setAdapter(adapter);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

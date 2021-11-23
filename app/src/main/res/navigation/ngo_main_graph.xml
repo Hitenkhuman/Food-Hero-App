@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ngo_main_graph"
+    app:startDestination="@id/ngoHome">
+
+    <fragment
+        android:id="@+id/ngoHome"
+        android:name="com.example.foodhero.Fragment.Ngo.NgoHome"
+        android:label="fragment_ngo_home"
+        tools:layout="@layout/fragment_ngo_home" >
+        <action
+            android:id="@+id/action_ngoHome_to_foodDetails"
+            app:destination="@id/foodDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/ngoRequest"
+        android:name="com.example.foodhero.Fragment.Ngo.NgoRequest"
+        android:label="fragment_ngo_request"
+        tools:layout="@layout/fragment_ngo_request" >
+        <action
+            android:id="@+id/action_ngoRequest_to_foodPickupDetails"
+            app:destination="@id/foodPickupDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/ngoMyProfile"
+        android:name="com.example.foodhero.Fragment.Ngo.NgoMyProfile"
+        android:label="fragment_ngo_my_profile"
+        tools:layout="@layout/fragment_ngo_my_profile" >
+        <action
+            android:id="@+id/action_ngoMyProfile_to_updateMyProfileNgo"
+            app:destination="@id/updateMyProfileNgo" />
+    </fragment>
+    <fragment
+        android:id="@+id/ngoHistory"
+        android:name="com.example.foodhero.Fragment.Ngo.NgoHistory"
+        android:label="fragment_ngo_history"
+        tools:layout="@layout/fragment_ngo_history" >
+        <action
+            android:id="@+id/action_ngoHistory_to_historyDetailsFragment2"
+            app:destination="@id/historyDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetails"
+        android:name="com.example.foodhero.Fragment.FoodDetails"
+        android:label="fragment_food_details"
+        tools:layout="@layout/fragment_food_details" />
+    <fragment
+        android:id="@+id/updateMyProfileNgo"
+        android:name="com.example.foodhero.Fragment.Ngo.UpdateMyProfileNgo"
+        android:label="fragment_update_my_profile_ngo"
+        tools:layout="@layout/fragment_update_my_profile_ngo" />
+    <fragment
+        android:id="@+id/historyDetailsFragment2"
+        android:name="com.example.foodhero.Fragment.HistoryDetailsFragment"
+        android:label="fragment_history_details"
+        tools:layout="@layout/fragment_history_details" />
+    <fragment
+        android:id="@+id/foodPickupDetails"
+        android:name="com.example.foodhero.Fragment.FoodPickupDetails"
+        android:label="fragment_food_pickup_details"
+        tools:layout="@layout/fragment_food_pickup_details" />
+</navigation>

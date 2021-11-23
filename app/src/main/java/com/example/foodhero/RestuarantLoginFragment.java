@@ -79,10 +79,10 @@ public class RestuarantLoginFragment extends Fragment {
                                     editor.putString("devicetoken",response.body().getData().get(0).getDevicetoken());
                                     editor.putString("joindate",response.body().getData().get(0).getJoindate().toString());
                                     editor.putString("mobile",response.body().getData().get(0).getMobile());
-
-
+                                    Intent intent=new Intent(getContext(),RestuarantMain.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     editor.apply();
-                                    startActivity(new Intent(getContext(),RestuarantMain.class));
+                                    startActivity(intent);
                                 }
                                 else{
                                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();

@@ -70,4 +70,9 @@ public class RequestDetails extends Fragment {
         super.onPause();
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
 }

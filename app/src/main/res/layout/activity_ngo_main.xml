@@ -7,12 +7,14 @@
     android:background="@color/white"
     tools:context=".NgoMain">
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/ngocontainer"
-        android:name="com.example.foodhero.Fragment.Ngo.NgoHome"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavbar"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/ngo_main_graph"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

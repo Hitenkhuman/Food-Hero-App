@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/ngoHome"
         android:title="Home"
+        android:menuCategory="secondary"
         android:icon="@drawable/home"
         />
     <item
-        android:id="@+id/request"
+        android:id="@+id/ngoRequest"
         android:title="Requests"
+        android:menuCategory="secondary"
         android:icon="@drawable/request"
         />
     <item
-        android:id="@+id/history"
+        android:id="@+id/ngoHistory"
         android:title="History"
+        android:menuCategory="secondary"
         android:icon="@drawable/history"
         />
     <item
-        android:id="@+id/myprofile"
+        android:id="@+id/ngoMyProfile"
         android:title="My Profile"
+        android:menuCategory="secondary"
         android:icon="@drawable/myprofile"
         />
 </menu>

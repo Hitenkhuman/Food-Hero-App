@@ -3,6 +3,9 @@ package com.example.foodhero;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,33 +29,9 @@ public class AdminMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityAdminMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.admincontainer,new AdminVerificationRequests());
-        transaction.commit();
-        binding.bottomNavbar.setSelectedItemId(0);
-        binding.bottomNavbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                transaction=getSupportFragmentManager().beginTransaction();
-                switch (item.getItemId()){
-                    case R.id.home:
-                        transaction.replace(R.id.admincontainer,new AdminVerificationRequests());
-                        break;
-                    case R.id.history:
-                        transaction.replace(R.id.admincontainer,new AdminHistory());
-                        break;
-                    case R.id.ngo:
-                        transaction.replace(R.id.admincontainer,new AdminNgo());
+        NavController navController = Navigation.findNavController(AdminMain.this, R.id.admincontainer);
 
-                        break;
-                    case R.id.restaurant:
-                        transaction.replace(R.id.admincontainer,new AdminRestaurant());
-                        break;
-                }
-                transaction.addToBackStack(null);
-                transaction.commit();
-                return true;
-            }
-        });
+        NavigationUI.setupWithNavController(binding.bottomNavbar, navController);
+
     }
 }

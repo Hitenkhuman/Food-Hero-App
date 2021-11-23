@@ -7,10 +7,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.bumptech.glide.Glide;
 import com.example.foodhero.Apis.ApiClient;
@@ -23,6 +26,7 @@ public class NgoMyProfile extends Fragment {
     FragmentTransaction transaction;
    FragmentNgoMyProfileBinding binding;
     SharedPreferences preferences;
+    NavController navController;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +35,7 @@ public class NgoMyProfile extends Fragment {
         binding=FragmentNgoMyProfileBinding.inflate(LayoutInflater.from(getContext()),container,false);
         preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit=preferences.edit();
+        navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
         Glide.with(getContext()).load(parentdir+preferences.getString("imgurl","default.png")).into(binding.img);
         binding.address.setText(preferences.getString("address","NA"));
         binding.openingtime.setText(preferences.getString("openingtime","NA"));
@@ -42,10 +47,8 @@ public class NgoMyProfile extends Fragment {
         binding.profileEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.ngocontainer,new UpdateMyProfileNgo());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                navController.navigate(R.id.action_ngoMyProfile_to_updateMyProfileNgo);
+
             }
         });
 
@@ -55,9 +58,16 @@ public class NgoMyProfile extends Fragment {
                 edit.clear();
                 edit.apply();
                 getActivity().finish();
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                Intent intent=new Intent(getContext(),LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
         return binding.getRoot();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

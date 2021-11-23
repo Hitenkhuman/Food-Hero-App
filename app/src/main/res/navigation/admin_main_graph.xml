@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_main_graph"
+    app:startDestination="@id/adminVerificationRequests">
+
+    <fragment
+        android:id="@+id/adminVerificationRequests"
+        android:name="com.example.foodhero.Fragment.admin.AdminVerificationRequests"
+        android:label="fragment_admin_verification_requests"
+        tools:layout="@layout/fragment_admin_verification_requests" >
+        <action
+            android:id="@+id/action_adminVerificationRequests_to_adminVerify"
+            app:destination="@id/adminVerify" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminHistory"
+        android:name="com.example.foodhero.Fragment.admin.AdminHistory"
+        android:label="fragment_admin_history"
+        tools:layout="@layout/fragment_admin_history" >
+        <action
+            android:id="@+id/action_adminHistory_to_historyDetailsFragment3"
+            app:destination="@id/historyDetailsFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminNgo"
+        android:name="com.example.foodhero.Fragment.admin.AdminNgo"
+        android:label="fragment_admin_ngo"
+        tools:layout="@layout/fragment_admin_ngo" >
+        <action
+            android:id="@+id/action_adminNgo_to_ngoDetails"
+            app:destination="@id/ngoDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminRestaurant"
+        android:name="com.example.foodhero.Fragment.admin.AdminRestaurant"
+        android:label="fragment_admin_restaurant"
+        tools:layout="@layout/fragment_admin_restaurant" >
+        <action
+            android:id="@+id/action_adminRestaurant_to_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminVerify"
+        android:name="com.example.foodhero.Fragment.AdminVerify"
+        android:label="fragment_admin_verify"
+        tools:layout="@layout/fragment_admin_verify" >
+        <action
+            android:id="@+id/action_adminVerify_to_adminVerificationRequests"
+            app:destination="@id/adminVerificationRequests" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyDetailsFragment3"
+        android:name="com.example.foodhero.Fragment.HistoryDetailsFragment"
+        android:label="fragment_history_details"
+        tools:layout="@layout/fragment_history_details" >
+        <action
+            android:id="@+id/action_historyDetailsFragment3_to_adminHistory"
+            app:destination="@id/adminHistory" />
+    </fragment>
+    <fragment
+        android:id="@+id/ngoDetails"
+        android:name="com.example.foodhero.Fragment.NgoDetails"
+        android:label="fragment_ngo_details"
+        tools:layout="@layout/fragment_ngo_details" >
+        <action
+            android:id="@+id/action_ngoDetails_to_adminNgo"
+            app:destination="@id/adminNgo" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetails"
+        android:name="com.example.foodhero.Fragment.RestaurantDetails"
+        android:label="fragment_restaurant_details"
+        tools:layout="@layout/fragment_restaurant_details" >
+        <action
+            android:id="@+id/action_restaurantDetails_to_adminRestaurant"
+            app:destination="@id/adminRestaurant" />
+    </fragment>
+</navigation>

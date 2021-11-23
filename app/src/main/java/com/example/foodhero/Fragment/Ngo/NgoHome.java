@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.FoodListAdapter;
@@ -47,6 +50,7 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     ApiInterface apiInterface;
     FragmentTransaction transaction;
     SharedPreferences preferences;
+    NavController navController;
     private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,13 +61,14 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
         preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(container);
         context=getContext();
         getData();
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+               getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -74,12 +79,8 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     public void OnFoodClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        FoodDetails fragment=new FoodDetails();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.ngocontainer,fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        navController.navigate(R.id.action_ngoHome_to_foodDetails,bundle);
+
     }
 
     @Override
@@ -107,13 +108,24 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
     }
 
     private void getData(){
+        binding.recyclerngohome.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getAvailableFood(preferences.getString("ngo_id",""),preferences.getString("city","vadodara")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
                 if(response.body().isSuccess()){
-                    list=response.body().getData();
-                    setAdapter(list);
+                    if(list.size()>0){
+                        list=response.body().getData();
+                        adapter.notifyDataSetChanged();
+                        binding.shimmer.setVisibility(View.GONE);
+                    }
+                    else {
+                        list=response.body().getData();
+                        setAdapter(list);
+                        binding.shimmer.setVisibility(View.GONE);
+                    }
                 }
                 else {
                     Toast.makeText(context, "try again later", Toast.LENGTH_SHORT).show();
@@ -130,6 +142,9 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
                 Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
             }
         });
+        binding.shimmer.stopShimmer();
+        binding.recyclerngohome.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
 
     private void setAdapter(ArrayList<Food> list){
@@ -138,5 +153,10 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
         binding.recyclerngohome.setLayoutManager(linearLayoutManager);
         binding.recyclerngohome.setAdapter(adapter);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

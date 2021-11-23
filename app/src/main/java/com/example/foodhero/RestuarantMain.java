@@ -1,44 +1,33 @@
 package com.example.foodhero;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.foodhero.Apis.ApiClient;
-import com.example.foodhero.Apis.ApiInterface;
-import com.example.foodhero.Apis.ApiNotificationClient;
 import com.example.foodhero.Apis.ApiNotificationInterface;
 import com.example.foodhero.Fragment.Restaurant.HistoryFragment;
 import com.example.foodhero.Fragment.Restaurant.HomeFragment;
 import com.example.foodhero.Fragment.Restaurant.MyProfileFragment;
 import com.example.foodhero.Fragment.Restaurant.RequestFragment;
-import com.example.foodhero.Models.Data;
-import com.example.foodhero.Models.NotificationSender;
-import com.example.foodhero.Response.GetNotificationResponse;
 import com.example.foodhero.databinding.ActivityRestuarantMainBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.messaging.FirebaseMessaging;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RestuarantMain extends AppCompatActivity {
     FragmentTransaction transaction;
-   ActivityRestuarantMainBinding binding;
+
+    ActivityRestuarantMainBinding binding;
    ApiNotificationInterface apiNotificationInterface;
    SharedPreferences preferences;
+   HomeFragment home;
+   RequestFragment request;
+   HistoryFragment history;
+   MyProfileFragment myprofile;
     String token;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -49,35 +38,10 @@ public class RestuarantMain extends AppCompatActivity {
         preferences=getSharedPreferences("data",MODE_PRIVATE);
       //  apiNotificationInterface= ApiNotificationClient.getClientNotification().create(ApiNotificationInterface.class);
 
-        transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container,new HomeFragment());
-        transaction.commit();
-        binding.bottomNavbar.setSelectedItemId(0);
-        binding.bottomNavbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                transaction=getSupportFragmentManager().beginTransaction();
-                switch (item.getItemId()){
-                    case R.id.home:
-                        transaction.replace(R.id.container,new HomeFragment());
-                        break;
-                    case R.id.request:
-                        transaction.replace(R.id.container,new RequestFragment());
-                        break;
-                    case R.id.history:
-                        transaction.replace(R.id.container,new HistoryFragment());
+        NavController navController = Navigation.findNavController(this, R.id.container);
 
-                        break;
-                    case R.id.myprofile:
-                        transaction.replace(R.id.container,new MyProfileFragment());
-                        break;
-                }
-                transaction.addToBackStack(null);
-                transaction.commit();
+        NavigationUI.setupWithNavController(binding.bottomNavbar, navController);
 
-                return true;
-            }
-        });
 
 //        FirebaseMessaging.getInstance().getToken()
 //                .addOnCompleteListener(new OnCompleteListener<String>() {

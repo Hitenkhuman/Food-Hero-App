@@ -3,6 +3,9 @@ package com.example.foodhero;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -28,33 +31,8 @@ public class NgoMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityNgoMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.ngocontainer,new NgoHome());
-        transaction.commit();
-        binding.bottomNavbar.setSelectedItemId(0);
-        binding.bottomNavbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                transaction=getSupportFragmentManager().beginTransaction();
-                switch (item.getItemId()){
-                    case R.id.home:
-                        transaction.replace(R.id.ngocontainer,new NgoHome());
-                        break;
-                    case R.id.request:
-                        transaction.replace(R.id.ngocontainer,new NgoRequest());
-                        break;
-                    case R.id.history:
-                        transaction.replace(R.id.ngocontainer,new NgoHistory());
+        NavController navController = Navigation.findNavController(this, R.id.ngocontainer);
+        NavigationUI.setupWithNavController(binding.bottomNavbar, navController);
 
-                        break;
-                    case R.id.myprofile:
-                        transaction.replace(R.id.ngocontainer,new NgoMyProfile());
-                        break;
-                }
-                transaction.commit();
-
-                return true;
-            }
-        });
     }
 }

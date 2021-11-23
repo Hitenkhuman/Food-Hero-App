@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restaurant_main_graph"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.foodhero.Fragment.Restaurant.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_historyDetailsFragment"
+            app:destination="@id/historyDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.foodhero.Fragment.Restaurant.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_bottomShitFragment"
+            app:destination="@id/bottomShitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.foodhero.Fragment.Restaurant.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_updateMyProfileRestaurant"
+            app:destination="@id/updateMyProfileRestaurant" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestFragment"
+        android:name="com.example.foodhero.Fragment.Restaurant.RequestFragment"
+        android:label="fragment_request"
+        tools:layout="@layout/fragment_request" >
+        <action
+            android:id="@+id/action_requestFragment_to_requestDetails"
+            app:destination="@id/requestDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateMyProfileRestaurant"
+        android:name="com.example.foodhero.Fragment.Restaurant.UpdateMyProfileRestaurant"
+        android:label="fragment_update_my_profile_restaurant"
+        tools:layout="@layout/fragment_update_my_profile_restaurant" />
+    <fragment
+        android:id="@+id/requestDetails"
+        android:name="com.example.foodhero.Fragment.RequestDetails"
+        android:label="fragment_request_details"
+        tools:layout="@layout/fragment_request_details" />
+    <fragment
+        android:id="@+id/historyDetailsFragment"
+        android:name="com.example.foodhero.Fragment.HistoryDetailsFragment"
+        android:label="fragment_history_details"
+        tools:layout="@layout/fragment_history_details" />
+    <dialog
+        android:id="@+id/bottomShitFragment"
+        android:name="com.example.foodhero.BottomShitFragment"
+        android:label="fragment_bottom_shit"
+        tools:layout="@layout/fragment_bottom_shit" />
+
+</navigation>

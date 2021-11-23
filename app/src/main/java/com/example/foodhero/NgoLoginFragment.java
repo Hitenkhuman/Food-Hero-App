@@ -84,9 +84,10 @@ public class NgoLoginFragment extends Fragment {
                                         editor.putString("joindate",response.body().getData().get(0).getJoindate().toString());
                                         editor.putString("mobile",response.body().getData().get(0).getMobile());
                                         editor.putString("cerificate",response.body().getData().get(0).getCertificate_number());
-
+                                        Intent intent=new Intent(getContext(),NgoMain.class);
                                         editor.apply();
-                                        startActivity(new Intent(getContext(),NgoMain.class));
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
                                     }
                                     else{
                                         startActivity(new Intent(getContext(),NgoWaitingActivity.class));

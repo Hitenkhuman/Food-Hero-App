@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -270,5 +271,10 @@ public class UpdateMyProfileNgo extends Fragment {
         RequestBody requestFile=RequestBody.create(MediaType.parse(path),img);
         return  MultipartBody.Part.createFormData(partName,img.getName(),requestFile);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

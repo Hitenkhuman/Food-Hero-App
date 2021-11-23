@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.RequestStatusAdapter;
@@ -42,6 +45,7 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
     RequestStatusAdapter adapter;
     ApiInterface apiInterface;
    SharedPreferences preferences;
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,12 +55,13 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
         preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
         getData();
 
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -67,12 +72,8 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
     public void onRequestClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        FoodPickupDetails fragment=new FoodPickupDetails();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.ngocontainer,fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        navController.navigate(R.id.action_ngoRequest_to_foodPickupDetails,bundle);
+
     }
 
     @Override
@@ -106,13 +107,23 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
     }
 
     private void getData(){
+        binding.recyclerngorequest.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getRequest(preferences.getString("ngo_id","")).enqueue(new Callback<GetRequestResponse>() {
             @Override
             public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
                 if(response.body().isSuccess()){
-                    list=response.body().getData();
-                    setAdapter(list);
-                    Log.d("tett", "onResponse: "+list.size());
+                    if(list.size()>0){
+                        list=response.body().getData();
+                        adapter.notifyDataSetChanged();
+                        binding.shimmer.setVisibility(View.GONE);
+                    }
+                    else {
+                        list=response.body().getData();
+                        setAdapter(list);
+                        binding.shimmer.setVisibility(View.GONE);
+                    }
                 }
                 else {
                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
@@ -127,6 +138,9 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
 
             }
         });
+        binding.shimmer.stopShimmer();
+        binding.recyclerngorequest.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Request> list){
         adapter=new RequestStatusAdapter(list,getContext(),this);
@@ -134,5 +148,10 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         binding.recyclerngorequest.setLayoutManager(linearLayoutManager);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

@@ -26,12 +26,12 @@
             android:orientation="vertical">
 
 
-               <de.hdodenhof.circleimageview.CircleImageView
-                   android:layout_width="85dp"
-                   android:layout_height="85dp"
-                   android:id="@+id/image1">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image1"
+                android:layout_width="85dp"
+                android:layout_height="85dp">
 
-               </de.hdodenhof.circleimageview.CircleImageView>
+            </de.hdodenhof.circleimageview.CircleImageView>
 
             <TextView
                 android:id="@+id/name1"
@@ -63,8 +63,9 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="TextView"
-                android:textSize="20sp"
-                android:textColor="@color/ligth_green" />
+                android:textColor="@color/ligth_green"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
@@ -74,8 +75,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="@color/secondary"
-                />
+                android:textColor="@color/secondary" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,17 +86,17 @@
             android:gravity="left"
             android:orientation="vertical">
 
-           <de.hdodenhof.circleimageview.CircleImageView
-               android:layout_width="85dp"
-               android:layout_height="85dp"
-               android:id="@+id/image2">
-           </de.hdodenhof.circleimageview.CircleImageView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image2"
+                android:layout_width="85dp"
+                android:layout_height="85dp"></de.hdodenhof.circleimageview.CircleImageView>
+
             <TextView
                 android:id="@+id/name2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="3dp"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>

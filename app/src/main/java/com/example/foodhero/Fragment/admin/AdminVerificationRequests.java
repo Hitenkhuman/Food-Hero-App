@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.NgoAdapter;
@@ -39,6 +42,7 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
     ArrayList<Ngo> list;
     ApiInterface apiInterface;
     VerificationListAdapter adapter;
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,12 +51,18 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         list=new ArrayList<>();
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
-
+        navController = Navigation.findNavController(container);
        getData();
+        binding.changepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), AdminChangePasswordActivity.class));
+            }
+        });
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+            getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -63,21 +73,30 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
     public void onVerificationListClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        AdminVerify fragment=new AdminVerify();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.admincontainer,fragment);
-        transaction.commit();
+        navController.navigate(R.id.action_adminVerificationRequests_to_adminVerify,bundle);
+
     }
     private void getData(){
+        binding.recycleadminverification.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
     apiInterface.getPendingList().enqueue(new Callback<GetNgoResponse>() {
         @Override
         public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
             try {
                 if(response!=null){
                     if(response.body().getSuccess()){
-                        list=response.body().getData();
-                        setAdapter(list);
+                        if(list.size()>0){
+                            list=response.body().getData();
+                            adapter.notifyDataSetChanged();
+                            binding.shimmer.setVisibility(View.GONE);
+                        }
+                        else {
+                            list=response.body().getData();
+                            setAdapter(list);
+                            binding.shimmer.setVisibility(View.GONE);
+
+                        }
                     }
                     else {
                         Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
@@ -96,12 +115,10 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         }
     });
 
-    binding.changepassword.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(getContext(), AdminChangePasswordActivity.class));
-        }
-    });
+
+        binding.shimmer.stopShimmer();
+        binding.recycleadminverification.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Ngo> list){
         adapter=new VerificationListAdapter(list,getContext(),this);
@@ -109,5 +126,11 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         binding.recycleadminverification.setLayoutManager(linearLayoutManager);
         binding.recycleadminverification.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

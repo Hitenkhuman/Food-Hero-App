@@ -8,13 +8,15 @@
     tools:context=".RestuarantMain"
    >
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/container"
-        android:name="com.example.foodhero.Fragment.Restaurant.HomeFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:defaultNavHost="true"
+        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/restaurant_main_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavbar"
@@ -24,5 +26,6 @@
         android:background="@color/green"
         app:itemIconTint="@color/ligth_green"
         app:itemTextColor="@color/ligth_green"
+
         app:menu="@menu/menu_items" />
 </RelativeLayout>

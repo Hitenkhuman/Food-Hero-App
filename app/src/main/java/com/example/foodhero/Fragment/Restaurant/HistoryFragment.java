@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.HistoryAdapter;
@@ -42,7 +45,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
     private ArrayList<Food> list;
     ApiInterface apiInterface;
     HistoryAdapter adapter;
-    String RESID="6194dc3ac4587d44a06c1951";
+    NavController navController;
     SharedPreferences preferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,12 +57,12 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
         list=new ArrayList<>();
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(getActivity(), R.id.container);
         getData();
-
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+                getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -71,23 +74,30 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
     public void onHistoryClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        HistoryDetailsFragment fragment=new HistoryDetailsFragment();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.container,fragment);
-        transaction.commit();
+        navController.navigate(R.id.action_historyFragment_to_historyDetailsFragment,bundle);
+
 
     }
     private void getData(){
+        binding.recyclerhistory.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getHistoryRestaurant(preferences.getString("res_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
                     if(response!=null){
                         if(response.body().isSuccess()){
-                            list=response.body().getData();
-                            setAdapter(list);
-                            Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
+                            if(list.size()>0){
+                                list=response.body().getData();
+                                adapter.notifyDataSetChanged();
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
+                            else {
+                                list=response.body().getData();
+                                setAdapter(list);
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
 
                         }
                         else {
@@ -107,7 +117,9 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        binding.shimmer.stopShimmer();
+        binding.recyclerhistory.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Food> list){
         adapter=new HistoryAdapter(list,getContext(),this);
@@ -115,5 +127,10 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
         binding.recyclerhistory.setLayoutManager(linearLayoutManager);
         binding.recyclerhistory.setAdapter(adapter);
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.HistoryAdapter;
@@ -35,12 +38,15 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
    FragmentAdminHistoryBinding binding;
    ArrayList<Food> list;
     ApiInterface apiInterface;
+    HistoryAdapter adapter;
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentAdminHistoryBinding.inflate(LayoutInflater.from(getContext()),container,false);
         Retrofit retrofit= ApiClient.getClient();
+       navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
         apiInterface=retrofit.create(ApiInterface.class);
         list=new ArrayList<>();
 //        list.add(new Food("1","11","21","Hotel Surya","Arpan",R.drawable.h1,R.drawable.n1,"21-12-2020","Dal rice","VEG",10,"Delivered"));
@@ -54,7 +60,7 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+               getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -65,24 +71,33 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
     public void onHistoryClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        HistoryDetailsFragment fragment=new HistoryDetailsFragment();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.admincontainer,fragment);
-        transaction.commit();
+        navController.navigate(R.id.action_adminHistory_to_historyDetailsFragment3,bundle);
+//        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
+//        HistoryDetailsFragment fragment=new HistoryDetailsFragment();
+//        fragment.setArguments(bundle);
+//        transaction.replace(R.id.admincontainer,fragment);
+//        transaction.commit();
     }
     private void getData(){
+        binding.recycleradminhistory.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getHistory().enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
                     if(response!=null){
                         if(response.body().isSuccess()){
-                            list=response.body().getData();
-                            setAdapter(response.body().getData());
-                            Log.d("debug",""+response.body());
-                            Toast.makeText(getContext(), "get"+response.body().getData().size(), Toast.LENGTH_SHORT).show();
-
+                            if(list.size()>0){
+                                list=response.body().getData();
+                                adapter.notifyDataSetChanged();
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
+                            else {
+                                list=response.body().getData();
+                                setAdapter(list);
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
                         }
                         else {
                             Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
@@ -101,12 +116,21 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        binding.shimmer.stopShimmer();
+        binding.recycleradminhistory.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Food> list){
-        HistoryAdapter adapter=new HistoryAdapter(list,requireContext(),this);
+        adapter=new HistoryAdapter(list,requireContext(),this);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(requireContext());
         binding.recycleradminhistory.setLayoutManager(linearLayoutManager);
         binding.recycleradminhistory.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

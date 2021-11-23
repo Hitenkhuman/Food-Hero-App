@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.foodhero.Adapters.NgoAdapter;
@@ -39,6 +42,7 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
     ArrayList<Restuarant> list;
     RestaurantAdapter adapter;
     ApiInterface apiInterface;
+    NavController navController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,18 +52,13 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
         list=new ArrayList<>();
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
-//        list.add(new Restuarant("1","seva","123456789","seva@gmail.com","ddfehfef",R.drawable.h1,"12:00","5:30","gujarat","baroda","kalabhavan","gfauifg","hifoffofh","12-11-2020"));
+        navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
 
         getData();
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "swiped", Toast.LENGTH_SHORT).show();
+              getData();
                 binding.swiper.setRefreshing(false);
             }
         });
@@ -70,12 +69,7 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
     public void onRestaurantClick(int position) {
         Bundle bundle=new Bundle();
         bundle.putSerializable("data",list.get(position));
-        FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-        RestaurantDetails fragment=new RestaurantDetails();
-        fragment.setArguments(bundle);
-        transaction.replace(R.id.admincontainer,fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        navController.navigate(R.id.action_adminRestaurant_to_restaurantDetails,bundle);
     }
 
     @Override
@@ -108,16 +102,25 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
     }
 
     private void getData(){
+        binding.recycleradminres.setVisibility(View.GONE);
+        binding.shimmer.setVisibility(View.VISIBLE);
+        binding.shimmer.startShimmer();
         apiInterface.getRestaurant().enqueue(new Callback<GetRestaurantResponse>() {
             @Override
             public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
                 try {
                     if(response!=null){
                         if(response.body().isSuccess()){
-                            list=response.body().getData();
-                            setAdapter(list);
-                            Toast.makeText(getContext(), "get", Toast.LENGTH_SHORT).show();
-
+                            if(list.size()>0){
+                                list=response.body().getData();
+                                adapter.notifyDataSetChanged();
+                                binding.shimmer.setVisibility(View.GONE);
+                            }
+                            else {
+                                list=response.body().getData();
+                                binding.shimmer.setVisibility(View.GONE);
+                                setAdapter(list);
+                            }
                         }
                         else {
                             Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
@@ -136,6 +139,9 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        binding.shimmer.stopShimmer();
+        binding.recycleradminres.setVisibility(View.VISIBLE);
+        binding.shimmer.hideShimmer();
     }
     private void setAdapter(ArrayList<Restuarant> list){
         adapter =new RestaurantAdapter(list,getContext(),this);
@@ -144,6 +150,11 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
         binding.recycleradminres.setAdapter(adapter);
 
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
 }

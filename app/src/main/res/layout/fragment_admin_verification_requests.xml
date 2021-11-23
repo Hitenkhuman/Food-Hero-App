@@ -32,6 +32,24 @@
             android:layout_weight="0.3"
             android:text="change password"/>
     </LinearLayout>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+            <include layout="@layout/ngo_shimmer_layout"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"

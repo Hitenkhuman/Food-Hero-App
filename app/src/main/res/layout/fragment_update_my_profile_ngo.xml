@@ -3,6 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@color/white"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
 
@@ -31,7 +32,7 @@ tools:context=".Fragment.Ngo.UpdateMyProfileNgo">
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:foregroundGravity="center_horizontal"
-            android:src="@drawable/ic_baseline_person_24"
+            android:src="@drawable/adminlogo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

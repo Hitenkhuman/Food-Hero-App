@@ -56,12 +56,15 @@
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_update_my_profile_ngo.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/fragment_update_my_profile_restaurant.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/history_layout.xml" value="0.4" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/history_shimmer_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_history_layout.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_list_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_request_layout.xml" value="0.264" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_request_status_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_restaurant_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/item_verification_list_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/ngo_shimmer_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Project/Food Hero/app/src/main/res/layout/request_shimmer_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/admin_menu_items.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/menu_items.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Project/Food Hero/app/src/main/res/menu/ngo_menu_items.xml" value="0.25416666666666665" />
