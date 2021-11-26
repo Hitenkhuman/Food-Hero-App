@@ -105,38 +105,48 @@ public class AdminRestaurant extends Fragment implements RestaurantAdapter.OnRes
         binding.recycleradminres.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
         apiInterface.getRestaurant().enqueue(new Callback<GetRestaurantResponse>() {
             @Override
             public void onResponse(Call<GetRestaurantResponse> call, Response<GetRestaurantResponse> response) {
                 try {
                     if(response!=null){
-                        if(response.body().isSuccess()){
+                        if(response.body().isSuccess() && response.body().getData().size()>0){
                             if(list.size()>0){
                                 list=response.body().getData();
                                 adapter.notifyDataSetChanged();
+                                binding.nodata.setVisibility(View.GONE);
                                 binding.shimmer.setVisibility(View.GONE);
                             }
                             else {
                                 list=response.body().getData();
+                                binding.nodata.setVisibility(View.GONE);
                                 binding.shimmer.setVisibility(View.GONE);
                                 setAdapter(list);
                             }
                         }
                         else {
-                            Toast.makeText(getContext(), "error 0", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Try again later", Toast.LENGTH_SHORT).show();
+                            binding.recycleradminres.setVisibility(View.GONE);
+                            binding.nodata.setVisibility(View.VISIBLE);
+                            binding.shimmer.setVisibility(View.GONE);
                         }
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "error 1", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                    binding.recycleradminres.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
+                    binding.shimmer.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<GetRestaurantResponse> call, Throwable t) {
-                Log.e("err",t.getLocalizedMessage());
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                binding.recycleradminres.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
+                binding.shimmer.setVisibility(View.GONE);
             }
         });
         binding.shimmer.stopShimmer();

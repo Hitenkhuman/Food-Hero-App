@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +16,19 @@ import android.widget.Toast;
 
 import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Apis.ApiInterface;
+import com.example.foodhero.Apis.ApiNotificationClient;
+import com.example.foodhero.Apis.ApiNotificationInterface;
 import com.example.foodhero.Fragment.Restaurant.HomeFragment;
+import com.example.foodhero.Models.Data;
 import com.example.foodhero.Models.FoodNormal;
+import com.example.foodhero.Models.NotificationSender;
 import com.example.foodhero.Response.GetFoodResponseNormal;
+import com.example.foodhero.Response.GetNotificationResponse;
 import com.example.foodhero.databinding.FragmentBottomShitBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +46,8 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
     String description,note,pickupadd,type;
     boolean isVeg;
     int noofdish;
+    String token="cABA8JNoTj-DTbrr8adCRm:APA91bFgl__tH_GbvDu9t7nvLqcQzX6FTZYMhQg_LMnpxfCC2XvYb6zaknHLW8aSE69QtKGh72GrCK0zAvymGuJ99cKm0qT9F0u-TcfVr32HM0i7HhobMNsZjgOOxTuuyGelhzOEECev";
+    ApiNotificationInterface apiNotificationInterface;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +57,8 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
         preferences=getActivity().getSharedPreferences("data",Context.MODE_PRIVATE);
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        Retrofit ref=ApiNotificationClient.getClientNotification();
+        apiNotificationInterface= ref.create(ApiNotificationInterface.class);
         Bundle bundle=this.getArguments();
         if(bundle!=null){
             description=bundle.getString("description");
@@ -66,6 +80,28 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
           }
 
         }
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+                        Log.d("notification", "onResponse: "+token);
+
+                        //   sendNotifications(token,"HEY","FOOD HERO");
+
+                         // Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+       // sendNotifications(token,"login","hey");
         binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +111,10 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
                         try {
                         if(response.body().isSuccess()){
                             Toast.makeText(context, "Food Added Successfully", Toast.LENGTH_SHORT).show();
+
+
+
+
                         }
                         else{
                             Toast.makeText(context, response.body().getMassage(), Toast.LENGTH_SHORT).show();
@@ -83,7 +123,9 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
 
                         }
                         catch (Exception e){
-                            Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                            Log.d("notification", "onResponsecatch: "+e.getLocalizedMessage());
+
                         }
                     }
 
@@ -93,8 +135,42 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
                     }
                 });
                 BottomShitFragment.this.dismiss();
+                sendNotifications("/topics/"+preferences.getString("city","v"),preferences.getString("name",""),"Food is Available....Hurry up.....");
             }
         });
         return binding.getRoot();
+    }
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+       // Toast.makeText(getContext(), "heyy notification", Toast.LENGTH_LONG).show();
+        apiNotificationInterface.sendNotification(sender).enqueue(new Callback<GetNotificationResponse>() {
+            @Override
+            public void onResponse(Call<GetNotificationResponse> call, Response<GetNotificationResponse> response) {
+                try {
+                    Log.d("notification", "onResponse: "+response.toString());
+                    Log.d("notification", "onResponse: "+call.toString());
+                    if (response.code() == 200) {
+                        if (response.body().success != 1) {
+                            Toast.makeText(context, "Failed ", Toast.LENGTH_LONG);
+                        }
+                    }else{
+                        Log.d("notification", "onResponse: "+response.toString());
+
+                    }
+                }
+                catch (Exception e){
+                    Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                    Log.d("notification", "onResponse: "+e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetNotificationResponse> call, Throwable t) {
+                Log.d("notification", "onResponse: "+t.getLocalizedMessage());
+            }
+        });
+
     }
 }

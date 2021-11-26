@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ import com.example.foodhero.databinding.FragmentFoodPickupDetailsBinding;
 public class FoodPickupDetails extends Fragment {
 
     FragmentFoodPickupDetailsBinding binding;
-    FragmentTransaction transaction;
+    NavController navController;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,13 +36,11 @@ public class FoodPickupDetails extends Fragment {
             Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        navController=Navigation.findNavController(getActivity(), R.id.ngocontainer);
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.ngocontainer,new NgoRequest());
-                transaction.addToBackStack(null);
-                transaction.commit();
+             navController.navigate(R.id.action_foodPickupDetails_to_ngoRequest);
             }
         });
         Request food=(Request) getArguments().getSerializable("data");

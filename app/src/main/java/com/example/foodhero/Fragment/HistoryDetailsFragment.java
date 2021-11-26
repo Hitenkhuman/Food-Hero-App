@@ -1,12 +1,16 @@
 package com.example.foodhero.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +30,8 @@ import com.example.foodhero.databinding.FragmentHistoryDetailsBinding;
 public class HistoryDetailsFragment extends Fragment {
 
    FragmentHistoryDetailsBinding binding;
+   SharedPreferences preferences;
+    NavController navController;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
 
     @Override
@@ -36,7 +42,20 @@ public class HistoryDetailsFragment extends Fragment {
             Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        preferences=getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         Food food=(Food)getArguments().getSerializable("data");
+        if(preferences.getString("user","").equals("NGO")){
+            navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
+
+        }
+        else if(preferences.getString("user","").equals("ADMIN")){
+            navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
+
+        }
+        else{
+            navController = Navigation.findNavController(getActivity(), R.id.container);
+        }
+
         binding.date.setText(food.getDate().toString());
         binding.datedel.setText(food.getPickup_time());
         binding.deliverysts.setText(food.getFood_status());
@@ -55,9 +74,15 @@ public class HistoryDetailsFragment extends Fragment {
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container,new HistoryFragment());
-                transaction.commit();
+                if(preferences.getString("user","").equals("NGO")){
+                    navController.navigate(R.id.action_historyDetailsFragment2_to_ngoHistory);
+                }
+                else if(preferences.getString("user","").equals("ADMIN")){
+                    navController.navigate(R.id.action_historyDetailsFragment3_to_adminHistory);
+                }
+                else{
+                    navController.navigate(R.id.action_historyDetailsFragment_to_historyFragment);
+                }
             }
         });
         return binding.getRoot();

@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +25,7 @@ public class NgoDetails extends Fragment {
 
     FragmentNgoDetailsBinding binding;
     private String parentdir= ApiClient.BASE_URL+"profile_pic/";
-
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class NgoDetails extends Fragment {
             Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
         Ngo res= (Ngo) getArguments().getSerializable("data");
         Glide.with(getContext()).load(parentdir+res.getImgurl()).into(binding.profileImg);
 
@@ -53,9 +56,7 @@ public class NgoDetails extends Fragment {
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.admincontainer,new AdminNgo());
-                transaction.commit();
+                navController.navigate(R.id.action_ngoDetails_to_adminNgo);
             }
         });
 

@@ -21,19 +21,23 @@ import com.example.foodhero.Fragment.Restaurant.UpdateMyProfileRestaurant;
 import com.example.foodhero.LoginActivity;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentNgoMyProfileBinding;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class NgoMyProfile extends Fragment {
     FragmentTransaction transaction;
    FragmentNgoMyProfileBinding binding;
     SharedPreferences preferences;
     NavController navController;
+    String city;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentNgoMyProfileBinding.inflate(LayoutInflater.from(getContext()),container,false);
+
         preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        city=preferences.getString("city","");
         SharedPreferences.Editor edit=preferences.edit();
         navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
         Glide.with(getContext()).load(parentdir+preferences.getString("imgurl","default.png")).into(binding.img);
@@ -57,6 +61,7 @@ public class NgoMyProfile extends Fragment {
             public void onClick(View view) {
                 edit.clear();
                 edit.apply();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(city);
                 getActivity().finish();
                 Intent intent=new Intent(getContext(),LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

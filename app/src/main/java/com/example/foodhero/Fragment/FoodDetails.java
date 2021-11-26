@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,8 @@ public class FoodDetails extends Fragment {
 
     FragmentFoodDetailsBinding binding;
     FragmentTransaction transaction;
+    NavController navController;
+
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,13 +39,11 @@ public class FoodDetails extends Fragment {
             Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        navController = Navigation.findNavController(getActivity(), R.id.ngocontainer);
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.ngocontainer,new NgoHome());
-                transaction.addToBackStack(null);
-                transaction.commit();
+               navController.navigate(R.id.action_foodDetails_to_ngoHome);
             }
         });
 

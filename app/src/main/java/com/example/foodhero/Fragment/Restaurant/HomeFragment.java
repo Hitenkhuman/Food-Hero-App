@@ -23,6 +23,7 @@ import com.example.foodhero.BottomShitFragment;
 import com.example.foodhero.Fragment.HistoryDetailsFragment;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentHomeBinding;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
 

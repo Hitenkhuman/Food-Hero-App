@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +36,7 @@ public class AdminVerify extends Fragment {
 
     FragmentAdminVerifyBinding binding;
     ApiInterface apiInterface;
+    NavController navController;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +49,7 @@ public class AdminVerify extends Fragment {
         }
         Retrofit retrofit= ApiClient.getClient();
         apiInterface=retrofit.create(ApiInterface.class);
+        navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
         Ngo res= (Ngo) getArguments().getSerializable("data");
         Glide.with(getContext()).load(parentdir+res.getImgurl()).into(binding.profileImg);
         binding.name.setText(res.getName());
@@ -67,9 +71,7 @@ public class AdminVerify extends Fragment {
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.admincontainer,new AdminVerificationRequests());
-                transaction.commit();
+                navController.navigate(R.id.action_adminVerify_to_adminVerificationRequests);
             }
         });
         binding.accept.setOnClickListener(new View.OnClickListener() {

@@ -46,17 +46,29 @@
         android:id="@+id/updateMyProfileRestaurant"
         android:name="com.example.foodhero.Fragment.Restaurant.UpdateMyProfileRestaurant"
         android:label="fragment_update_my_profile_restaurant"
-        tools:layout="@layout/fragment_update_my_profile_restaurant" />
+        tools:layout="@layout/fragment_update_my_profile_restaurant" >
+        <action
+            android:id="@+id/action_updateMyProfileRestaurant_to_myProfileFragment"
+            app:destination="@id/myProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/requestDetails"
         android:name="com.example.foodhero.Fragment.RequestDetails"
         android:label="fragment_request_details"
-        tools:layout="@layout/fragment_request_details" />
+        tools:layout="@layout/fragment_request_details" >
+        <action
+            android:id="@+id/action_requestDetails_to_requestFragment"
+            app:destination="@id/requestFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyDetailsFragment"
         android:name="com.example.foodhero.Fragment.HistoryDetailsFragment"
         android:label="fragment_history_details"
-        tools:layout="@layout/fragment_history_details" />
+        tools:layout="@layout/fragment_history_details" >
+        <action
+            android:id="@+id/action_historyDetailsFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
     <dialog
         android:id="@+id/bottomShitFragment"
         android:name="com.example.foodhero.BottomShitFragment"

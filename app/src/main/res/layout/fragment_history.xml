@@ -6,6 +6,17 @@
     android:orientation="vertical"
     android:background="@color/secondary"
     tools:context=".Fragment.Restaurant.HistoryFragment">
+    <TextView
+        android:id="@+id/nodata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="No Data Found"/>
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer"
         android:layout_width="match_parent"
@@ -34,4 +45,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </LinearLayout>

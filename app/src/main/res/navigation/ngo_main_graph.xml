@@ -45,20 +45,36 @@
         android:id="@+id/foodDetails"
         android:name="com.example.foodhero.Fragment.FoodDetails"
         android:label="fragment_food_details"
-        tools:layout="@layout/fragment_food_details" />
+        tools:layout="@layout/fragment_food_details" >
+        <action
+            android:id="@+id/action_foodDetails_to_ngoHome"
+            app:destination="@id/ngoHome" />
+    </fragment>
     <fragment
         android:id="@+id/updateMyProfileNgo"
         android:name="com.example.foodhero.Fragment.Ngo.UpdateMyProfileNgo"
         android:label="fragment_update_my_profile_ngo"
-        tools:layout="@layout/fragment_update_my_profile_ngo" />
+        tools:layout="@layout/fragment_update_my_profile_ngo" >
+        <action
+            android:id="@+id/action_updateMyProfileNgo_to_ngoMyProfile"
+            app:destination="@id/ngoMyProfile" />
+    </fragment>
     <fragment
         android:id="@+id/historyDetailsFragment2"
         android:name="com.example.foodhero.Fragment.HistoryDetailsFragment"
         android:label="fragment_history_details"
-        tools:layout="@layout/fragment_history_details" />
+        tools:layout="@layout/fragment_history_details" >
+        <action
+            android:id="@+id/action_historyDetailsFragment2_to_ngoHistory"
+            app:destination="@id/ngoHistory" />
+    </fragment>
     <fragment
         android:id="@+id/foodPickupDetails"
         android:name="com.example.foodhero.Fragment.FoodPickupDetails"
         android:label="fragment_food_pickup_details"
-        tools:layout="@layout/fragment_food_pickup_details" />
+        tools:layout="@layout/fragment_food_pickup_details" >
+        <action
+            android:id="@+id/action_foodPickupDetails_to_ngoRequest"
+            app:destination="@id/ngoRequest" />
+    </fragment>
 </navigation>

@@ -144,7 +144,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), NgoWaitingActivity.class);
                                             SharedPreferences preferences= getSharedPreferences("data", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor=preferences.edit();
-
+                                            FirebaseMessaging.getInstance().subscribeToTopic(response.body().getData().get(0).getCity());
                                             editor.putString("user","NGO");
                                             editor.putBoolean("login",true);
                                             editor.putString("ngo_id",response.body().getData().get(0).get_id());

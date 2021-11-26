@@ -59,11 +59,11 @@ public class RestuarantMain extends AppCompatActivity {
 //                      //  Toast.makeText(RestuarantMain.this, token, Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-
-
-
-    }
-
+//
+//
+//
+//    }
+//
 //    public void sendNotifications(String usertoken, String title, String message) {
 //        Data data = new Data(title, message);
 //        NotificationSender sender = new NotificationSender(data, usertoken);
@@ -84,7 +84,7 @@ public class RestuarantMain extends AppCompatActivity {
 //            }
 //        });
 //
-//    }
-//
+   }
+
 
 }

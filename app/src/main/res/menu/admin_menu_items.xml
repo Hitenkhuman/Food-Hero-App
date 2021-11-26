@@ -4,20 +4,24 @@
         android:id="@+id/adminVerificationRequests"
         android:title="Home"
         android:menuCategory="secondary"
+        android:icon="@drawable/home"
         />
     <item
         android:id="@+id/adminHistory"
         android:title="History"
         android:menuCategory="secondary"
+        android:icon="@drawable/history"
         />
     <item
         android:id="@+id/adminNgo"
         android:title="Ngo"
         android:menuCategory="secondary"
+        android:icon="@drawable/ngoicon"
         />
     <item
         android:id="@+id/adminRestaurant"
         android:title="Restaurant"
         android:menuCategory="secondary"
+        android:icon="@drawable/restaurant_icon"
         />
 </menu>

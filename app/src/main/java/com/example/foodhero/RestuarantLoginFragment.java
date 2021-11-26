@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,16 @@ import android.widget.Toast;
 
 import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Apis.ApiInterface;
+import com.example.foodhero.Apis.ApiNotificationClient;
+import com.example.foodhero.Apis.ApiNotificationInterface;
+import com.example.foodhero.Models.Data;
+import com.example.foodhero.Models.NotificationSender;
+import com.example.foodhero.Response.GetNotificationResponse;
 import com.example.foodhero.Response.GetRestaurantResponse;
 import com.example.foodhero.databinding.FragmentRestuarantLoginBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -29,6 +39,7 @@ public class RestuarantLoginFragment extends Fragment {
 
     FragmentRestuarantLoginBinding binding;
     ApiInterface apiInterface;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,9 +51,12 @@ public class RestuarantLoginFragment extends Fragment {
         binding.adminlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),AdminLoginActivity.class));
+                Intent intent=new Intent(getContext(),AdminLoginActivity.class);
+                startActivity(intent);
             }
         });
+
+
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,12 +125,17 @@ public class RestuarantLoginFragment extends Fragment {
         binding.signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),SigninActivity.class));
+                Intent intent=new Intent(getContext(),SigninActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
+
         return binding.getRoot();
     }
     private RequestBody createPartFromString(String data){
         return RequestBody.create(MultipartBody.FORM,data);
     }
+
+
 }

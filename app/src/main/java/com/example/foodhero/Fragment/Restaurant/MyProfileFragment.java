@@ -20,6 +20,7 @@ import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.LoginActivity;
 import com.example.foodhero.R;
 import com.example.foodhero.databinding.FragmentMyProfileBinding;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MyProfileFragment extends Fragment {
@@ -29,12 +30,15 @@ public class MyProfileFragment extends Fragment {
     SharedPreferences preferences;
     NavController navController;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
+    String city;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentMyProfileBinding.inflate(LayoutInflater.from(getContext()),container,false);
+
         preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        city=preferences.getString("city","");
         SharedPreferences.Editor edit=preferences.edit();
         navController = Navigation.findNavController(getActivity(), R.id.container);
         Glide.with(getContext()).load(parentdir+preferences.getString("imgurl","default.png")).into(binding.img);
@@ -57,6 +61,7 @@ public class MyProfileFragment extends Fragment {
             public void onClick(View view) {
                 edit.clear();
                 edit.apply();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(city);
                 getActivity().finish();
                 Intent intent=new Intent(getContext(),LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

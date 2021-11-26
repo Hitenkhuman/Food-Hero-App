@@ -1,6 +1,7 @@
 package com.example.foodhero.Fragment.Restaurant;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -33,6 +34,7 @@ import com.example.foodhero.Response.GetFoodResponse;
 import com.example.foodhero.Response.GetRequestResponse;
 import com.example.foodhero.Response.GetRequestResponseNormal;
 import com.example.foodhero.Response.GetRestaurantResponse;
+import com.example.foodhero.RestuarantMain;
 import com.example.foodhero.databinding.FragmentHistoryBinding;
 import com.example.foodhero.databinding.FragmentRequestBinding;
 
@@ -93,6 +95,7 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
                     list.remove(position);
                     adapter.notifyItemRemoved(position);
                     Toast.makeText(getContext(), "Accepted Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), RestuarantMain.class));
                 }
                 else{
                     Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
@@ -117,6 +120,7 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
         binding.recyclerequest.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
         apiInterface.getAvailableFoodForRestaurant(preferences.getString("res_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
@@ -128,12 +132,11 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
                                 @Override
                                 public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
                                     try {
-                                        if(response.body().isSuccess()){
+                                        if(response.body().isSuccess() && response.body().getData().size()>0){
                                             if(list.size()>0){
                                                 list=response.body().getData();
                                                 adapter.notifyDataSetChanged();
-                                                Toast.makeText(getContext(), "data", Toast.LENGTH_SHORT).show();
-
+                                                binding.nodata.setVisibility(View.GONE);
                                                 binding.shimmer.setVisibility(View.GONE);
                                                 binding.shimmer.stopShimmer();
                                                 binding.recyclerequest.setVisibility(View.VISIBLE);
@@ -143,9 +146,9 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
                                             else {
                                                 list=response.body().getData();
                                                 setAdapter(list);
-                                                Toast.makeText(getContext(), "data", Toast.LENGTH_SHORT).show();
                                                 binding.shimmer.setVisibility(View.GONE);
                                                 binding.shimmer.stopShimmer();
+                                                binding.nodata.setVisibility(View.GONE);
                                                 binding.recyclerequest.setVisibility(View.VISIBLE);
                                                 binding.shimmer.hideShimmer();
                                             }
@@ -153,15 +156,17 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
                                         else {
                                             binding.shimmer.setVisibility(View.GONE);
                                             binding.shimmer.stopShimmer();
-                                            binding.recyclerequest.setVisibility(View.VISIBLE);
+                                            binding.nodata.setVisibility(View.VISIBLE);
+                                            binding.recyclerequest.setVisibility(View.GONE);
                                             binding.shimmer.hideShimmer();
-                                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+
                                         }
                                     }
                                     catch (Exception e){
                                         binding.shimmer.setVisibility(View.GONE);
                                         binding.shimmer.stopShimmer();
-                                        binding.recyclerequest.setVisibility(View.VISIBLE);
+                                        binding.nodata.setVisibility(View.VISIBLE);
+                                        binding.recyclerequest.setVisibility(View.GONE);
                                         binding.shimmer.hideShimmer();
                                         Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                                     }
@@ -171,26 +176,28 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
                                     Log.d("food11", "onFailure: "+t.fillInStackTrace());
                                     binding.shimmer.setVisibility(View.GONE);
                                     binding.shimmer.stopShimmer();
-                                    binding.recyclerequest.setVisibility(View.VISIBLE);
+                                    binding.nodata.setVisibility(View.VISIBLE);
+                                    binding.recyclerequest.setVisibility(View.GONE);
                                     binding.shimmer.hideShimmer();
                                 }
                             });
                         }
                     }
                     else{
-                        Toast.makeText(getContext(), "No request are there", Toast.LENGTH_SHORT).show();
+                        binding.recyclerequest.setVisibility(View.GONE);
+                        binding.nodata.setVisibility(View.VISIBLE);
                         binding.shimmer.setVisibility(View.GONE);
                         binding.shimmer.stopShimmer();
-                        binding.recyclerequest.setVisibility(View.VISIBLE);
                         binding.shimmer.hideShimmer();
                     }
 
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "SERVER ERROR"+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                     binding.shimmer.setVisibility(View.GONE);
                     binding.shimmer.stopShimmer();
-                    binding.recyclerequest.setVisibility(View.VISIBLE);
+                    binding.recyclerequest.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
                     binding.shimmer.hideShimmer();
                 }
 
@@ -199,10 +206,11 @@ public class RequestFragment extends Fragment implements RequestAdapter.OnReques
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Log.d("food11", "onFailureouter: "+t.fillInStackTrace());
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 binding.shimmer.setVisibility(View.GONE);
                 binding.shimmer.stopShimmer();
-                binding.recyclerequest.setVisibility(View.VISIBLE);
+                binding.recyclerequest.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
                 binding.shimmer.hideShimmer();
             }
 

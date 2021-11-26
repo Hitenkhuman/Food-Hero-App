@@ -80,38 +80,49 @@ public class AdminVerificationRequests extends Fragment implements VerificationL
         binding.recycleadminverification.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
     apiInterface.getPendingList().enqueue(new Callback<GetNgoResponse>() {
         @Override
         public void onResponse(Call<GetNgoResponse> call, Response<GetNgoResponse> response) {
             try {
                 if(response!=null){
-                    if(response.body().getSuccess()){
+                    if(response.body().getSuccess() && response.body().getData().size()>0){
                         if(list.size()>0){
                             list=response.body().getData();
                             adapter.notifyDataSetChanged();
+                            binding.nodata.setVisibility(View.GONE);
                             binding.shimmer.setVisibility(View.GONE);
                         }
                         else {
                             list=response.body().getData();
                             setAdapter(list);
+                            binding.nodata.setVisibility(View.GONE);
                             binding.shimmer.setVisibility(View.GONE);
 
                         }
                     }
                     else {
-                        Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Try again later", Toast.LENGTH_SHORT).show();
+                        binding.recycleadminverification.setVisibility(View.GONE);
+                        binding.nodata.setVisibility(View.VISIBLE);
+                        binding.shimmer.setVisibility(View.GONE);
                     }
                 }
             }
             catch (Exception e){
-                Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                binding.recycleadminverification.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
+                binding.shimmer.setVisibility(View.GONE);
             }
         }
 
         @Override
         public void onFailure(Call<GetNgoResponse> call, Throwable t) {
-            Log.e("err",t.getLocalizedMessage());
-            Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+            binding.recycleadminverification.setVisibility(View.GONE);
+            binding.nodata.setVisibility(View.VISIBLE);
+            binding.shimmer.setVisibility(View.GONE);
         }
     });
 

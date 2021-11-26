@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ public class RequestDetails extends Fragment {
 
     FragmentRequestDetailsBinding binding;
     private final String parentdir= ApiClient.BASE_URL+"profile_pic/";
-    FragmentTransaction transaction;
+    NavController navController;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,13 +36,11 @@ public class RequestDetails extends Fragment {
             Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
+        navController = Navigation.findNavController(getActivity(), R.id.container);
         binding.backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction=getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container,new NgoHome());
-                transaction.addToBackStack(null);
-                transaction.commit();
+              navController.navigate(R.id.action_requestDetails_to_requestFragment);
             }
         });
         Request food=(Request) getArguments().getSerializable("data");

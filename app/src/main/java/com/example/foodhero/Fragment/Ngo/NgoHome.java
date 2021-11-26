@@ -111,35 +111,47 @@ public class NgoHome extends Fragment implements FoodListAdapter.OnFoodListListn
         binding.recyclerngohome.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
         apiInterface.getAvailableFood(preferences.getString("ngo_id",""),preferences.getString("city","vadodara")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
-                if(response.body().isSuccess()){
+                if(response.body().isSuccess() && response.body().getData().size()>0){
                     if(list.size()>0){
                         list=response.body().getData();
                         adapter.notifyDataSetChanged();
+                        binding.nodata.setVisibility(View.GONE);
                         binding.shimmer.setVisibility(View.GONE);
                     }
                     else {
                         list=response.body().getData();
                         setAdapter(list);
+                        binding.nodata.setVisibility(View.GONE);
                         binding.shimmer.setVisibility(View.GONE);
                     }
                 }
                 else {
-                    Toast.makeText(context, "try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Try again later", Toast.LENGTH_SHORT).show();
+                    binding.recyclerngohome.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
+                    binding.shimmer.setVisibility(View.GONE);
                 }
 
                 }
                 catch (Exception e){
                     Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                    binding.recyclerngohome.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
+                    binding.shimmer.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                binding.recyclerngohome.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
+                binding.shimmer.setVisibility(View.GONE);
             }
         });
         binding.shimmer.stopShimmer();

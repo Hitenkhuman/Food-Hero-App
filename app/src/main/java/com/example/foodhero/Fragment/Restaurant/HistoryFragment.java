@@ -41,7 +41,7 @@ import retrofit2.Retrofit;
 public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistoryListner {
 
    // private ItemHistoryLayoutBinding binding;
-    private FragmentHistoryBinding binding;
+   private FragmentHistoryBinding binding;
     private ArrayList<Food> list;
     ApiInterface apiInterface;
     HistoryAdapter adapter;
@@ -82,39 +82,52 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
         binding.recyclerhistory.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
         apiInterface.getHistoryRestaurant(preferences.getString("res_id","")).enqueue(new Callback<GetFoodResponse>() {
             @Override
             public void onResponse(Call<GetFoodResponse> call, Response<GetFoodResponse> response) {
                 try {
                     if(response!=null){
                         if(response.body().isSuccess()){
-                            if(list.size()>0){
+                            if(response.body().getData().size()==0){
+                                Toast.makeText(getContext(),"NO data",Toast.LENGTH_SHORT).show();
+                                binding.shimmer.setVisibility(View.GONE);
+                                binding.recyclerhistory.setVisibility(View.GONE);
+                                binding.nodata.setVisibility(View.VISIBLE);
+                            }
+                            else if(list.size()>0){
                                 list=response.body().getData();
                                 adapter.notifyDataSetChanged();
+                                binding.nodata.setVisibility(View.GONE);
                                 binding.shimmer.setVisibility(View.GONE);
                             }
                             else {
                                 list=response.body().getData();
                                 setAdapter(list);
+                                binding.nodata.setVisibility(View.GONE);
                                 binding.shimmer.setVisibility(View.GONE);
                             }
 
                         }
                         else {
-                            Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                            binding.recyclerhistory.setVisibility(View.GONE);
+                            binding.nodata.setVisibility(View.VISIBLE);
                         }
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+                    binding.recyclerhistory.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Log.e("err",t.getLocalizedMessage());
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Try again later", Toast.LENGTH_SHORT).show();
+                binding.recyclerhistory.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
             }
         });
         binding.shimmer.stopShimmer();

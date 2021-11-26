@@ -16,6 +16,7 @@ import com.example.foodhero.Apis.ApiClient;
 import com.example.foodhero.Apis.ApiInterface;
 import com.example.foodhero.Response.GetNgoResponse;
 import com.example.foodhero.databinding.FragmentNgoLoginBinding;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,13 +39,16 @@ public class NgoLoginFragment extends Fragment {
         binding.signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),SigninActivity.class));
+                Intent intent=new Intent(getContext(),SigninActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
         binding.admingin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),AdminLoginActivity.class));
+                Intent intent=new Intent(getContext(),AdminLoginActivity.class);
+                startActivity(intent);
             }
         });
         binding.login.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,7 @@ public class NgoLoginFragment extends Fragment {
                                     binding.progressbar.setVisibility(View.GONE);
                                     binding.login.setVisibility(View.VISIBLE);
                                     Toast.makeText(getContext(), "Login Successsfull", Toast.LENGTH_SHORT).show();
+                                    FirebaseMessaging.getInstance().subscribeToTopic(response.body().getData().get(0).getCity());
                                     SharedPreferences preferences= getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor=preferences.edit();
                                     if(response.body().getData().get(0).getVerification_status().equals("Verified")){

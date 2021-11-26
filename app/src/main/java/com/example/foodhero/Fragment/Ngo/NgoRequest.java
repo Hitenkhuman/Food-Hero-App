@@ -110,32 +110,47 @@ public class NgoRequest extends Fragment implements RequestStatusAdapter.OnReque
         binding.recyclerngorequest.setVisibility(View.GONE);
         binding.shimmer.setVisibility(View.VISIBLE);
         binding.shimmer.startShimmer();
+        binding.nodata.setVisibility(View.GONE);
         apiInterface.getRequest(preferences.getString("ngo_id","")).enqueue(new Callback<GetRequestResponse>() {
             @Override
             public void onResponse(Call<GetRequestResponse> call, Response<GetRequestResponse> response) {
-                if(response.body().isSuccess()){
-                    if(list.size()>0){
-                        list=response.body().getData();
-                        adapter.notifyDataSetChanged();
-                        binding.shimmer.setVisibility(View.GONE);
+                try {
+                    if(response.body().isSuccess() && response.body().getData().size()>0){
+                        if(list.size()>0){
+                            list=response.body().getData();
+                            adapter.notifyDataSetChanged();
+                            binding.nodata.setVisibility(View.GONE);
+                            binding.shimmer.setVisibility(View.GONE);
+                        }
+                        else {
+                            list=response.body().getData();
+                            setAdapter(list);
+                            binding.nodata.setVisibility(View.GONE);
+                            binding.shimmer.setVisibility(View.GONE);
+                        }
                     }
                     else {
-                        list=response.body().getData();
-                        setAdapter(list);
+                        Toast.makeText(getContext(), "Try again later", Toast.LENGTH_SHORT).show();
+                        binding.recyclerngorequest.setVisibility(View.GONE);
+                        binding.nodata.setVisibility(View.VISIBLE);
                         binding.shimmer.setVisibility(View.GONE);
                     }
                 }
-                else {
-                    Toast.makeText(getContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
-                    Log.d("tett", "onResponse: "+response.body().getMassage());
+                catch (Exception e){
+                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                    binding.recyclerngorequest.setVisibility(View.GONE);
+                    binding.nodata.setVisibility(View.VISIBLE);
+                    binding.shimmer.setVisibility(View.GONE);
                 }
+
             }
 
             @Override
             public void onFailure(Call<GetRequestResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("tett", "onFailure: "+t.fillInStackTrace());
-
+                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                binding.recyclerngorequest.setVisibility(View.GONE);
+                binding.nodata.setVisibility(View.VISIBLE);
+                binding.shimmer.setVisibility(View.GONE);
             }
         });
         binding.shimmer.stopShimmer();
