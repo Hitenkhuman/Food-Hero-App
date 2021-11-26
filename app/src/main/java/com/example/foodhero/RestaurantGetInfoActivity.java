@@ -81,7 +81,7 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
             public void onActivityResult(Uri uri) {
                 path=uri.getLastPathSegment().substring(8);
                 binding.profileImg.setImageURI(uri);
-                Toast.makeText(getApplicationContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("imgissue", "onActivityResult: "+path);
             }
         });
@@ -116,7 +116,7 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
                     String password=preferences.getString("password","NA");
                     String devicetoken=token;
                     File img=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),path);
-                    Toast.makeText(getApplicationContext(), "FILE NAME"+img.getName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "FILE NAME"+img.getName(), Toast.LENGTH_SHORT).show();
                     apiInterface.addRestaurant(createPartFromString(name),
                             createPartFromString(mobile),
                             createPartFromString(email),
@@ -160,9 +160,10 @@ public class RestaurantGetInfoActivity extends AppCompatActivity {
 
                                             editor.apply();
                                             Intent intent=new Intent(getApplicationContext(),RestuarantMain.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
                                         }else{
-                                            Toast.makeText(getApplicationContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),"Something wrong with details,please check it again", Toast.LENGTH_SHORT).show();
                                             Log.d("imgissue", "createFilePart: "+ response.body().getMassage());
 
                                         }

@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="OTP Verification"
+            android:text="@string/otp_verification"
             android:textColor="@color/primary"
             android:textSize="20sp"
             android:textStyle="bold"></TextView>
@@ -36,7 +36,7 @@
             android:gravity="center"
             android:textColor="@color/green"
             android:textSize="14sp"
-            android:text="Enter the OTP sent to"></TextView>
+            android:text="@string/enter_the_otp_sent_to"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="50dp"
             android:gravity="center"
-            android:text="+91-1234567890"
+            android:text="@string/_91_1234567890"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/primary"/>
@@ -151,14 +151,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Didn't receive the otp"
+                android:text="@string/didn_t_receive_the_otp"
                 android:textColor="@color/green"
                 android:textSize="14sp"/>
             <TextView
                 android:id="@+id/resendotp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RESEND OTP"
+                android:text="@string/resend_otp"
                 android:textColor="@color/red"
                 android:layout_marginStart="8dp"
                 android:textSize="15sp"
@@ -175,7 +175,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="30dp"
-                android:text="VERIFY"
+                android:text="@string/verify"
                 android:background="@drawable/buttondefault_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"

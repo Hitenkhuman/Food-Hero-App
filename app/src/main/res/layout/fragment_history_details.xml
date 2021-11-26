@@ -45,7 +45,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="128dp"
             android:fontFamily="@font/artifika"
-            android:text="Food id"
+            android:text="@string/food_id"
             android:textColor="@color/secondary"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Restaurant"
+                android:text="@string/restaurant"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
@@ -118,7 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_margin="10dp"
-                        android:text="name"
+                        android:text="@string/name1"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="details"
+                        android:text="@string/details"
                         android:textColor="@color/black"
                         android:textSize="15sp"></TextView>
                 </LinearLayout>
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="NGO"
+                android:text="@string/ngo"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
@@ -189,7 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_margin="10dp"
-                        android:text="name"
+                        android:text="@string/name1"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -200,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_margin="10dp"
-                        android:text="details"
+                        android:text="@string/details"
                         android:textColor="@color/red"
                         android:textSize="15sp"></TextView>
                 </LinearLayout>
@@ -279,7 +279,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text=" pick up Time"
+                        android:text="@string/pick_up_time"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -309,7 +309,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="Type"
+                        android:text="@string/type"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -323,7 +323,7 @@
                         android:layout_weight="1"
 
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="details"
+                        android:text="@string/details"
                         android:textSize="20sp"></TextView>
                 </LinearLayout>
 
@@ -339,7 +339,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="No Of Dish"
+                        android:text="@string/no_of_dish"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -368,7 +368,7 @@
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="Note"
+                        android:text="@string/note"
                         android:textColor="@color/green"
                         android:textSize="20sp">
 
@@ -382,7 +382,7 @@
                         android:layout_weight="01"
 
                         android:fontFamily="@font/alegreya_sans_bold"
-                        android:text="details"
+                        android:text="@string/details"
                         android:textSize="20sp"></TextView>
                 </LinearLayout>
                 <LinearLayout

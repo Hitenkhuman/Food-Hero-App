@@ -13,12 +13,13 @@ public class NgoWaitingActivity extends AppCompatActivity {
 
     ActivityNgoWaitingBinding binding;
     SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityNgoWaitingBinding.inflate(getLayoutInflater());
         preferences=getSharedPreferences("data",MODE_PRIVATE);
-        SharedPreferences.Editor editor=preferences.edit();
+        editor=preferences.edit();
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,5 +30,12 @@ public class NgoWaitingActivity extends AppCompatActivity {
             }
         });
         setContentView(binding.getRoot());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        editor.clear();
+        editor.apply();
     }
 }

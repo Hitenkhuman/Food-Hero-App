@@ -38,7 +38,7 @@ public class RestuarantSigninFragment extends Fragment {
                 email=binding.userId.getText().toString();
                 password=binding.userpass.getText().toString();
                 confirmpassword=binding.cnfpass.getText().toString();
-                if(email.length()!=0 && password.length()!=0 && confirmpassword.length()!=0 ){
+                if(email.length()!=0 && password.length()!=0 && confirmpassword.length()!=0 && password.equals(confirmpassword)){
                     Intent intent=new Intent(getContext(),OtpActivity.class);
                     Bundle bundle=new Bundle();
                     bundle.putString("user","RESTAURANT");

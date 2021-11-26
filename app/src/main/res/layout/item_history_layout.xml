@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:gravity="center"
+                android:textColor="@color/green"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -93,6 +94,7 @@
 
             <TextView
                 android:id="@+id/name2"
+                android:textColor="@color/green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"

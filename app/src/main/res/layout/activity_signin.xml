@@ -14,7 +14,7 @@
         android:layout_marginTop="72dp"
         android:fontFamily="@font/adamina"
         android:gravity="center"
-        android:text="Food Hero"
+        android:text="@string/food_hero"
         android:textColor="@color/green"
         android:textSize="30sp"
         android:textStyle="bold"

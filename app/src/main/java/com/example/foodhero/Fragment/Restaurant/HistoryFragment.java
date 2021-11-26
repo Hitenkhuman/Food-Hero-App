@@ -90,7 +90,6 @@ public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistor
                     if(response!=null){
                         if(response.body().isSuccess()){
                             if(response.body().getData().size()==0){
-                                Toast.makeText(getContext(),"NO data",Toast.LENGTH_SHORT).show();
                                 binding.shimmer.setVisibility(View.GONE);
                                 binding.recyclerhistory.setVisibility(View.GONE);
                                 binding.nodata.setVisibility(View.VISIBLE);

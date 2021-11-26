@@ -1,5 +1,6 @@
 package com.example.foodhero.Fragment.admin;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,7 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
     ApiInterface apiInterface;
     HistoryAdapter adapter;
     NavController navController;
+    Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
         Retrofit retrofit= ApiClient.getClient();
        navController = Navigation.findNavController(getActivity(), R.id.admincontainer);
         apiInterface=retrofit.create(ApiInterface.class);
+        context=getContext();
         list=new ArrayList<>();
        getData();
         binding.swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -104,7 +107,7 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
                     }
                 }
                 catch (Exception e){
-                    Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
                     binding.recycleradminhistory.setVisibility(View.GONE);
                     binding.nodata.setVisibility(View.VISIBLE);
                     binding.shimmer.setVisibility(View.GONE);
@@ -115,7 +118,7 @@ public class AdminHistory extends Fragment implements HistoryAdapter.OnHistoryLi
             public void onFailure(Call<GetFoodResponse> call, Throwable t) {
                 Log.e("err",t.getLocalizedMessage());
 
-                Toast.makeText(getContext(), "SERVER ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "SERVER ERROR", Toast.LENGTH_SHORT).show();
                 binding.recycleradminhistory.setVisibility(View.GONE);
                 binding.nodata.setVisibility(View.VISIBLE);
                 binding.shimmer.setVisibility(View.GONE);

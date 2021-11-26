@@ -46,7 +46,6 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
     String description,note,pickupadd,type;
     boolean isVeg;
     int noofdish;
-    String token="cABA8JNoTj-DTbrr8adCRm:APA91bFgl__tH_GbvDu9t7nvLqcQzX6FTZYMhQg_LMnpxfCC2XvYb6zaknHLW8aSE69QtKGh72GrCK0zAvymGuJ99cKm0qT9F0u-TcfVr32HM0i7HhobMNsZjgOOxTuuyGelhzOEECev";
     ApiNotificationInterface apiNotificationInterface;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,40 +79,50 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
           }
 
         }
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
+      binding.countminus.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              if(binding.dishcount.getText().toString().equals("5")){
+                  Toast.makeText(getContext(), "Minimum limit is 5", Toast.LENGTH_SHORT).show();
+              }
+              else{
+                  int newcount=Integer.parseInt(binding.dishcount.getText().toString())-1;
+                  binding.dishcount.setText(newcount+"");
+              }
+          }
+      });
 
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("TAG", "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        token = task.getResult();
-                        Log.d("notification", "onResponse: "+token);
-
-                        //   sendNotifications(token,"HEY","FOOD HERO");
-
-                         // Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        binding.countplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    int newcount=Integer.parseInt(binding.dishcount.getText().toString())+1;
+                    binding.dishcount.setText(newcount+"");
+            }
+        });
 
 
        // sendNotifications(token,"login","hey");
         binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binding.dishcount.getText().toString().trim().length()!=0 && binding.description.getText().toString().trim().length()!=0 && binding.note.getText().toString().trim().length()!=0 && binding.pickupaddress.getText().toString().trim().length()!=0){
+                    String description,note,pickupadd,type;
+                    description=binding.description.getText().toString().trim();
+                    note=binding.note.getText().toString().trim();
+                    pickupadd=binding.pickupaddress.getText().toString().trim();
+                    int noofdish=Integer.parseInt(binding.dishcount.getText().toString());
+                    if(binding.veg.isChecked()) {
+                        type="Veg";
+                    }
+                    else {
+                        type="Nonveg";
+                    }
                 apiInterface.addFood(new FoodNormal(preferences.getString("res_id",""),description,type,noofdish,note,pickupadd,preferences.getString("city",""))).enqueue(new Callback<GetFoodResponseNormal>() {
                     @Override
                     public void onResponse(Call<GetFoodResponseNormal> call, Response<GetFoodResponseNormal> response) {
                         try {
                         if(response.body().isSuccess()){
                             Toast.makeText(context, "Food Added Successfully", Toast.LENGTH_SHORT).show();
-
-
-
 
                         }
                         else{
@@ -134,6 +143,8 @@ public class BottomShitFragment extends BottomSheetDialogFragment {
                         Log.d("FoodPost", "onFailure: "+t.fillInStackTrace());
                     }
                 });
+
+                }
                 BottomShitFragment.this.dismiss();
                 sendNotifications("/topics/"+preferences.getString("city","v"),preferences.getString("name",""),"Food is Available....Hurry up.....");
             }

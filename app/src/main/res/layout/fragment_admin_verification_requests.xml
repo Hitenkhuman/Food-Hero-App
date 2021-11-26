@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Admin Home"
+            android:text="@string/admin_home"
             android:layout_gravity="center"
             android:gravity="left"
             android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
             android:src="@drawable/adminlogo"
             android:background="@color/secondary"
             android:layout_weight="0.3"
-            android:text="change password"/>
+            android:text="@string/change_password"/>
     </LinearLayout>
     <TextView
         android:id="@+id/nodata"
@@ -42,7 +42,7 @@
         android:textSize="20sp"
         android:visibility="gone"
         android:gravity="center"
-        android:text="No Data Found"/>
+        android:text="@string/no_data_found"/>
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer"
         android:layout_width="match_parent"

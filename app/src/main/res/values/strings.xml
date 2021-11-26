@@ -4,4 +4,123 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_notification_channel_id">hello</string>
     <string name="fcm_message">Food Hero</string>
+
+    <string name="enter_old_password">Enter Old Password</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="enter_conform_password">Enter Conform Password</string>
+
+    <string name="logout">logout</string>
+    <string name="admin">Admin</string>
+    <string name="admin_id">Admin id</string>
+
+    <string name="log_in">Log in</string>
+
+    <string name="welcome">Hello World!</string>
+    <string name="enter_ngo_name">Enter NGO Name</string>
+    <string name="enter_mobile_no">Enter Mobile No.</string>
+    <string name="enter_registration_number">Enter Registration number</string>
+
+    <string name="add">Add</string>
+    <string name="cancle">Cancle</string>
+    <string name="your_application_is_still_pending_try_again_later">Your Application is still pending try Again Later</string>
+    <string name="exit">Exit</string>
+    <string name="we_will_send_you_an_one_time_password_on_this_mobile_number">We will send you an one time password on this mobile number</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="_91">+91-</string>
+    <string name="_123456789">123456789</string>
+    <string name="get_otp">GET OTP</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="enter_the_otp_sent_to">Enter the OTP sent to</string>
+    <string name="_91_1234567890">+91-1234567890</string>
+    <string name="didn_t_receive_the_otp">Didn\'t receive the otp</string>
+    <string name="resend_otp">RESEND OTP</string>
+    <string name="verify">VERIFY</string>
+    <string name="restuarant">Restuarant</string>
+    <string name="select_image">SELECT IMAGE</string>
+    <string name="enter_restuarant_name">Enter Restuarant Name</string>
+    <string name="enter_opening_time">Enter Opening Time</string>
+    <string name="enter_closing_time">Enter Closing Time</string>
+    <string name="enter_state">Enter State</string>
+    <string name="enter_district">Enter District</string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="food_hero">Food Hero</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="admin_home">Admin Home</string>
+    <string name="change_password">change password</string>
+
+    <string name="about">About</string>
+
+
+
+    <string name="opening_time">Opening time</string>
+
+    <string name="closing_time">Closing time</string>
+    <string name="details">Details</string>
+    <string name="state">State</string>
+
+
+    <string name="address">Address</string>
+
+    <string name="verification_status">Verification Status</string>
+
+    <string name="secret_data">Secret Data</string>
+    <string name="password">Password</string>
+    <string name="ngo_id">Ngo Id</string>
+
+    <string name="authid">AuthID</string>
+
+    <string name="device_token">Device Token</string>
+
+    <string name="registration_no">Registration No.</string>
+
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+
+    <string name="non_veg">Non-Veg</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="about_restaurant">About Restaurant</string>
+
+
+    <string name="food_id">Food id</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="name1">Name</string>
+
+    <string name="ngo">NGO</string>
+
+    <string name="pick_up_time">Pick up Time</string>
+    <string name="type">Type</string>
+
+    <string name="no_of_dish">No Of Dish</string>
+    <string name="note">Note</string>
+
+
+    <string name="enter_description">Enter Description</string>
+    <string name="enter_pickup_address">Enter Pickup Address</string>
+    <string name="enter_note">Enter Note</string>
+    <string name="veg">Veg</string>
+    <string name="nonveg">Nonveg</string>
+    <string name="add_food">Add Food</string>
+
+
+
+
+
+    <string name="mobile_number">Mobile number</string>
+
+    <string name="forgot_password">forgot password?</string>
+    <string name="don_t_have_an_account_sign_in">Don\'t have an account?Sign in</string>
+    <string name="email_id">Email id</string>
+
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="already_have_an_account_log_in">Already have an account?Log in</string>
+    <string name="district">District</string>
+    <string name="food_info">Food Info</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="pickup_address">Pickup Address</string>
 </resources>

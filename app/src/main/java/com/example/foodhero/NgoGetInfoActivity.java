@@ -79,7 +79,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
             public void onActivityResult(Uri uri) {
                 path=uri.getLastPathSegment().substring(8);
                 binding.profileImgNgo.setImageURI(uri);
-                Toast.makeText(getApplicationContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("imgissue", "onActivityResult: "+path);
             }
         });
@@ -119,7 +119,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
 
                     String devicetoken = token;
                     File img = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), path);
-                    Toast.makeText(getApplicationContext(), "FILE NAME" + img.getName(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "FILE NAME" + img.getName(), Toast.LENGTH_SHORT).show();
 
                     apiInterface.addNgo(createPartFromString(name),
                             createPartFromString(mobile),
@@ -146,7 +146,7 @@ public class NgoGetInfoActivity extends AppCompatActivity {
                                             SharedPreferences.Editor editor=preferences.edit();
                                             FirebaseMessaging.getInstance().subscribeToTopic(response.body().getData().get(0).getCity());
                                             editor.putString("user","NGO");
-                                            editor.putBoolean("login",true);
+                                            editor.putBoolean("login",false);
                                             editor.putString("ngo_id",response.body().getData().get(0).get_id());
                                             editor.putString("name",response.body().getData().get(0).getName());
                                             editor.putString("email",response.body().getData().get(0).getEmail());
@@ -165,9 +165,10 @@ public class NgoGetInfoActivity extends AppCompatActivity {
                                             editor.putString("cerificate",response.body().getData().get(0).getCertificate_number());
 
                                             editor.apply();
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
                                         } else {
-                                            Toast.makeText(getApplicationContext(), response.body().getMassage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),"Something wrong with details,please check it again", Toast.LENGTH_SHORT).show();
                                             Log.d("imgissue", "createFilePart: " + response.body().getMassage());
 
                                         }

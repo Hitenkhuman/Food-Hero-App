@@ -99,6 +99,7 @@
                     app:cardElevation="9dp">
 
                     <ImageView
+                        android:id="@+id/countminus"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="4dp"
@@ -133,6 +134,7 @@
                     app:cardElevation="9dp">
 
                     <ImageView
+                        android:id="@+id/countplus"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="4dp"
@@ -230,14 +232,14 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:selectAllOnFocus="true"
-                    android:text="Veg"
+                    android:text="@string/veg"
                     android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/nonveg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Non-Veg"
+                    android:text="@string/non_veg"
                     android:textSize="20sp" />
             </RadioGroup>
         </LinearLayout>
@@ -247,6 +249,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="8dp"
-            android:text="Confirm" />
+            android:text="@string/confirm" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

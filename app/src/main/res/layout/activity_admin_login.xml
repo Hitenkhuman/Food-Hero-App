@@ -11,7 +11,7 @@ tools:context=".AdminLoginActivity">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Admin"
+    android:text="@string/admin"
     android:textSize="40dp"
     android:gravity="center"
     android:layout_marginTop="30dp"
@@ -47,7 +47,7 @@ tools:context=".AdminLoginActivity">
     android:minHeight="48dp"
     android:background="@drawable/input_bg"
     android:padding="10dp"
-    android:hint="Admin id" />
+    android:hint="@string/admin_id" />
 
 <EditText
     android:id="@+id/userpass"
@@ -59,7 +59,7 @@ tools:context=".AdminLoginActivity">
     android:gravity="center"
     android:textColorHint="@color/green"
     android:background="@drawable/input_bg"
-    android:hint="Password"
+    android:hint="@string/password"
     android:inputType="textPassword"
     android:minHeight="48dp"
     android:padding="10dp" />
@@ -73,7 +73,7 @@ tools:context=".AdminLoginActivity">
     android:layout_margin="20dp"
     android:background="@drawable/buttondefault_bg"
     android:padding="10dp"
-    android:text="Log in" />
+    android:text="@string/log_in" />
 
 
 

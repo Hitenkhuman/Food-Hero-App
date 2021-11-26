@@ -83,7 +83,7 @@ public class UpdateMyProfileRestaurant extends Fragment {
             public void onActivityResult(Uri uri) {
                 path=uri.getLastPathSegment().substring(8);
                 binding.profileImg.setImageURI(uri);
-                Toast.makeText(getContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), ""+uri.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("imgissue", "onActivityResult: "+path);
             }
         });
@@ -221,6 +221,9 @@ public class UpdateMyProfileRestaurant extends Fragment {
                                     Log.d("imgissue", "createFilePart: "+t.fillInStackTrace());
                                 }
                             });
+                }
+                else {
+                    Toast.makeText(getContext(), "Please fill details properly", Toast.LENGTH_SHORT).show();
                 }
             }
         });

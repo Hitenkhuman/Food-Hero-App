@@ -20,7 +20,7 @@ tools:context=".NgoSigninFragment">
     android:minHeight="48dp"
     android:background="@drawable/input_bg"
     android:padding="10dp"
-    android:hint="Email id"/>
+    android:hint="@string/email_id"/>
 
 <EditText
     android:id="@+id/userpass"
@@ -31,7 +31,7 @@ tools:context=".NgoSigninFragment">
     android:ems="10"
     android:gravity="center"
     android:textColor="@color/black"
-    android:hint="Password"
+    android:hint="@string/password"
     android:background="@drawable/input_bg"
     android:inputType="textPassword"
     android:minHeight="48dp"
@@ -46,7 +46,7 @@ tools:context=".NgoSigninFragment">
     android:ems="10"
     android:gravity="center"
     android:textColor="@color/black"
-    android:hint="Confirm Password"
+    android:hint="@string/confirm_password"
     android:inputType="textPersonName"
     android:background="@drawable/input_bg"
     android:minHeight="48dp"
@@ -59,14 +59,14 @@ tools:context=".NgoSigninFragment">
     android:layout_margin="20dp"
     android:background="@drawable/buttondefault_bg"
     android:padding="10dp"
-    android:text="Sign in" />
+    android:text="@string/sign_in" />
 
 <TextView
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:text="Already have an account?Log in"
+    android:text="@string/already_have_an_account_log_in"
     android:textStyle="bold"
     android:textColor="@color/primary"/>
 </LinearLayout>

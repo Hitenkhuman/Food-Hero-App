@@ -14,7 +14,7 @@
         android:layout_marginTop="72dp"
         android:gravity="center"
         android:paddingHorizontal="50dp"
-        android:text="Your Application is still pending try Again Later"
+        android:text="@string/your_application_is_still_pending_try_again_later"
         android:textColor="@color/primary"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Exit"
+        android:text="@string/exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

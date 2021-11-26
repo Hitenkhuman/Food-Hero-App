@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="OTP Verification"
+            android:text="@string/otp_verification"
             android:textColor="@color/primary"
             android:textSize="20sp"
             android:textStyle="bold"></TextView>
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:textColor="@color/green"
             android:textSize="14sp"
-            android:text="We will send you an one time password on this mobile number"></TextView>
+            android:text="@string/we_will_send_you_an_one_time_password_on_this_mobile_number"></TextView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,7 +46,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginTop="50dp"
             android:gravity="center"
-            android:text="Enter Mobile Number"
+            android:text="@string/enter_mobile_number"
             android:textColor="@color/green"
             android:textSize="14sp"
             />
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="+91-"
+                android:text="@string/_91"
                 android:textColor="@color/primary"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:background="@null"
-                android:hint="123456789"
+                android:hint="@string/_123456789"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:text="GET OTP"
+                android:text="@string/get_otp"
                 android:background="@drawable/buttondefault_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"

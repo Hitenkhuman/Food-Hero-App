@@ -19,7 +19,7 @@
         android:minHeight="48dp"
         android:background="@drawable/input_bg"
         android:padding="10dp"
-        android:hint="Mobile number" />
+        android:hint="@string/mobile_number" />
 
     <EditText
         android:id="@+id/userpass"
@@ -31,7 +31,7 @@
         android:gravity="center"
         android:textColorHint="@color/green"
         android:background="@drawable/input_bg"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:padding="10dp" />
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:paddingRight="20dp"
-        android:text="forgot password?"
+        android:text="@string/forgot_password"
         android:textColor="@color/black" />
 
     <Button
@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Don't have an account?Sign in"
+        android:text="@string/don_t_have_an_account_sign_in"
         android:textStyle="bold"
         android:textColor="@color/primary" />
     <ImageView

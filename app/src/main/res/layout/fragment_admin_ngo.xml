@@ -16,7 +16,7 @@
         android:textSize="20sp"
         android:visibility="gone"
         android:gravity="center"
-        android:text="No Data Found"/>
+        android:text="@string/no_data_found"/>
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer"
         android:layout_width="match_parent"
